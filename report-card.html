@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vital Activity Report Card</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--offwhite:#F7FAFD;--lb1:#EBF4FD;--lb2:#D6EAFB;--lb3:#BDD9F8;--blue:#1B3A6B;--blue2:#244E94;--blue3:#3568B8;--gold:#C9A84C;--gold2:#E8C97A;--gold3:#FBF0D0;--green:#1A6B3A;--green-bg:#D4F0E1;--green2:#22A35A;--red:#C0392B;--red-bg:#FDECEA;--amber:#B7690A;--amber-bg:#FEF3DC;--border:#C8DCF0;--shadow:rgba(27,58,107,.10);--text-main:#1B3A6B;--text-mid:#4A6FA5;--text-light:#7A99C2}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--lb1);color:var(--text-main);font-family:'Outfit',sans-serif;min-height:100vh;padding-bottom:4rem}
+.header{background:var(--blue);padding:1.4rem 1.5rem 0;box-shadow:0 2px 12px rgba(27,58,107,.2)}
+.header-top{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:.8rem;margin-bottom:1.1rem}
+.logo-row{display:flex;align-items:center;gap:.8rem}
+.logo-diamond{width:34px;height:34px;background:linear-gradient(135deg,var(--gold),var(--gold2));clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);flex-shrink:0}
+.title-block h1{font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,4vw,2rem);font-weight:700;color:#fff;letter-spacing:.02em;line-height:1.1}
+.title-block p{font-size:.7rem;color:var(--lb2);margin-top:.2rem;letter-spacing:.12em;text-transform:uppercase}
+.header-right{display:flex;flex-direction:column;align-items:flex-end;gap:.5rem}
+#dateDisplay{font-size:.75rem;color:var(--lb3);letter-spacing:.04em}
+.print-btn{background:transparent;border:1px solid rgba(255,255,255,.35);color:var(--gold2);padding:.38rem 1rem;border-radius:4px;font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.print-btn:hover{background:rgba(255,255,255,.1);border-color:var(--gold2)}
+.tabs{display:flex}
+.tab-btn{font-family:'Outfit',sans-serif;font-size:.73rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.65rem 1.5rem;background:transparent;border:none;color:rgba(255,255,255,.5);cursor:pointer;border-bottom:3px solid transparent;transition:all .2s}
+.tab-btn.active{color:#fff;border-bottom-color:var(--gold)}
+.tab-btn:hover:not(.active){color:rgba(255,255,255,.8)}
+.content{padding:1.5rem;max-width:920px;margin:0 auto;animation:fadeUp .3s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.date-row{display:flex;align-items:center;gap:.8rem;margin-bottom:1.4rem;flex-wrap:wrap}
+.date-row label{font-size:.68rem;color:var(--text-mid);text-transform:uppercase;letter-spacing:.12em;font-weight:600}
+.date-input{background:var(--white);border:1.5px solid var(--border);color:var(--blue);font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:600;padding:.36rem .8rem;border-radius:6px;outline:none;transition:border-color .2s;box-shadow:0 1px 4px var(--shadow)}
+.date-input:focus{border-color:var(--blue3)}
+.week-range{font-size:.75rem;color:var(--blue3);font-weight:600;letter-spacing:.03em}
+.section-card{background:var(--white);border-radius:12px;border:1.5px solid var(--border);margin-bottom:1.2rem;overflow:hidden;box-shadow:0 2px 10px var(--shadow)}
+.section-header{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.2rem;cursor:pointer;user-select:none;flex-wrap:wrap;gap:.5rem}
+.section-header.high{background:var(--blue)}
+.section-header.med{background:var(--blue2)}
+.section-header.low{background:var(--blue3)}
+.sh-left{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:700;color:#fff;letter-spacing:.03em}
+.section-badge{display:inline-flex;align-items:center;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:2px 10px;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold2)}
+.sh-right{display:flex;align-items:center;gap:.7rem}
+.section-pct{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;color:var(--gold2)}
+.toggle-arrow{color:rgba(255,255,255,.7);font-size:.85rem;transition:transform .25s;display:inline-block}
+.section-body{overflow:hidden}
+.report-table{width:100%;border-collapse:collapse}
+.report-table th{font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mid);padding:.5rem .9rem;text-align:left;background:var(--lb1);border-bottom:1.5px solid var(--border)}
+.report-table th.num{text-align:center}
+.report-table td{padding:.5rem .9rem;font-size:.84rem;border-bottom:1px solid var(--lb2);vertical-align:middle}
+.report-table tr:last-child td{border-bottom:none}
+.report-table tbody tr:hover td{background:var(--offwhite)}
+.name-input{width:100%;background:transparent;border:none;color:var(--blue);font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:500;padding:.2rem .3rem;border-radius:4px;outline:none;transition:background .15s,border .15s;border-bottom:1.5px solid transparent;min-width:140px}
+.name-input:focus{background:var(--lb1);border-bottom-color:var(--blue3)}
+.name-input::placeholder{color:var(--text-light);font-style:italic}
+.goal-input,.actual-input{width:52px;text-align:center;background:var(--lb1);border:1.5px solid var(--border);color:var(--blue);font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:700;padding:.28rem .4rem;border-radius:6px;outline:none;transition:border-color .2s,background .2s;display:block;margin:0 auto}
+.goal-input{color:var(--text-mid);font-weight:500}
+.actual-input:focus,.goal-input:focus{border-color:var(--blue3);background:var(--white)}
+.del-btn{background:none;border:none;color:var(--text-light);cursor:pointer;font-size:1.1rem;padding:0 .3rem;line-height:1;transition:color .15s;display:block;margin:0 auto}
+.del-btn:hover{color:var(--red)}
+.add-row-btn{display:flex;align-items:center;gap:.4rem;background:none;border:none;color:var(--blue3);font-family:'Outfit',sans-serif;font-size:.75rem;font-weight:600;letter-spacing:.06em;padding:.65rem 1rem;cursor:pointer;transition:color .15s,background .15s;border-top:1px solid var(--lb2);width:100%;text-align:left}
+.add-row-btn:hover{color:var(--blue);background:var(--lb1)}
+.add-row-btn .plus{font-size:1.1rem;font-weight:700}
+.grade-pill{display:inline-block;padding:.15rem .5rem;border-radius:5px;font-family:'Cormorant Garamond',serif;font-size:.92rem;font-weight:700;text-align:center;min-width:28px}
+.grade-A{background:var(--green-bg);color:var(--green);border:1.5px solid #9ADAB9}
+.grade-B{background:#ECFBF0;color:#1D7E44;border:1.5px solid #A8E8C0}
+.grade-C{background:var(--amber-bg);color:var(--amber);border:1.5px solid #F5CE80}
+.grade-D{background:#FFF0E4;color:#B35A10;border:1.5px solid #F7C4A0}
+.grade-F{background:var(--red-bg);color:var(--red);border:1.5px solid #F5B0A8}
+.pct-cell{text-align:center;font-size:.8rem;color:var(--text-mid);font-weight:500}
+.grade-cell{text-align:center}
+.section-footer{display:flex;align-items:center;justify-content:space-between;padding:.65rem 1.1rem;background:var(--lb1);border-top:1.5px solid var(--border);font-size:.73rem;color:var(--text-mid);flex-wrap:wrap;gap:.5rem}
+.section-footer strong{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:700;color:var(--blue)}
+.section-footer-right{display:flex;align-items:center;gap:.6rem}
+.overall-card{background:var(--white);border:2px solid var(--blue);border-radius:12px;overflow:hidden;box-shadow:0 3px 14px var(--shadow);margin-top:.5rem}
+.overall-header{background:var(--blue);padding:.75rem 1.3rem;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold2)}
+.overall-body{padding:1.2rem}
+.overall-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:.9rem;margin-bottom:1.1rem}
+.overall-item{background:var(--lb1);border:1.5px solid var(--border);border-radius:8px;padding:.9rem .8rem;text-align:center}
+.overall-item .label{font-size:.63rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-mid);margin-bottom:.45rem;font-weight:600}
+.overall-item .big-grade{font-family:'Cormorant Garamond',serif;font-size:2.3rem;font-weight:700;line-height:1;color:var(--blue)}
+.overall-item .sub-pct{font-size:.73rem;color:var(--text-mid);margin-top:.3rem}
+.prog-bar-wrap{margin-top:.55rem}
+.prog-bar-track{height:5px;background:var(--lb2);border-radius:99px;overflow:hidden}
+.prog-bar-fill{height:100%;border-radius:99px;transition:width .35s ease}
+.final-row{display:flex;align-items:center;justify-content:space-between;background:var(--green-bg);border:1.5px solid #9ADAB9;border-radius:8px;padding:1rem 1.4rem;flex-wrap:wrap;gap:.8rem}
+.final-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green)}
+.final-label span{display:block;font-size:.62rem;color:var(--green2);margin-top:.2rem;font-weight:400;letter-spacing:.05em;text-transform:none}
+.final-score-wrap{display:flex;align-items:center;gap:.9rem}
+.final-score{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:700;color:var(--green);line-height:1}
+.final-letter{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;padding:.3rem .8rem;border-radius:6px;border:2px solid}
+@media print{body{background:#fff}.tab-btn,.print-btn,.del-btn,.add-row-btn{display:none}.section-body{display:block!important}}
+</style>
+</head>
+<body>
+<nav style="background:#1B3A6B;padding:.8rem 1.2rem;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 12px rgba(27,58,107,.2)">
+  <a href="index.html" style="display:flex;align-items:center;gap:.6rem;text-decoration:none">
+    <div style="width:26px;height:26px;background:linear-gradient(135deg,#C9A84C,#E8C97A);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%)"></div>
+    <span style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:700;color:#fff">12 Easy Steps</span>
+  </a>
+  <div style="display:flex;gap:.3rem">
+    <a href="index.html" style="color:rgba(255,255,255,.55);text-decoration:none;font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.35rem .75rem;border-radius:4px">← Home</a>
+    <a href="steps.html" style="color:rgba(255,255,255,.55);text-decoration:none;font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.35rem .75rem;border-radius:4px">Steps</a>
+    <a href="report-card.html" style="color:#fff;background:rgba(255,255,255,.12);text-decoration:none;font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.35rem .75rem;border-radius:4px">Report Card</a>
+  </div>
+</nav>
+<div class="header">
+  <div class="header-top">
+    <div class="logo-row">
+      <div class="logo-diamond"></div>
+      <div class="title-block">
+        <h1>Vital Activity Report Card</h1>
+        <p>Recovery · Spiritual · Wellness</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <div id="dateDisplay"></div>
+      <button class="print-btn" onclick="window.print()">⎙ Print / Save</button>
+    </div>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('daily',this)">Daily Card</button>
+    <button class="tab-btn" onclick="switchTab('weekly',this)">Weekly Card</button>
+  </div>
+</div>
+
+<div id="tab-daily" class="content">
+  <div class="date-row">
+    <label>Date</label>
+    <input type="date" class="date-input" id="daily-date">
+    <span class="week-range" id="daily-weekday"></span>
+  </div>
+  <div id="d-high-card" class="section-card"></div>
+  <div id="d-med-card"  class="section-card"></div>
+  <div id="d-low-card"  class="section-card"></div>
+  <div class="overall-card">
+    <div class="overall-header">Overall Daily Grade</div>
+    <div class="overall-body">
+      <div class="overall-grid">
+        <div class="overall-item"><div class="label">🔴 High Priority — 60%</div><div class="big-grade" id="d-final-high">—</div><div class="sub-pct" id="d-final-high-pct">—</div><div class="prog-bar-wrap"><div class="prog-bar-track"><div class="prog-bar-fill" id="d-pb-high" style="background:#EF4444;width:0%"></div></div></div></div>
+        <div class="overall-item"><div class="label">🟡 Medium Priority — 30%</div><div class="big-grade" id="d-final-med">—</div><div class="sub-pct" id="d-final-med-pct">—</div><div class="prog-bar-wrap"><div class="prog-bar-track"><div class="prog-bar-fill" id="d-pb-med" style="background:#F59E0B;width:0%"></div></div></div></div>
+        <div class="overall-item"><div class="label">🟢 Lower Priority — 10%</div><div class="big-grade" id="d-final-low">—</div><div class="sub-pct" id="d-final-low-pct">—</div><div class="prog-bar-wrap"><div class="prog-bar-track"><div class="prog-bar-fill" id="d-pb-low" style="background:#22C55E;width:0%"></div></div></div></div>
+      </div>
+      <div class="final-row">
+        <div class="final-label">Weighted Daily Grade<span>60% High · 30% Medium · 10% Low</span></div>
+        <div class="final-score-wrap"><div class="final-score" id="d-overall-pct">—</div><div class="final-letter grade-A" id="d-overall-letter">—</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="tab-weekly" class="content" style="display:none">
+  <div class="date-row">
+    <label>Week of</label>
+    <input type="date" class="date-input" id="weekly-date">
+    <span class="week-range" id="weekly-range"></span>
+  </div>
+  <div id="w-high-card" class="section-card"></div>
+  <div id="w-med-card"  class="section-card"></div>
+  <div id="w-low-card"  class="section-card"></div>
+  <div class="overall-card">
+    <div class="overall-header">Overall Weekly Grade</div>
+    <div class="overall-body">
+      <div class="overall-grid">
+        <div class="overall-item"><div class="label">🔴 High Priority — 60%</div><div class="big-grade" id="w-final-high">—</div><div class="sub-pct" id="w-final-high-pct">—</div><div class="prog-bar-wrap"><div class="prog-bar-track"><div class="prog-bar-fill" id="w-pb-high" style="background:#EF4444;width:0%"></div></div></div></div>
+        <div class="overall-item"><div class="label">🟡 Medium Priority — 30%</div><div class="big-grade" id="w-final-med">—</div><div class="sub-pct" id="w-final-med-pct">—</div><div class="prog-bar-wrap"><div class="prog-bar-track"><div class="prog-bar-fill" id="w-pb-med" style="background:#F59E0B;width:0%"></div></div></div></div>
+        <div class="overall-item"><div class="label">🟢 Lower Priority — 10%</div><div class="big-grade" id="w-final-low">—</div><div class="sub-pct" id="w-final-low-pct">—</div><div class="prog-bar-wrap"><div class="prog-bar-track"><div class="prog-bar-fill" id="w-pb-low" style="background:#22C55E;width:0%"></div></div></div></div>
+      </div>
+      <div class="final-row">
+        <div class="final-label">Weighted Weekly Grade<span>60% High · 30% Medium · 10% Low</span></div>
+        <div class="final-score-wrap"><div class="final-score" id="w-overall-pct">—</div><div class="final-letter" id="w-overall-letter">—</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const DEFAULTS={daily:{high:["Daily Bootlog – Red & Yellow Circles","Recovery Time | Prayer Time","Zoom – PAA / SAA","Zoom – AA / CA","IRL – AA / CA","2 Way Prayer","Share at a Meeting"],med:["Service Commitment","Work with Sponsee / Sponsor","Check Ins","PAA Home Group","AA Home Group","Research Recovery","Meeting Notes","Movies – Green","Working Out – Green Outer","Couples Reading"],low:["RCA Meeting","Date Night","Page 86–87 Listen / Read","Use 10 Step / Recovery App","Bike – Green Outer Circle"]},weekly:{high:[{name:"Daily Bootlog – Red & Yellow Circles",goal:4},{name:"Recovery Time | Prayer Time",goal:4},{name:"Zoom – PAA / SAA",goal:3},{name:"Zoom – AA / CA",goal:2},{name:"IRL – AA / CA",goal:1},{name:"2 Way Prayer",goal:.5},{name:"Share at a Meeting",goal:4}],med:[{name:"Service Commitment",goal:1},{name:"Work with Sponsee / Sponsor",goal:1},{name:"Check Ins",goal:4},{name:"PAA Home Group",goal:1},{name:"AA Home Group",goal:1},{name:"Research Recovery",goal:1},{name:"Meeting Notes",goal:1},{name:"Movies – Green",goal:1},{name:"Working Out – Green Outer",goal:1},{name:"Couples Reading",goal:1}],low:[{name:"RCA Meeting",goal:1},{name:"Date Night",goal:1},{name:"Page 86–87 Listen / Read",goal:3},{name:"Use 10 Step / Recovery App",goal:2},{name:"Bike – Green Outer Circle",goal:1}]}};
+const TIERS=[{id:'high',emoji:'🔴',label:'High Priority',cls:'high',weight:.60},{id:'med',emoji:'🟡',label:'Medium Priority',cls:'med',weight:.30},{id:'low',emoji:'🟢',label:'Lower Priority',cls:'low',weight:.10}];
+const BADGE={high:'60% of Grade',med:'30% of Grade',low:'10% of Grade'};
+let rowCounter=0;
+function uid(){return 'r'+(++rowCounter)}
+function pctToGrade(p){if(p>=90)return'A';if(p>=80)return'B';if(p>=70)return'C';if(p>=60)return'D';return'F'}
+function gradeColor(l){return{A:['#D4F0E1','#1A6B3A','#9ADAB9'],B:['#ECFBF0','#1D7E44','#A8E8C0'],C:['#FEF3DC','#B7690A','#F5CE80'],D:['#FFF0E4','#B35A10','#F7C4A0'],F:['#FDECEA','#C0392B','#F5B0A8']}[l]||['#f0f0f0','#333','#ccc']}
+
+function buildSection(prefix,tier){
+  const t=TIERS.find(x=>x.id===tier);
+  const mode=prefix==='d'?'daily':'weekly';
+  const isWeek=mode==='weekly';
+  const card=document.getElementById(prefix+'-'+tier+'-card');
+  const items=DEFAULTS[mode][tier];
+  card.innerHTML=`<div class="section-header ${t.cls}" onclick="toggleSection('${prefix}-${tier}-body','${prefix}-${tier}-arrow')"><div class="sh-left"><span class="section-title">${t.emoji} ${t.label}</span><span class="section-badge">${BADGE[tier]}</span></div><div class="sh-right"><span class="section-pct" id="${prefix}-${tier}-pct">—</span><span class="grade-pill" id="${prefix}-${tier}-gpill">—</span><span class="toggle-arrow" id="${prefix}-${tier}-arrow">▼</span></div></div><div class="section-body" id="${prefix}-${tier}-body"><table class="report-table"><thead><tr><th>Activity <span style="font-weight:400;font-style:italic;text-transform:none;letter-spacing:0;font-size:.58rem">(tap to rename)</span></th><th class="num" style="width:64px">${isWeek?'Goal':'Goal (1)'}</th><th class="num" style="width:64px">Actual</th><th class="num" style="width:50px">%</th><th class="num" style="width:56px">Grade</th><th class="num" style="width:34px"></th></tr></thead><tbody id="${prefix}-${tier}-tbody"></tbody></table><button class="add-row-btn" onclick="addRow('${prefix}','${tier}')"><span class="plus">＋</span> Add Activity</button><div class="section-footer"><div style="display:flex;align-items:center;gap:.5rem"><span>Section Total</span><strong id="${prefix}-${tier}-score">— / —</strong></div><div class="section-footer-right"><span id="${prefix}-${tier}-sec-pct" style="font-size:.8rem;color:var(--text-mid)">—</span><span class="grade-pill" id="${prefix}-${tier}-sec-grade">—</span></div></div></div>`;
+  const tbody=document.getElementById(prefix+'-'+tier+'-tbody');
+  items.forEach(item=>{
+    const name=isWeek?item.name:item;
+    const goal=isWeek?item.goal:1;
+    appendRow(tbody,prefix,tier,name,goal);
+  });
+}
+
+function appendRow(tbody,prefix,tier,name,goal){
+  name=name||''; goal=goal||1;
+  const id=uid();
+  const tr=document.createElement('tr');
+  tr.id='row-'+id;
+  tr.innerHTML=`<td><input type="text" class="name-input" placeholder="Enter activity name…" value="${name}" id="name-${id}"></td><td><input type="number" class="goal-input" id="goal-${id}" min="0" step="0.5" value="${goal}" oninput="recalc('${prefix}')"></td><td><input type="number" class="actual-input" id="actual-${id}" min="0" step="0.5" value="" placeholder="0" oninput="recalc('${prefix}')"></td><td class="pct-cell" id="pct-${id}">—</td><td class="grade-cell" id="grp-${id}">—</td><td><button class="del-btn" onclick="delRow('${id}','${prefix}')" title="Remove">×</button></td>`;
+  tbody.appendChild(tr);
+}
+
+function addRow(prefix,tier){
+  const tbody=document.getElementById(prefix+'-'+tier+'-tbody');
+  appendRow(tbody,prefix,tier,'',1);
+  recalc(prefix);
+  const inputs=tbody.querySelectorAll('.name-input');
+  inputs[inputs.length-1].focus();
+}
+
+function delRow(id,prefix){
+  const row=document.getElementById('row-'+id);
+  if(row)row.remove();
+  recalc(prefix);
+}
+
+function toggleSection(bodyId,arrowId){
+  const body=document.getElementById(bodyId);
+  const arrow=document.getElementById(arrowId);
+  const open=body.style.display!=='none';
+  body.style.display=open?'none':'';
+  arrow.style.transform=open?'rotate(-90deg)':'';
+}
+
+function recalc(prefix){
+  const sp={};
+  TIERS.forEach(t=>{
+    const tbody=document.getElementById(prefix+'-'+t.id+'-tbody');
+    if(!tbody)return;
+    let tA=0,tG=0;
+    [...tbody.querySelectorAll('tr')].forEach(row=>{
+      const i=row.id.replace('row-','');
+      const actual=parseFloat(document.getElementById('actual-'+i)?.value)||0;
+      const goal=parseFloat(document.getElementById('goal-'+i)?.value)||1;
+      const pct=goal>0?Math.min((actual/goal)*100,100):0;
+      const letter=pctToGrade(pct);
+      const pEl=document.getElementById('pct-'+i);
+      const gEl=document.getElementById('grp-'+i);
+      if(pEl)pEl.textContent=pct.toFixed(0)+'%';
+      if(gEl)gEl.innerHTML=`<span class="grade-pill grade-${letter}">${letter}</span>`;
+      tA+=actual;tG+=goal;
+    });
+    const s=tG>0?Math.min((tA/tG)*100,100):0;
+    const sl=pctToGrade(s);
+    sp[t.id]=s;
+    const pctEl=document.getElementById(prefix+'-'+t.id+'-pct');
+    const gpEl=document.getElementById(prefix+'-'+t.id+'-gpill');
+    if(pctEl)pctEl.textContent=s.toFixed(1)+'%';
+    if(gpEl){gpEl.textContent=sl;gpEl.className='grade-pill grade-'+sl}
+    const scEl=document.getElementById(prefix+'-'+t.id+'-score');
+    const spEl=document.getElementById(prefix+'-'+t.id+'-sec-pct');
+    const sgEl=document.getElementById(prefix+'-'+t.id+'-sec-grade');
+    if(scEl)scEl.textContent=tA.toFixed(1)+' / '+tG.toFixed(1);
+    if(spEl)spEl.textContent=s.toFixed(1)+'%';
+    if(sgEl){sgEl.textContent=sl;sgEl.className='grade-pill grade-'+sl}
+    const fgEl=document.getElementById(prefix+'-final-'+t.id);
+    const fpEl=document.getElementById(prefix+'-final-'+t.id+'-pct');
+    const pbEl=document.getElementById(prefix+'-pb-'+t.id);
+    const[,fg2]=gradeColor(sl);
+    if(fgEl){fgEl.textContent=sl;fgEl.style.color=fg2}
+    if(fpEl)fpEl.textContent=s.toFixed(1)+'%';
+    if(pbEl)pbEl.style.width=s.toFixed(1)+'%';
+  });
+  const ov=(sp.high||0)*.60+(sp.med||0)*.30+(sp.low||0)*.10;
+  const ol=pctToGrade(ov);
+  const[bg,fg,bd]=gradeColor(ol);
+  const ovPEl=document.getElementById(prefix+'-overall-pct');
+  const ovLEl=document.getElementById(prefix+'-overall-letter');
+  if(ovPEl){ovPEl.textContent=ov.toFixed(2)+'%';ovPEl.style.color=fg}
+  if(ovLEl){ovLEl.textContent=ol;ovLEl.style.background=bg;ovLEl.style.color=fg;ovLEl.style.borderColor=bd}
+}
+
+function updateDates(){
+  const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const dv=document.getElementById('daily-date').value;
+  if(dv){const d=new Date(dv+'T12:00:00');document.getElementById('daily-weekday').textContent=days[d.getDay()]+', '+months[d.getMonth()]+' '+d.getDate()}
+  const wv=document.getElementById('weekly-date').value;
+  if(wv){const w=new Date(wv+'T12:00:00');const mon=new Date(w);mon.setDate(w.getDate()-w.getDay()+1);const sun=new Date(mon);sun.setDate(mon.getDate()+6);document.getElementById('weekly-range').textContent=months[mon.getMonth()]+' '+mon.getDate()+' – '+months[sun.getMonth()]+' '+sun.getDate()}
+  const n=new Date();document.getElementById('dateDisplay').textContent=days[n.getDay()]+', '+months[n.getMonth()]+' '+n.getDate()+', '+n.getFullYear();
+}
+
+function switchTab(id,btn){
+  ['daily','weekly'].forEach(t=>{document.getElementById('tab-'+t).style.display=t===id?'block':'none'});
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function init(){
+  TIERS.forEach(t=>{buildSection('d',t.id);buildSection('w',t.id)});
+  const fmt=d=>d.toISOString().split('T')[0];
+  const today=new Date();
+  document.getElementById('daily-date').value=fmt(today);
+  document.getElementById('weekly-date').value=fmt(today);
+  document.getElementById('daily-date').addEventListener('change',updateDates);
+  document.getElementById('weekly-date').addEventListener('change',updateDates);
+  updateDates();
+}
+init();
+</script>
+</body>
+</html>
