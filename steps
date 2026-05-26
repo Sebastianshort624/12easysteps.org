@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)https://12stepstaken.netlify.app/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Twelve Steps | Big Book Method</title>
+<link href="./The Twelve Steps _ Big Book Method_files/css2" rel="stylesheet">
+<style>
+:root{
+  --bg:#fdf0f5;--card:#fff;--parch:#fffaf4;
+  --hdr:#1b3d6f;--hdr2:#254e8c;
+  --ink:#1a2a4a;--inkm:#3a506a;--inkl:#6a82a0;
+  --bdr:rgba(26,42,74,.13);--bdr2:rgba(26,42,74,.26);
+  --ppink:#fce4ef;--pblue:#dceffe;--pgreen:#d8f4e2;--plav:#ebe4fa;--pmint:#d0f2e8;--ppeach:#fde8d8;--pyellow:#fdf6d0;
+  --c1:#b83870;--c2:#2460b8;--c3:#6040b0;--c4:#226850;--c5:#9a7018;--c6:#305a9a;--c7:#3a6850;--c8:#6030a0;--c9:#224a30;
+  --success:#1a6840;--suc-bg:#d8f4e2;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:'Source Serif 4',Georgia,serif;min-height:100vh;font-size:15px;line-height:1.7}
+
+/* SETTINGS BAR */
+.settings-bar{background:var(--hdr2);padding:8px 22px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-bottom:2px solid rgba(255,255,255,.15)}
+.settings-bar label{font-size:11.5px;color:rgba(255,255,255,.75);font-family:'Source Serif 4',serif;white-space:nowrap}
+.settings-bar input,.settings-bar select{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:4px;padding:4px 8px;font-size:12.5px;font-family:'Source Serif 4',serif;color:#fff;min-width:120px}
+.settings-bar input::placeholder{color:rgba(255,255,255,.5)}
+.settings-bar input:focus,.settings-bar select:focus{outline:none;background:rgba(255,255,255,.25)}
+.settings-bar select option{background:var(--hdr);color:#fff}
+.sb-sep{color:rgba(255,255,255,.3);font-size:18px;margin:0 4px}
+
+/* HEADER */
+.site-header{background:var(--hdr);padding:14px 22px 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,.35)}
+.header-top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.site-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#fff;letter-spacing:.04em;text-transform:uppercase}
+.site-sub{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:rgba(255,255,255,.6);margin-top:1px}
+.hdr-btns{display:flex;gap:7px;margin-left:auto;flex-shrink:0}
+.hbtn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);color:#fff;padding:4px 10px;border-radius:4px;cursor:pointer;font-size:12px;font-family:'Source Serif 4',serif;transition:all .2s}
+.hbtn:hover{background:rgba(255,255,255,.22)}
+.prog-wrap{background:rgba(255,255,255,.1);height:3px}
+.prog-fill{background:rgba(255,255,255,.7);height:100%;transition:width .5s ease}
+.step-nav{display:flex;overflow-x:auto;scrollbar-width:none;gap:0}
+.step-nav::-webkit-scrollbar{display:none}
+.snav-btn{background:none;border:none;padding:9px 13px 11px;cursor:pointer;color:rgba(255,255,255,.45);font-family:'Cormorant Garamond',serif;font-size:12.5px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap;display:flex;align-items:center;gap:5px}
+.snav-btn:hover{color:rgba(255,255,255,.8)}
+.snav-btn.active{color:#fff;border-bottom-color:#fff}
+.snum{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,.15);font-size:10px}
+.snav-btn.active .snum{background:rgba(255,255,255,.35)}
+.snav-btn.done .snum{background:#3a9a5c;color:#fff}
+.snav-btn.took{font-size:11px;letter-spacing:.06em}
+
+/* MAIN */
+main{max-width:1040px;margin:0 auto;padding:24px 18px 80px}
+.step-panel{display:none;animation:fi .3s ease}
+.step-panel.active{display:block}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* PHASE NAV (within a step) */
+.phase-nav{display:flex;gap:0;margin-bottom:24px;border-bottom:2px solid var(--bdr2);overflow-x:auto;scrollbar-width:none}
+.phase-nav::-webkit-scrollbar{display:none}
+.phase-btn{background:none;border:none;padding:8px 14px 10px;cursor:pointer;font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:600;color:var(--inkl);border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:all .2s}
+.phase-btn:hover{color:var(--inkm)}
+.phase-btn.active{color:var(--c1);border-bottom-color:var(--c1)}
+.phase-btn.done-phase{color:var(--success)}
+.phase-btn.done-phase::after{content:' ✓';font-size:11px}
+
+/* STEP HEADER */
+.step-hdr{display:flex;gap:14px;align-items:flex-start;margin-bottom:22px;padding-bottom:16px;border-bottom:2px solid var(--bdr)}
+.step-badge{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:24px;font-weight:700;flex-shrink:0;color:#fff}
+.step-hdr h1{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:var(--hdr);line-height:1.2;margin-bottom:3px}
+.step-sub{font-family:'Cormorant Garamond',serif;font-size:14.5px;font-style:italic;color:var(--inkl)}
+
+/* SPONSOR QUOTE */
+.sq{background:var(--parch);border-left:4px solid var(--hdr2);border-radius:0 6px 6px 0;padding:13px 16px;margin-bottom:18px;font-family:'Cormorant Garamond',serif;font-size:15.5px;font-style:italic;color:var(--hdr);line-height:1.6}
+.sq cite{display:block;margin-top:4px;font-style:normal;font-size:12px;color:var(--inkl);font-family:'Source Serif 4',serif}
+
+/* TEACHING CARD */
+.teach-card{border-radius:9px;padding:18px 20px;margin-bottom:16px;border:1px solid var(--bdr2)}
+.teach-card h3{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;margin-bottom:10px}
+.teach-card p{font-size:14px;line-height:1.65;color:var(--inkm);margin-bottom:8px}
+.teach-card p:last-child{margin-bottom:0}
+.teach-card ul{list-style:none;display:flex;flex-direction:column;gap:7px;margin-top:8px}
+.teach-card ul li{display:flex;gap:8px;font-size:13.5px;color:var(--inkm);line-height:1.5}
+.teach-card ul li::before{content:'◆';font-size:8px;flex-shrink:0;margin-top:6px}
+
+.tc-pink{background:var(--ppink);} .tc-pink h3,.tc-pink ul li::before{color:var(--c1)}
+.tc-blue{background:var(--pblue);} .tc-blue h3,.tc-blue ul li::before{color:var(--c2)}
+.tc-green{background:var(--pgreen);} .tc-green h3,.tc-green ul li::before{color:var(--c4)}
+.tc-lav{background:var(--plav);} .tc-lav h3,.tc-lav ul li::before{color:var(--c3)}
+.tc-mint{background:var(--pmint);} .tc-mint h3,.tc-mint ul li::before{color:var(--c7)}
+.tc-peach{background:var(--ppeach);} .tc-peach h3,.tc-peach ul li::before{color:var(--c5)}
+
+/* EVIDENCE SECTION */
+.evidence-section{background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:20px 22px;margin-bottom:16px;box-shadow:0 1px 5px rgba(26,42,74,.06)}
+.evidence-section h3{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--hdr);margin-bottom:6px}
+.evidence-section .prompt{font-size:14px;color:var(--inkm);margin-bottom:12px;font-style:italic;line-height:1.6}
+.evidence-section .speaker-tag{display:inline-block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;padding:2px 8px;border-radius:10px;margin-bottom:8px}
+.tag-sponsee{background:var(--ppink);color:var(--c1)}
+.tag-sponsor{background:var(--pblue);color:var(--c2)}
+.ev-area{width:100%;background:var(--bg);border:1px solid var(--bdr2);border-radius:7px;padding:10px 12px;font-family:'Source Serif 4',serif;font-size:14px;color:var(--ink);line-height:1.55;resize:vertical;min-height:80px;transition:border-color .2s}
+.ev-area:focus{outline:none;border-color:var(--hdr2)}
+.ev-hint{font-size:12px;color:var(--inkl);margin-top:6px;font-style:italic}
+
+/* SPONSOR CONVICTION CHECK */
+.conviction-box{background:var(--pblue);border:1.5px solid rgba(36,96,184,.25);border-radius:9px;padding:16px 18px;margin-top:14px}
+.conviction-box h4{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:var(--c2);margin-bottom:10px}
+.conv-item{display:flex;align-items:flex-start;gap:9px;margin-bottom:8px;font-size:13.5px;color:var(--inkm);line-height:1.5;cursor:pointer}
+.conv-item input[type=checkbox]{width:17px;height:17px;accent-color:var(--c2);flex-shrink:0;margin-top:2px;cursor:pointer}
+.conv-item.checked{color:var(--success);font-weight:500}
+
+/* PICKLE BOX */
+.pickle-box{background:var(--parch);border:2px solid var(--c4);border-radius:10px;padding:22px 26px;margin-bottom:18px;text-align:center;position:relative}
+.pickle-box::before{content:'\201C';position:absolute;top:4px;left:12px;font-family:'Playfair Display',serif;font-size:52px;color:var(--c4);line-height:1;opacity:.3}
+.pickle-title{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:var(--c4);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.pickle-text{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--hdr);line-height:1.7}
+.pickle-src{margin-top:10px;font-size:12px;color:var(--c4);font-weight:500;text-transform:uppercase;letter-spacing:.05em}
+
+/* GRADUATION */
+.grad-box{background:var(--pgreen);border:2px solid rgba(34,104,80,.3);border-radius:12px;padding:22px 24px;margin-top:20px}
+.grad-box h3{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--c4);margin-bottom:5px}
+.grad-box p{font-size:13.5px;color:var(--inkm);margin-bottom:14px}
+.grad-checklist{display:flex;flex-direction:column;gap:9px;margin-bottom:18px}
+.grad-item{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--inkm);cursor:pointer;line-height:1.5}
+.grad-item input{width:18px;height:18px;accent-color:var(--success);flex-shrink:0;margin-top:2px;cursor:pointer}
+.grad-item.chk{color:var(--success);font-weight:500}
+.grad-btn{background:var(--c4);color:#fff;border:none;border-radius:7px;padding:11px 22px;cursor:pointer;font-family:'Playfair Display',serif;font-size:15px;font-weight:700;letter-spacing:.03em;transition:all .2s;display:flex;align-items:center;gap:9px}
+.grad-btn:hover{opacity:.9}
+.grad-btn:disabled{opacity:.35;cursor:not-allowed}
+
+/* PROMISE BOX */
+.promise-box{background:var(--hdr);color:#fff;border-radius:9px;padding:18px 20px;margin:18px 0;font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;line-height:1.7;text-align:center}
+.promise-box strong{display:block;font-style:normal;font-size:11px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px;color:rgba(255,255,255,.65)}
+
+/* PRAYER BOX */
+.prayer-box{background:var(--parch);border:2px solid var(--c2);border-radius:10px;padding:24px 28px;margin-bottom:22px;text-align:center;position:relative}
+.prayer-box::before{content:'\201C';position:absolute;top:4px;left:12px;font-family:'Playfair Display',serif;font-size:52px;color:var(--c2);line-height:1;opacity:.3}
+.prayer-text{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:var(--hdr);line-height:1.75}
+.prayer-src{margin-top:10px;font-size:12px;color:var(--c2);font-weight:500;text-transform:uppercase;letter-spacing:.05em}
+
+/* SECTION LABEL */
+.sec-label{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--hdr);margin:22px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:8px}
+.sec-label span{font-size:13px;color:var(--inkl);font-weight:400;font-style:italic}
+
+/* STEP FOOTER */
+.step-footer{display:flex;justify-content:space-between;align-items:center;margin-top:30px;padding-top:16px;border-top:1px solid var(--bdr);flex-wrap:wrap;gap:10px}
+.nbtn{background:none;border:2px solid var(--hdr);color:var(--hdr);padding:9px 18px;border-radius:6px;cursor:pointer;font-family:'Source Serif 4',serif;font-size:13.5px;font-weight:500;transition:all .2s}
+.nbtn:hover{background:var(--hdr);color:#fff}
+.nbtn.pri{background:var(--hdr);color:#fff}
+.nbtn:disabled{opacity:.3;cursor:not-allowed}
+
+/* ── STEPS 4-9 COMPONENTS ── */
+.cat-tabs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px}
+.cat-tab{background:var(--ppink);border:1.5px solid rgba(184,56,112,.2);border-radius:16px;padding:4px 12px;cursor:pointer;font-size:13px;color:var(--c1);transition:all .2s}
+.cat-tab:hover,.cat-tab.active{background:var(--hdr);color:#fff;border-color:var(--hdr)}
+.cbadge{display:inline-block;background:rgba(184,56,112,.2);border-radius:9px;font-size:10px;padding:0 5px;margin-left:3px}
+.cat-tab.active .cbadge{background:rgba(255,255,255,.25)}
+.toolbar{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.tbtn{background:none;border:1.5px solid var(--bdr2);border-radius:5px;padding:5px 11px;cursor:pointer;font-size:13px;font-family:'Source Serif 4',serif;color:var(--inkm);transition:all .2s}
+.tbtn:hover{background:var(--hdr);color:#fff;border-color:var(--hdr)}
+.inv-list{display:flex;flex-direction:column;gap:9px}
+.inv-card{background:var(--card);border:1px solid var(--bdr);border-radius:9px;overflow:hidden;box-shadow:0 1px 4px rgba(26,42,74,.05)}
+.inv-hdr{display:flex;align-items:center;gap:10px;padding:11px 13px;background:var(--ppink);border-bottom:1px solid rgba(184,56,112,.15);cursor:pointer;user-select:none}
+.inv-hdr:hover{background:#f9d6e8}
+.avatar{width:34px;height:34px;border-radius:50%;background:var(--hdr);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:12.5px;font-weight:700;flex-shrink:0;pointer-events:none}
+.hname-grp{flex:1;min-width:0}
+.edit-name{background:transparent;border:none;border-bottom:1.5px dashed rgba(184,56,112,.3);font-family:'Playfair Display',serif;font-weight:600;font-size:14px;color:var(--hdr);width:100%;padding:1px 3px;cursor:text}
+.edit-name:focus{outline:none;border-bottom-color:var(--c1);background:rgba(255,255,255,.7);border-radius:3px 3px 0 0}
+.pmeta{display:flex;gap:5px;flex-wrap:wrap;margin-top:2px;align-items:center}
+.tag{border-radius:4px;padding:1px 6px;font-size:11px;font-weight:500}
+.tl{background:var(--ppink);color:var(--c1);border:1px solid rgba(184,56,112,.2)}
+.ta{background:var(--pgreen);color:var(--c4);border:1px solid rgba(34,104,80,.2)}
+.earr{color:var(--inkl);font-size:15px;transition:transform .25s;flex-shrink:0;pointer-events:none}
+.inv-card.open .earr{transform:rotate(180deg)}
+.del-btn{background:none;border:none;cursor:pointer;color:rgba(184,56,112,.35);font-size:14px;padding:3px;transition:color .2s;flex-shrink:0}
+.del-btn:hover{color:var(--c1)}
+.inv-body{display:none;padding:15px 17px}
+.inv-card.open .inv-body{display:block}
+.fg{margin-bottom:12px}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:11px 15px;margin-bottom:12px}
+@media(max-width:580px){.fg2{grid-template-columns:1fr}}
+.fl{display:block;font-size:10.5px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--inkl);margin-bottom:3px}
+.fl.grn{color:var(--c4)}
+.ea{width:100%;background:var(--bg);border:1px solid var(--bdr);border-radius:6px;padding:7px 9px;font-family:'Source Serif 4',serif;font-size:13.5px;color:var(--ink);line-height:1.5;resize:vertical;min-height:52px;transition:border-color .2s}
+.ea:focus{outline:none;border-color:var(--hdr2)}
+.ei{width:100%;background:var(--bg);border:1px solid var(--bdr);border-radius:6px;padding:6px 9px;font-family:'Source Serif 4',serif;font-size:13.5px;color:var(--ink);transition:border-color .2s}
+.ei:focus{outline:none;border-color:var(--hdr2)}
+.es{width:100%;background:var(--bg);border:1px solid var(--bdr);border-radius:6px;padding:6px 9px;font-family:'Source Serif 4',serif;font-size:13.5px;color:var(--ink);cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 11 7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%236a82a0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;padding-right:26px}
+.es:focus{outline:none;border-color:var(--hdr2)}
+.ideal-a{width:100%;background:var(--pgreen);border:1.5px solid rgba(34,104,80,.22);border-radius:7px;padding:9px 12px;font-family:'Source Serif 4',serif;font-size:13.5px;color:var(--ink);line-height:1.5;resize:vertical;min-height:60px}
+.ideal-a:focus{outline:none;border-color:var(--c4)}
+.affects-grid{display:flex;flex-wrap:wrap;gap:5px;background:var(--bg);border:1px solid var(--bdr);border-radius:6px;padding:7px 9px}
+.aff-lbl{display:flex;align-items:center;gap:4px;cursor:pointer;background:var(--card);border:1px solid var(--bdr);border-radius:11px;padding:3px 8px;font-size:12px;color:var(--inkm);transition:all .2s}
+.aff-lbl input{width:12px;height:12px;accent-color:var(--c1);cursor:pointer}
+.aff-lbl:has(input:checked){background:var(--ppink);color:var(--c1);border-color:rgba(184,56,112,.3);font-weight:500}
+.share-row{background:var(--card);border:1px solid var(--bdr);border-radius:7px;padding:11px 13px;display:flex;align-items:center;gap:11px;margin-bottom:7px;flex-wrap:wrap}
+.share-row .sn{font-family:'Playfair Display',serif;font-weight:600;font-size:14px;color:var(--hdr);min-width:100px}
+.share-row .st{font-size:12.5px;color:var(--inkl);flex:1}
+.stog{display:flex;align-items:center;gap:6px;cursor:pointer;font-size:13px;color:var(--inkm);white-space:nowrap}
+.stog input{width:16px;height:16px;accent-color:var(--hdr);cursor:pointer}
+.defect-card{background:var(--card);border:1px solid var(--bdr);border-radius:7px;padding:12px 14px;margin-bottom:7px;display:flex;align-items:flex-start;gap:11px}
+.dic{width:32px;height:32px;background:var(--ppink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.dname{font-family:'Playfair Display',serif;font-weight:600;font-size:13.5px;color:var(--hdr)}
+.ddesc{font-size:13px;color:var(--inkl);margin-top:2px}
+.rtog{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--inkl);cursor:pointer;flex-shrink:0;padding:4px 9px;border:1px solid var(--bdr);border-radius:5px;background:var(--bg);transition:all .2s;white-space:nowrap}
+.rtog input{accent-color:var(--success);width:14px;height:14px;cursor:pointer}
+.rtog.chk{color:var(--success);border-color:rgba(26,104,64,.3);background:var(--suc-bg);font-weight:500}
+.amtbl-wrap{overflow-x:auto;border-radius:7px;border:1px solid var(--bdr)}
+.amtbl{width:100%;border-collapse:collapse;font-size:13px}
+.amtbl thead th{background:var(--hdr);color:#fff;padding:9px 11px;text-align:left;font-family:'Source Serif 4',serif;font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.amtbl tbody tr{border-bottom:1px solid var(--bdr);background:#fff}
+.amtbl tbody tr:nth-child(even){background:var(--bg)}
+.amtbl tbody tr:hover{background:var(--ppink)}
+.amtbl td{padding:9px 11px;vertical-align:middle}
+.tdname{font-family:'Playfair Display',serif;font-weight:600;color:var(--hdr);white-space:nowrap}
+.td-ei{background:transparent;border:none;border-bottom:1px dashed var(--bdr2);width:100%;font-family:'Source Serif 4',serif;font-size:12.5px;color:var(--ink);padding:2px 2px;min-width:80px}
+.td-ei:focus{outline:none;border-bottom-color:var(--hdr2);background:rgba(255,255,255,.8)}
+.td-es{background:transparent;border:none;border-bottom:1px dashed var(--bdr2);font-family:'Source Serif 4',serif;font-size:12px;color:var(--ink);cursor:pointer;padding:2px 2px;width:100%;min-width:110px}
+.abadge{border-radius:4px;padding:2px 7px;font-size:11px;font-weight:500;white-space:nowrap}
+.ab-d{background:var(--ppink);color:var(--c1)}
+.ab-i{background:var(--ppeach);color:var(--c5)}
+.ab-l{background:var(--pgreen);color:var(--c4)}
+.ab-p{background:var(--plav);color:var(--c3)}
+.ab-k{background:var(--pmint);color:var(--c7)}
+.aac{background:var(--card);border:1px solid var(--bdr);border-radius:9px;margin-bottom:10px;overflow:hidden;transition:opacity .3s}
+.aac.done{opacity:.6}
+.aac-hdr{display:flex;align-items:center;gap:10px;padding:11px 14px;background:var(--ppink);border-bottom:1px solid rgba(184,56,112,.15)}
+.aac-name{font-family:'Playfair Display',serif;font-weight:600;font-size:14px;color:var(--hdr);flex:1}
+.aac-body{padding:12px 14px;font-size:13.5px;color:var(--inkm)}
+.aac-body .fl{margin-top:10px}
+.aac-body .fl:first-child{margin-top:0}
+.aac-meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:12px;padding-top:10px;border-top:1px solid var(--bdr)}
+.mchip{font-size:12px;color:var(--inkl);background:var(--bg);padding:3px 8px;border-radius:4px;border:1px solid var(--bdr)}
+.done-btn{margin-left:auto;display:flex;align-items:center;gap:5px;cursor:pointer;font-size:13px;color:var(--inkl);padding:4px 11px;border-radius:5px;border:1px solid var(--bdr);background:var(--bg);transition:all .2s;font-family:'Source Serif 4',serif}
+.done-btn:hover{background:var(--ppink)}
+.done-btn.ok{background:var(--suc-bg);color:var(--success);border-color:rgba(26,104,64,.28);font-weight:500}
+.filter-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.fbtn{border:1.5px solid var(--bdr2);background:none;border-radius:14px;padding:4px 11px;cursor:pointer;font-size:13px;color:var(--inkm);transition:all .2s;font-family:'Source Serif 4',serif}
+.fbtn:hover,.fbtn.active{background:var(--hdr);color:#fff;border-color:var(--hdr)}
+.crit-box{background:var(--pblue);border:1px solid rgba(36,96,184,.2);border-radius:7px;padding:14px 16px;margin-bottom:16px}
+.crit-box h4{font-family:'Playfair Display',serif;font-size:14.5px;color:var(--c2);margin-bottom:8px}
+.crit-list{list-style:none;display:flex;flex-direction:column;gap:5px}
+.crit-list li{display:flex;align-items:flex-start;gap:7px;font-size:13.5px;line-height:1.5}
+.crit-list li::before{content:'◆';color:var(--c2);font-size:8.5px;margin-top:5px;flex-shrink:0}
+.priv-panel{background:var(--card);border:1px solid var(--bdr);border-radius:9px;padding:16px 18px;margin-bottom:16px;display:none}
+.priv-panel.open{display:block}
+.priv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:7px;margin-top:12px}
+.priv-item{display:flex;align-items:center;gap:6px;background:var(--bg);border:1px solid var(--bdr);border-radius:5px;padding:5px 8px}
+.priv-num{font-size:11px;color:var(--inkl);min-width:22px}
+.priv-inp{flex:1;background:#fff;border:1px solid var(--bdr);border-radius:4px;padding:3px 6px;font-family:'Playfair Display',serif;font-size:13px;color:var(--hdr);font-weight:600}
+.priv-inp:focus{outline:none;border-color:var(--c1)}
+
+/* STEPS WE TOOK */
+.took-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:4px}
+.took-card{border-radius:10px;padding:20px;border:2px solid;text-align:center;cursor:pointer;transition:all .2s;background:var(--card)}
+.took-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.1)}
+.took-card.empty{border-style:dashed;opacity:.45;cursor:default}
+.took-card.empty:hover{transform:none;box-shadow:none}
+.took-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;line-height:1}
+.took-name{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;margin:6px 0 3px}
+.took-date{font-size:12px;color:var(--inkl)}
+.took-check{font-size:22px;margin-top:8px}
+
+/* DIPLOMA / CERTIFICATE MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(26,42,74,.65);z-index:200;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.diploma-wrap{background:#fff;border-radius:12px;max-width:680px;width:100%;max-height:90vh;overflow-y:auto;padding:10px}
+.diploma{margin:8px;border:3px solid;border-radius:6px;padding:6px}
+.diploma-inner{border:1.5px solid;border-radius:4px;padding:36px 44px;text-align:center}
+.diploma-ornament{font-size:22px;letter-spacing:8px;margin-bottom:10px;opacity:.7}
+.diploma-series{font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:.15em;text-transform:uppercase;margin-bottom:6px}
+.diploma-main-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;margin-bottom:4px}
+.diploma-of{font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:20px}
+.diploma-cert-text{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;margin-bottom:8px;color:var(--inkm)}
+.diploma-name{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;margin:8px 0;padding:8px 30px;border-bottom:2px solid;display:inline-block}
+.diploma-has{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;margin:14px 0 8px;color:var(--inkm)}
+.diploma-step-num{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.diploma-step-text{font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;max-width:460px;margin:0 auto 20px;color:var(--inkm);line-height:1.6}
+.diploma-date{font-size:13px;color:var(--inkl);margin-bottom:20px;font-family:'Source Serif 4',serif}
+.diploma-sigs{display:flex;justify-content:space-around;margin-top:10px;gap:30px}
+.diploma-sig{text-align:center;flex:1}
+.sig-line{border-bottom:1.5px solid;width:140px;margin:0 auto 5px;padding-bottom:4px}
+.sig-role{font-size:12px;color:var(--inkl);text-transform:uppercase;letter-spacing:.06em}
+.diploma-btns{display:flex;gap:10px;justify-content:center;padding:14px 0 6px}
+.diploma-close{background:none;border:2px solid var(--bdr2);color:var(--inkm);padding:8px 18px;border-radius:6px;cursor:pointer;font-family:'Source Serif 4',serif;font-size:13.5px}
+.diploma-print{background:var(--hdr);color:#fff;border:none;padding:8px 18px;border-radius:6px;cursor:pointer;font-family:'Source Serif 4',serif;font-size:13.5px}
+
+@media print{
+  body>*:not(.modal-overlay){display:none!important}
+  .modal-overlay{display:block!important;position:static!important;background:none!important;padding:0!important}
+  .diploma-wrap{box-shadow:none!important;padding:0!important;max-height:none!important;overflow:visible!important}
+  .diploma-btns{display:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- SETTINGS BAR -->
+<div class="settings-bar">
+  <label>Sponsee</label>
+  <input id="sponseeInp" placeholder="Sponsee name" oninput="setSetting(&#39;sponseeName&#39;,this.value)">
+  <span class="sb-sep">|</span>
+  <label>Sponsor</label>
+  <input id="sponsorInp" placeholder="Sponsor name" oninput="setSetting(&#39;sponsorName&#39;,this.value)">
+  <span class="sb-sep">|</span>
+  <label>Allergen / Obsession</label>
+  <input id="allergenInp" placeholder="e.g. methamphetamine" oninput="setSetting(&#39;allergen&#39;,this.value)">
+  <select onchange="document.getElementById(&#39;allergenInp&#39;).value=this.value;setSetting(&#39;allergen&#39;,this.value);this.value=&#39;&#39;">
+    <option value="">Suggestions ▾</option>
+    <option>alcohol</option>
+    <option>methamphetamine</option>
+    <option>opioids / pain pills</option>
+    <option>cannabis / marijuana</option>
+    <option>pornography</option>
+    <option>compulsive sexual behavior</option>
+    <option>gambling</option>
+    <option>compulsive eating</option>
+    <option>codependency</option>
+    <option>our substance or compulsive behavior</option>
+  </select>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-top">
+    <div><div class="site-title">The Twelve Steps</div><div class="site-sub">Worked honestly &amp; thoroughly — one day at a time</div></div>
+    <div class="hdr-btns">
+      <button class="hbtn" onclick="exportAll()">Export</button>
+      <button class="hbtn" onclick="importAll()">Import</button>
+      <button class="hbtn" onclick="confirmReset()">Reset</button>
+    </div>
+  </div>
+  <div class="prog-wrap"><div class="prog-fill" id="progFill" style="width: 50%;"></div></div>
+  <nav class="step-nav" id="stepNav">
+    <button class="snav-btn took done" onclick="showStep(0)"><span class="snum">★</span>Steps We Took</button>
+    <button class="snav-btn" onclick="showStep(1)"><span class="snum">1</span>Step One</button>
+    <button class="snav-btn" onclick="showStep(2)"><span class="snum">2</span>Step Two</button>
+    <button class="snav-btn" onclick="showStep(3)"><span class="snum">3</span>Step Three</button>
+    <button class="snav-btn" onclick="showStep(4)"><span class="snum">4</span>Inventory</button>
+    <button class="snav-btn active" onclick="showStep(5)"><span class="snum">5</span>Admitted</button>
+    <button class="snav-btn" onclick="showStep(6)"><span class="snum">6</span>Entirely Ready</button>
+    <button class="snav-btn" onclick="showStep(7)"><span class="snum">7</span>Humbly Asked</button>
+    <button class="snav-btn" onclick="showStep(8)"><span class="snum">8</span>Amends List</button>
+    <button class="snav-btn" onclick="showStep(9)"><span class="snum">9</span>Made Amends</button>
+  </nav>
+</header>
+
+<main>
+
+<!-- ═══════════════ STEPS WE TOOK ═══════════════ -->
+<section class="step-panel" id="panel-0">
+  <div class="step-hdr">
+    <div class="step-badge" style="background:var(--hdr);font-size:20px;">★</div>
+    <div><h1>These Are the Steps We Took</h1><div class="step-sub">A record of the journey — each step sincerely taken and completed</div></div>
+  </div>
+  <div class="sq">"Rarely have we seen a person fail who has thoroughly followed our path. Those who do not recover are people who cannot or will not completely give themselves to this simple program."<cite>— Alcoholics Anonymous, p. 58</cite></div>
+  <div class="took-grid" id="tookGrid"><div class="took-card empty" style="border-color: var(--c1); background: rgb(255, 255, 255);"><div class="took-num" style="color:var(--c1)">1</div><div class="took-name" style="color:var(--c1)">Step One</div><div class="took-date">Not yet taken</div><div class="took-check"></div></div><div class="took-card empty" style="border-color: var(--c2); background: rgb(255, 255, 255);"><div class="took-num" style="color:var(--c2)">2</div><div class="took-name" style="color:var(--c2)">Step Two</div><div class="took-date">Not yet taken</div><div class="took-check"></div></div><div class="took-card empty" style="border-color: var(--c3); background: rgb(255, 255, 255);"><div class="took-num" style="color:var(--c3)">3</div><div class="took-name" style="color:var(--c3)">Step Three</div><div class="took-date">Not yet taken</div><div class="took-check"></div></div><div class="took-card empty" style="border-color: var(--c4); background: rgb(255, 255, 255);"><div class="took-num" style="color:var(--c4)">4</div><div class="took-name" style="color:var(--c4)">Step Four</div><div class="took-date">Not yet taken</div><div class="took-check"></div></div><div class="took-card empty" style="border-color: var(--c5); background: rgb(255, 255, 255);"><div class="took-num" style="color:var(--c5)">5</div><div class="took-name" style="color:var(--c5)">Step Five</div><div class="took-date">Not yet taken</div><div class="took-check"></div></div><div class="took-card empty" style="border-color: var(--c6); background: rgb(255, 255, 255);"><div class="took-num" style="color:var(--c6)">6</div><div class="took-name" style="color:var(--c6)">Step Six</div><div class="took-date">Not yet taken</div><div class="took-check"></div></div><div class="took-card empty" style="border-color: var(--c7); background: rgb(255, 255, 255);"><div class="took-num" style="color:var(--c7)">7</div><div class="took-name" style="color:var(--c7)">Step Seven</div><div class="took-date">Not yet taken</div><div class="took-check"></div></div><div class="took-card empty" style="border-color: var(--c8); background: rgb(255, 255, 255);"><div class="took-num" style="color:var(--c8)">8</div><div class="took-name" style="color:var(--c8)">Step Eight</div><div class="took-date">Not yet taken</div><div class="took-check"></div></div><div class="took-card empty" style="border-color: var(--c9); background: rgb(255, 255, 255);"><div class="took-num" style="color:var(--c9)">9</div><div class="took-name" style="color:var(--c9)">Step Nine</div><div class="took-date">Not yet taken</div><div class="took-check"></div></div></div>
+</section>
+
+<!-- ═══════════════ STEP 1 ═══════════════ -->
+<section class="step-panel" id="panel-1">
+  <div class="step-hdr">
+    <div class="step-badge" style="background:var(--c1);">1</div>
+    <div><h1>We Admitted We Were Powerless</h1><div class="step-sub">over <span id="s1-allergen-sub" class="allergen-span">our substance or compulsive behavior</span> — that our lives had become unmanageable</div></div>
+  </div>
+  <div class="phase-nav" id="phaseNav1">
+    <button class="phase-btn active" onclick="showPhase(1,1,this)">① The Problem</button>
+    <button class="phase-btn" onclick="showPhase(1,2,this)">② Powerlessness</button>
+    <button class="phase-btn" onclick="showPhase(1,3,this)">③ Unmanageability</button>
+    <button class="phase-btn" onclick="showPhase(1,4,this)">④ The Allergy</button>
+    <button class="phase-btn" onclick="showPhase(1,5,this)">⑤ The Pickle</button>
+    <button class="phase-btn" onclick="showPhase(1,6,this)">⑥ Sponsor Shares</button>
+    <button class="phase-btn" onclick="showPhase(1,7,this)">⑦ Graduation</button>
+  </div>
+
+  <!-- PHASE 1 -->
+  <div class="phase-content" id="s1p1">
+    <div class="teach-card tc-pink">
+      <h3>Step One — The Diagnosis</h3>
+      <p>Joe McQ and Charlie P. explain Step One as the essential <em>diagnosis</em> — the foundational "problem statement" of the entire recovery process. Before any solution can be applied, the person in recovery must fully understand and concede to their innermost Person 7 the exact nature of the problem.</p>
+      <p>Step One is not a casual admission. It is a profound, ego-shattering realization that human willpower, intelligence, and Person 7-will are <em>insufficient</em> to solve this problem alone. Joe and Charlie argue that without a deep, honest understanding of this diagnosis, no subsequent step will take hold.</p>
+    </div>
+    <div class="teach-card tc-blue">
+      <h3>The Two-Part Problem</h3>
+      <ul>
+        <li><strong>Part One — The Physical Allergy (The Body):</strong> Once a person introduces <span class="allergen-span">our substance or compulsive behavior</span> into their system, an abnormal physical reaction is triggered. This creates a "phenomenon of craving" — a compulsion that makes it physically impossible to stop once started. This is not a moral failing; it is a biological reality.</li>
+        <li><strong>Part Two — The Mental Obsession (The Mind):</strong> The mind produces an "insanity" — a thought so powerful it overcomes all reasons not to engage. The mind convinces the person that <em>this time</em> it will be different; that they can control it; that they need it to cope. This mental blank spot is what makes the problem Person 7-defeating.</li>
+        <li><strong>Total Powerlessness:</strong> Because the body cannot handle it AND the mind cannot stay away from it, the person is rendered absolutely powerless. Neither part alone would be fatal — together they form an inescapable trap that no human power can unlock.</li>
+      </ul>
+    </div>
+    <div class="teach-card tc-lav">
+      <h3>Joe &amp; Charlie — What They Teach</h3>
+      <ul>
+        <li>"Many try to 'mess around' before finally, truly meaning it when they say they are through."</li>
+        <li>Step One requires <strong>surrendering Person 7-propulsion, Person 7-direction, and Person 7-reliance</strong> — all three must go.</li>
+        <li>It is a "conclusion of the mind" — not an emotional breakdown, but a clear-eyed rational acceptance of a fact.</li>
+        <li>The "gift of desperation" — a willingness to do anything — only comes when a person has truly hit their bottom with Step One.</li>
+        <li>Without a genuinely convinced Step One, Step Two makes no sense and Steps Three through Nine cannot be sustained.</li>
+      </ul>
+    </div>
+    <div class="step-footer"><button class="nbtn" disabled="">← Previous</button><button class="nbtn pri" onclick="showPhase(1,2,document.querySelectorAll(&#39;#phaseNav1 .phase-btn&#39;)[1])">Next: Powerlessness Evidence →</button></div>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div class="phase-content" id="s1p2" style="display:none">
+    <div class="teach-card tc-pink">
+      <h3>Part One — Powerlessness Over <span class="allergen-span">our substance or compulsive behavior</span></h3>
+      <p>The Big Book states: "We admitted we were powerless over <span class="allergen-span">our substance or compulsive behavior</span>." Powerlessness means that once the cycle begins, the person <em>cannot reliably stop it</em>. This is not about willpower — many people in recovery have enormous willpower in other areas of life. This is a specific allergic reaction.</p>
+      <p>The sponsor's role here is to listen carefully, evaluate whether the evidence is <em>specific and personal</em> rather than vague or theoretical, and to be genuinely convinced that the sponsee understands — not just says the words.</p>
+    </div>
+    <div class="evidence-section">
+      <h3>Sponsee Evidence — Powerlessness</h3>
+      <div class="speaker-tag tag-sponsee">Sponsee writes</div>
+      <div class="prompt">Describe specific times when you started using or engaging in <span class="allergen-span">our substance or compulsive behavior</span> and could not stop, even when you wanted to. What happened once you started? What does this tell you about your power over it?</div>
+      <textarea class="ev-area" id="s1ev-powerless" rows="5" placeholder="Write your evidence here — be specific, use real events from your own life..." oninput="saveEv(&#39;s1ev-powerless&#39;)"></textarea>
+      <div class="ev-hint">The sponsor is looking for specific personal evidence — not a theory. Vague statements like "I lost control sometimes" are not enough. Real dates, real situations, real consequences.</div>
+    </div>
+    <div class="conviction-box">
+      <h4>Sponsor — Assess This Evidence</h4>
+      <label class="conv-item" id="cc-s1-pw1"><input type="checkbox" onchange="convCheck(&#39;s1&#39;,&#39;pw1&#39;,this)"> The sponsee has given specific, personal examples — not vague generalities</label>
+      <label class="conv-item" id="cc-s1-pw2"><input type="checkbox" onchange="convCheck(&#39;s1&#39;,&#39;pw2&#39;,this)"> The evidence clearly demonstrates loss of control once the behavior begins</label>
+      <label class="conv-item" id="cc-s1-pw3"><input type="checkbox" onchange="convCheck(&#39;s1&#39;,&#39;pw3&#39;,this)"> I am satisfied that the sponsee genuinely understands Part One of Step One</label>
+    </div>
+    <div class="step-footer"><button class="nbtn" onclick="showPhase(1,1,document.querySelectorAll(&#39;#phaseNav1 .phase-btn&#39;)[0])">← The Problem</button><button class="nbtn pri" onclick="showPhase(1,3,document.querySelectorAll(&#39;#phaseNav1 .phase-btn&#39;)[2])">Next: Unmanageability →</button></div>
+  </div>
+
+  <!-- PHASE 3 -->
+  <div class="phase-content" id="s1p3" style="display:none">
+    <div class="teach-card tc-blue">
+      <h3>Part Two — Life Has Become Unmanageable</h3>
+      <p>Unmanageability is the second half of Step One. This goes beyond the behavior itPerson 7 — it encompasses the entirety of life. Relationships, finances, mental and emotional health, work, spiritual life — all become distorted, unstable, or destroyed as a result of the obsession and its consequences.</p>
+      <p>Joe and Charlie emphasize that the word "unmanageable" means the person cannot manage their own life <em>because of the mental obsession and the behaviors it produces</em>. It is not that life is merely difficult — it is that the person lacks the internal architecture to run their own life without help from a Power greater than themselves.</p>
+    </div>
+    <div class="evidence-section">
+      <h3>Sponsee Evidence — Unmanageability</h3>
+      <div class="speaker-tag tag-sponsee">Sponsee writes</div>
+      <div class="prompt">What specific areas of your life have become unmanageable because of <span class="allergen-span">our substance or compulsive behavior</span>? Describe consequences in relationships, finances, mental health, work, family, and spirituality. Be honest and thorough.</div>
+      <textarea class="ev-area" id="s1ev-unmanage" rows="5" placeholder="Describe the specific ways your life has become unmanageable..." oninput="saveEv(&#39;s1ev-unmanage&#39;)"></textarea>
+      <div class="ev-hint">The sponsor is looking for evidence that <em>multiple areas of life</em> have been affected — not just one incident. Real consequences, not hypothetical ones.</div>
+    </div>
+    <div class="conviction-box">
+      <h4>Sponsor — Assess This Evidence</h4>
+      <label class="conv-item" id="cc-s1-um1"><input type="checkbox" onchange="convCheck(&#39;s1&#39;,&#39;um1&#39;,this)"> Multiple life areas are clearly identified as affected</label>
+      <label class="conv-item" id="cc-s1-um2"><input type="checkbox" onchange="convCheck(&#39;s1&#39;,&#39;um2&#39;,this)"> The evidence demonstrates a pattern, not just an isolated incident</label>
+      <label class="conv-item" id="cc-s1-um3"><input type="checkbox" onchange="convCheck(&#39;s1&#39;,&#39;um3&#39;,this)"> I am satisfied that the sponsee genuinely understands Part Two of Step One</label>
+    </div>
+    <div class="step-footer"><button class="nbtn" onclick="showPhase(1,2,document.querySelectorAll(&#39;#phaseNav1 .phase-btn&#39;)[1])">← Powerlessness</button><button class="nbtn pri" onclick="showPhase(1,4,document.querySelectorAll(&#39;#phaseNav1 .phase-btn&#39;)[3])">Next: The Allergy →</button></div>
+  </div>
+
+  <!-- PHASE 4 -->
+  <div class="phase-content" id="s1p4" style="display:none">
+    <div class="teach-card tc-mint">
+      <h3>The Doctor's Opinion — The Allergy</h3>
+      <p>The Big Book opens with "The Doctor's Opinion," written by Dr. William D. Silkworth. He introduces the concept of <em>an allergy of the body</em> combined with <em>an obsession of the mind</em>. The allergy is not a metaphor — it describes an abnormal physical reaction to <span class="allergen-span">our substance or compulsive behavior</span> that people without this condition simply do not have.</p>
+      <p>In an allergy, the body reacts abnormally to a substance that others can tolerate. For one who has this allergy, the reaction does not diminish with time — it progresses. The phenomenon of craving, once triggered, cannot be stopped by willpower, moral conviction, or even the sincere desire to stop.</p>
+      <ul>
+        <li>The <em>body</em> has the allergy — it produces a craving upon introduction of the substance</li>
+        <li>The <em>mind</em> has the obsession — it repeatedly generates the idea to introduce the substance again</li>
+        <li>Together, they form a cycle that human power alone cannot break</li>
+        <li>This is why "white-knuckling" and willpower-based recovery approaches consistently fail for the person who truly has this condition</li>
+      </ul>
+    </div>
+    <div class="evidence-section">
+      <h3>Sponsee Evidence — The Allergy Pattern</h3>
+      <div class="speaker-tag tag-sponsee">Sponsee writes</div>
+      <div class="prompt">Have you noticed that once you introduce <span class="allergen-span">our substance or compulsive behavior</span>, you cannot stop? And that your mind keeps returning to it even when you want to stay away? Describe this pattern in your own experience. How is your reaction different from someone without this allergy?</div>
+      <textarea class="ev-area" id="s1ev-allergy" rows="5" placeholder="Describe the allergy pattern in your own experience..." oninput="saveEv(&#39;s1ev-allergy&#39;)"></textarea>
+    </div>
+    <div class="conviction-box">
+      <h4>Sponsor — Assess This Evidence</h4>
+      <label class="conv-item" id="cc-s1-al1"><input type="checkbox" onchange="convCheck(&#39;s1&#39;,&#39;al1&#39;,this)"> The sponsee can identify the "phenomenon of craving" in their own experience</label>
+      <label class="conv-item" id="cc-s1-al2"><input type="checkbox" onchange="convCheck(&#39;s1&#39;,&#39;al2&#39;,this)"> The sponsee understands the allergy concept, not just the words</label>
+    </div>
+    <div class="step-footer"><button class="nbtn" onclick="showPhase(1,3,document.querySelectorAll(&#39;#phaseNav1 .phase-btn&#39;)[2])">← Unmanageability</button><button class="nbtn pri" onclick="showPhase(1,5,document.querySelectorAll(&#39;#phaseNav1 .phase-btn&#39;)[4])">Next: Once a Pickle →</button></div>
+  </div>
+
+  <!-- PHASE 5 — THE PICKLE -->
+  <div class="phase-content" id="s1p5" style="display:none">
+    <div class="pickle-box">
+      <div class="pickle-title">The Pickle Analogy — A Teaching from the Rooms</div>
+      <div class="pickle-text">"A cucumber can be turned into a pickle. But a pickle can <em>never</em> be turned back into a cucumber."</div>
+      <div class="pickle-src">Old-Timer's saying — illustrating the permanent nature of the allergy</div>
+    </div>
+    <div class="teach-card tc-mint">
+      <h3>What This Means — Permanent Condition</h3>
+      <p>The Big Book uses the language of a <em>permanent, progressive, and incurable</em> condition. Once a person has crossed the invisible line into <span class="allergen-span">our substance or compulsive behavior</span>, the body and mind have been fundamentally changed. There is no "going back" to a time before the allergy existed.</p>
+      <p>No amount of time away from the substance, no amount of therapy, no spiritual experience reverses the physical allergy. A person who has this condition cannot safely return to "controlled" or "moderate" use — the allergy is still present, waiting to be triggered.</p>
+      <p>This is not a punishment or a moral judgment. It is simply a fact about how this particular person's body and mind are constituted. Accepting this fact — fully, deeply, without reservation — is the completion of Step One.</p>
+      <ul>
+        <li>"Once an alcoholic, always an alcoholic" is not a sentence — it is a description of a physical reality</li>
+        <li>The person with this condition must simply never introduce the substance, because the pickle cannot become a cucumber</li>
+        <li>This permanent nature is what makes a Power greater than onePerson 7 necessary — not as a crutch, but as a daily operating reality</li>
+      </ul>
+    </div>
+    <div class="evidence-section">
+      <h3>Sponsee Evidence — "This Will Always Be the Case"</h3>
+      <div class="speaker-tag tag-sponsee">Sponsee writes</div>
+      <div class="prompt">What convinces you that this condition is permanent — that you cannot simply "moderate," "control," or eventually return to normal use of <span class="allergen-span">our substance or compulsive behavior</span>? What evidence do you have that this will always be the case for you specifically?</div>
+      <textarea class="ev-area" id="s1ev-pickle" rows="5" placeholder="What evidence convinces you this condition is permanent for you personally?..." oninput="saveEv(&#39;s1ev-pickle&#39;)"></textarea>
+      <div class="ev-hint">This is where the sponsee moves from "I have a problem" to "I have an incurable condition that requires a permanent solution." The language matters. The conviction matters.</div>
+    </div>
+    <div class="conviction-box">
+      <h4>Sponsor — Assess This Evidence</h4>
+      <label class="conv-item" id="cc-s1-pk1"><input type="checkbox" onchange="convCheck(&#39;s1&#39;,&#39;pk1&#39;,this)"> The sponsee understands and accepts the permanent, progressive nature of the condition</label>
+      <label class="conv-item" id="cc-s1-pk2"><input type="checkbox" onchange="convCheck(&#39;s1&#39;,&#39;pk2&#39;,this)"> The sponsee is not still entertaining the idea of controlled use in the future</label>
+    </div>
+    <div class="step-footer"><button class="nbtn" onclick="showPhase(1,4,document.querySelectorAll(&#39;#phaseNav1 .phase-btn&#39;)[3])">← The Allergy</button><button class="nbtn pri" onclick="showPhase(1,6,document.querySelectorAll(&#39;#phaseNav1 .phase-btn&#39;)[5])">Next: Sponsor Shares →</button></div>
+  </div>
+
+  <!-- PHASE 6 — SPONSOR SHARES -->
+  <div class="phase-content" id="s1p6" style="display:none">
+    <div class="teach-card tc-blue">
+      <h3>The Sponsor's Experience — Sharing Step One</h3>
+      <p>The sponsor now shares their own experience with Step One. This is not a lecture or a critique of the sponsee's evidence — it is the sharing of one person's journey with another. It demonstrates that the sponsor has genuinely lived through this step and found it to be true.</p>
+      <p>The sponsor's share grounds the process in relationship and human connection rather than just intellectual exercise. It says: "I have been where you are. This step is real. It worked for me. I am convinced it will work for you."</p>
+    </div>
+    <div class="evidence-section">
+      <h3>Sponsor's Share — Step One Experience</h3>
+      <div class="speaker-tag tag-sponsor">Sponsor writes</div>
+      <div class="prompt">Share your own experience with Step One. How did you come to be fully convinced of your powerlessness and unmanageability? What evidence did you have? What did it take for you to truly accept the permanent nature of your condition?</div>
+      <textarea class="ev-area" id="s1ev-sponsor" rows="6" placeholder="Sponsor: share your own Step One experience here..." oninput="saveEv(&#39;s1ev-sponsor&#39;)"></textarea>
+    </div>
+    <div class="step-footer"><button class="nbtn" onclick="showPhase(1,5,document.querySelectorAll(&#39;#phaseNav1 .phase-btn&#39;)[4])">← The Pickle</button><button class="nbtn pri" onclick="showPhase(1,7,document.querySelectorAll(&#39;#phaseNav1 .phase-btn&#39;)[6])">Next: Graduation →</button></div>
+  </div>
+
+  <!-- PHASE 7 — GRADUATION -->
+  <div class="phase-content" id="s1p7" style="display:none">
+    <div class="grad-box" id="gradBox1">
+      <h3>Step One — Completion</h3>
+      <p>The sponsor now reviews all evidence collected and confirms their conviction before graduating the sponsee to Step Two. Each box below must be checked sincerely — not as a formality.</p>
+      <div class="grad-checklist">
+        <label class="grad-item" id="gi-s1-1"><input type="checkbox" onchange="gradCheck(1,0,this)"> The sponsee has provided specific, personal evidence of powerlessness over <span class="allergen-span">our substance or compulsive behavior</span></label>
+        <label class="grad-item" id="gi-s1-2"><input type="checkbox" onchange="gradCheck(1,1,this)"> The sponsee has provided specific evidence of unmanageability across multiple areas of life</label>
+        <label class="grad-item" id="gi-s1-3"><input type="checkbox" onchange="gradCheck(1,2,this)"> The sponsee understands and accepts the allergy concept — body AND mind</label>
+        <label class="grad-item" id="gi-s1-4"><input type="checkbox" onchange="gradCheck(1,3,this)"> The sponsee has accepted the permanent nature of this condition (the pickle principle)</label>
+        <label class="grad-item" id="gi-s1-5"><input type="checkbox" onchange="gradCheck(1,4,this)"> I, as sponsor, have shared my own experience with Step One</label>
+        <label class="grad-item" id="gi-s1-6"><input type="checkbox" onchange="gradCheck(1,5,this)"> <strong>I am fully and genuinely convinced that <span id="s1-sponsee-name">the sponsee</span> is convinced of Step One</strong></label>
+      </div>
+      <button class="grad-btn" id="gradBtn1" disabled="" onclick="graduateStep(1)">✦ Graduate Step One — Proceed to Step Two ✦</button>
+    </div>
+    <div class="step-footer"><button class="nbtn" onclick="showPhase(1,6,document.querySelectorAll(&#39;#phaseNav1 .phase-btn&#39;)[5])">← Sponsor Shares</button><button class="nbtn pri" onclick="showStep(2)">Step Two →</button></div>
+  </div>
+</section>
+
+<!-- ═══════════════ STEP 2 ═══════════════ -->
+<section class="step-panel" id="panel-2">
+  <div class="step-hdr">
+    <div class="step-badge" style="background:var(--c2);">2</div>
+    <div><h1>Came to Believe That a Power Greater Than Ourselves</h1><div class="step-sub">Could Restore Us to Sanity</div></div>
+  </div>
+  <div class="phase-nav" id="phaseNav2">
+    <button class="phase-btn active" onclick="showPhase(2,1,this)">① The Prescription</button>
+    <button class="phase-btn" onclick="showPhase(2,2,this)">② Sponsee Evidence</button>
+    <button class="phase-btn" onclick="showPhase(2,3,this)">③ Sponsor Shares</button>
+    <button class="phase-btn" onclick="showPhase(2,4,this)">④ Graduation</button>
+  </div>
+  <div class="phase-content" id="s2p1">
+    <div class="teach-card tc-blue">
+      <h3>Step Two — The Prescription</h3>
+      <p>If Step One is the <em>diagnosis</em>, Step Two is the <em>prescription</em>. Joe and Charlie describe the transition from Step One to Step Two as the move from a hopeless problem to a hopeful solution. Step One left us "absolutely licked" — Step Two offers the first glimmer of a way out.</p>
+      <p>"Sanity" here does not mean clinical mental health. It refers specifically to the <em>mental obsession</em> — the insane idea that we can use our substance or engage in our behavior and get a different result. Step Two asks simply: can we believe that something — anything — greater than our own thinking can restore us to clear, rational thought?</p>
+      <p>Joe and Charlie emphasize that Step Two requires only <em>willingness to believe</em> — not deep faith, not certainty, not a specific religious tradition. The Big Book says "We found that Person 8 does not make too hard terms with those who seek Him." The only requirement is an open mind and a willingness to try.</p>
+    </div>
+    <div class="teach-card tc-lav">
+      <h3>The Second Step Proposition — Page 53</h3>
+      <p>The Big Book states: "Either Person 8 is everything or else Person 8 is nothing. What was our choice to be?" Joe and Charlie teach that this is the pivotal intellectual question of Step Two. It forces a binary choice and eliminates the comfortable middle ground of a vague "sort of" belief.</p>
+      <ul>
+        <li>If human power was sufficient, Step One would not be true — but we have already proven it is</li>
+        <li>Therefore, something beyond human power must be available</li>
+        <li>Step Two does not require the sponsee to find "a Person 8 in the sky" — it requires only a willingness to believe that a Power exists that can do what human power cannot</li>
+        <li>This Power is often first experienced in the Fellowship itPerson 7, or in the sponsor relationship</li>
+      </ul>
+    </div>
+    <div class="step-footer"><button class="nbtn" onclick="showStep(1)">← Step One</button><button class="nbtn pri" onclick="showPhase(2,2,document.querySelectorAll(&#39;#phaseNav2 .phase-btn&#39;)[1])">Next: Evidence →</button></div>
+  </div>
+  <div class="phase-content" id="s2p2" style="display:none">
+    <div class="evidence-section">
+      <h3>Sponsee Evidence — Belief in a Power Greater Than YourPerson 7</h3>
+      <div class="speaker-tag tag-sponsee">Sponsee writes</div>
+      <div class="prompt">Have you come to believe — or are you at least willing to believe — that a Power greater than your own thinking and willpower exists and can restore you to sanity? What experiences, observations, or moments of willingness bring you to this belief?</div>
+      <textarea class="ev-area" id="s2ev-belief" rows="5" placeholder="Describe your path toward Step Two — your willingness to believe..." oninput="saveEv(&#39;s2ev-belief&#39;)"></textarea>
+    </div>
+    <div class="conviction-box" style="background:var(--plav);border-color:rgba(96,64,176,.25)">
+      <h4 style="color:var(--c3)">Sponsor — Assess This Evidence</h4>
+      <label class="conv-item" id="cc-s2-b1"><input type="checkbox" onchange="convCheck(&#39;s2&#39;,&#39;b1&#39;,this)"> The sponsee has genuine willingness to believe — not just compliance</label>
+      <label class="conv-item" id="cc-s2-b2"><input type="checkbox" onchange="convCheck(&#39;s2&#39;,&#39;b2&#39;,this)"> The sponsee understands that Step Two does not require perfect faith — only an open mind</label>
+    </div>
+    <div class="step-footer"><button class="nbtn" onclick="showPhase(2,1,document.querySelectorAll(&#39;#phaseNav2 .phase-btn&#39;)[0])">← The Prescription</button><button class="nbtn pri" onclick="showPhase(2,3,document.querySelectorAll(&#39;#phaseNav2 .phase-btn&#39;)[2])">Next: Sponsor Shares →</button></div>
+  </div>
+  <div class="phase-content" id="s2p3" style="display:none">
+    <div class="evidence-section">
+      <h3>Sponsor's Share — Step Two Experience</h3>
+      <div class="speaker-tag tag-sponsor">Sponsor writes</div>
+      <div class="prompt">Share your own path through Step Two. How did you come to believe — or come to be willing to believe — in a Power greater than yourPerson 7? What doubts did you have? What shifted?</div>
+      <textarea class="ev-area" id="s2ev-sponsor" rows="6" placeholder="Sponsor: share your own Step Two experience..." oninput="saveEv(&#39;s2ev-sponsor&#39;)"></textarea>
+    </div>
+    <div class="step-footer"><button class="nbtn" onclick="showPhase(2,2,document.querySelectorAll(&#39;#phaseNav2 .phase-btn&#39;)[1])">← Evidence</button><button class="nbtn pri" onclick="showPhase(2,4,document.querySelectorAll(&#39;#phaseNav2 .phase-btn&#39;)[3])">Next: Graduation →</button></div>
+  </div>
+  <div class="phase-content" id="s2p4" style="display:none">
+    <div class="grad-box" style="background:var(--plav);border-color:rgba(96,64,176,.3)">
+      <h3 style="color:var(--c3)">Step Two — Completion</h3>
+      <p>Confirm your conviction before graduating the sponsee to Step Three.</p>
+      <div class="grad-checklist">
+        <label class="grad-item" id="gi-s2-1"><input type="checkbox" onchange="gradCheck(2,0,this)"> The sponsee has genuine willingness to believe in a Power greater than themselves</label>
+        <label class="grad-item" id="gi-s2-2"><input type="checkbox" onchange="gradCheck(2,1,this)"> The sponsee understands "sanity" as it relates to the mental obsession</label>
+        <label class="grad-item" id="gi-s2-3"><input type="checkbox" onchange="gradCheck(2,2,this)"> I have shared my own experience with Step Two</label>
+        <label class="grad-item" id="gi-s2-4"><input type="checkbox" onchange="gradCheck(2,3,this)"> <strong>I am fully and genuinely convinced that <span class="sponsee-name-span">the sponsee</span> is convinced of Step Two</strong></label>
+      </div>
+      <button class="grad-btn" id="gradBtn2" disabled="" onclick="graduateStep(2)" style="background:var(--c3)">✦ Graduate Step Two — Proceed to Step Three ✦</button>
+    </div>
+    <div class="step-footer"><button class="nbtn" onclick="showPhase(2,3,document.querySelectorAll(&#39;#phaseNav2 .phase-btn&#39;)[2])">← Sponsor Shares</button><button class="nbtn pri" onclick="showStep(3)">Step Three →</button></div>
+  </div>
+</section>
+
+<!-- ═══════════════ STEP 3 ═══════════════ -->
+<section class="step-panel" id="panel-3">
+  <div class="step-hdr">
+    <div class="step-badge" style="background:var(--c3);">3</div>
+    <div><h1>Made a Decision to Turn Our Will and Our Lives</h1><div class="step-sub">Over to the Care of Person 8 as We Understood Person 8</div></div>
+  </div>
+  <div class="phase-nav" id="phaseNav3">
+    <button class="phase-btn" onclick="showPhase(3,1,this)">① The Decision</button>
+    <button class="phase-btn" onclick="showPhase(3,2,this)">② Sponsee Evidence</button>
+    <button class="phase-btn" onclick="showPhase(3,3,this)">③ The 3rd Step Prayer</button>
+    <button class="phase-btn active" onclick="showPhase(3,4,this)">④ Graduation</button>
+  </div>
+  <div class="phase-content" id="s3p1" style="display: none;">
+    <div class="teach-card tc-lav">
+      <h3>Step Three — A Decision, Not a Transaction</h3>
+      <p>Joe and Charlie emphasize that Step Three is a <em>decision</em> — an act of will, made once, but practiced continuously. It is not a one-time event that permanently solves all problems. It is a commitment to stop running one's life on Person 7-will and to allow Person 8's will to be the operating principle.</p>
+      <p>The Big Book compares it to a businessman who has been running a company into the ground. At some point, the partners intervene and say: "Let's hand this over to the care of a Greater Manager." The businessman doesn't disappear — they continue to work — but they no longer run the company on Person 7-propulsion.</p>
+      <p>The phrase "as we understood Person 8" is critical. Step Three does not impose any specific religious tradition. The only requirement is honesty about the Person 8 of one's own understanding — which often begins simply as "Not me."</p>
+    </div>
+    <div class="step-footer"><button class="nbtn" onclick="showStep(2)">← Step Two</button><button class="nbtn pri" onclick="showPhase(3,2,document.querySelectorAll(&#39;#phaseNav3 .phase-btn&#39;)[1])">Next: Evidence →</button></div>
+  </div>
+  <div class="phase-content" id="s3p2" style="display: none;">
+    <div class="evidence-section">
+      <h3>Sponsee Evidence — Making the Decision</h3>
+      <div class="speaker-tag tag-sponsee">Sponsee writes</div>
+      <div class="prompt">Describe what it means to you to "turn your will and your life over to the care of Person 8 as you understand Person 8." What are you willing to turn over? What is difficult about this decision? Are you willing to make this decision today?</div>
+      <textarea class="ev-area" id="s3ev-decision" rows="5" placeholder="Describe your understanding of Step Three and your willingness to make this decision..." oninput="saveEv(&#39;s3ev-decision&#39;)"></textarea>
+    </div>
+    <div class="step-footer"><button class="nbtn" onclick="showPhase(3,1,document.querySelectorAll(&#39;#phaseNav3 .phase-btn&#39;)[0])">← The Decision</button><button class="nbtn pri" onclick="showPhase(3,3,document.querySelectorAll(&#39;#phaseNav3 .phase-btn&#39;)[2])">Next: The Prayer →</button></div>
+  </div>
+  <div class="phase-content" id="s3p3" style="display: none;">
+    <div class="prayer-box">
+      <div class="prayer-text">"Person 8, I offer myPerson 7 to Thee — to build with me and to do with me as Thou wilt. Relieve me of the bondage of Person 7, that I may better do Thy will. Take away my difficulties, that victory over them may bear witness to those I would help of Thy Power, Thy Love, and Thy Way of life. May I do Thy will always."</div>
+      <div class="prayer-src">The Third Step Prayer — Big Book, p. 63</div>
+    </div>
+    <div class="sq">The Big Book instructs: "We thought well before taking this step, making sure we were ready; that we could at last abandon ourselves utterly to Person 8." Joe and Charlie note that this prayer is meant to be said with a sponsor or trusted person — it is not a solo act. The decision is witnessed, not merely private.<cite>— Alcoholics Anonymous, p. 63</cite></div>
+    <div class="step-footer"><button class="nbtn" onclick="showPhase(3,2,document.querySelectorAll(&#39;#phaseNav3 .phase-btn&#39;)[1])">← Evidence</button><button class="nbtn pri" onclick="showPhase(3,4,document.querySelectorAll(&#39;#phaseNav3 .phase-btn&#39;)[3])">Next: Graduation →</button></div>
+  </div>
+  <div class="phase-content" id="s3p4" style="display: block;">
+    <div class="grad-box" style="background:var(--plav);border-color:rgba(96,64,176,.3)">
+      <h3 style="color:var(--c3)">Step Three — Completion</h3>
+      <div class="grad-checklist">
+        <label class="grad-item chk" id="gi-s3-1"><input type="checkbox" onchange="gradCheck(3,0,this)"> The sponsee understands Step Three as a decision, not a one-time fix</label>
+        <label class="grad-item chk" id="gi-s3-2"><input type="checkbox" onchange="gradCheck(3,1,this)"> The Third Step Prayer was said together</label>
+        <label class="grad-item chk" id="gi-s3-3"><input type="checkbox" onchange="gradCheck(3,2,this)"> <strong>I am fully convinced that <span class="sponsee-name-span">the sponsee</span> has sincerely made the decision of Step Three</strong></label>
+      </div>
+      <button class="grad-btn" id="gradBtn3" onclick="graduateStep(3)" style="background:var(--c3)">✦ Graduate Step Three — Proceed to Step Four ✦</button>
+    </div>
+    <div class="step-footer"><button class="nbtn" onclick="showPhase(3,3,document.querySelectorAll(&#39;#phaseNav3 .phase-btn&#39;)[2])">← The Prayer</button><button class="nbtn pri" onclick="showStep(4)">Step Four →</button></div>
+  </div>
+</section>
+
+<!-- ═══════════════ STEPS 4-9 ═══════════════ -->
+<section class="step-panel" id="panel-4">
+  <div class="step-hdr"><div class="step-badge" style="background:var(--c4);">4</div><div><h1>Made a Searching &amp; Fearless Moral Inventory</h1><div class="step-sub">of Ourselves</div></div></div>
+  <div class="sq">"We search out the flaws in our make-up which caused our failure. Being convinced that Person 7, manifested in various ways, was what had defeated us, we considered its common manifestations."<cite>— Alcoholics Anonymous, p. 64</cite></div>
+  <div class="priv-panel" id="privPanel"><div style="font-family:&#39;Playfair Display&#39;,serif;font-size:15px;font-weight:700;color:var(--hdr);margin-bottom:3px">Quick Name Editor — Privacy Mode</div><div style="font-size:13px;color:var(--inkl);margin-bottom:12px">Change any name to an alias, initial, or role. Updates everywhere instantly.</div><div class="priv-grid" id="privGrid"><div class="priv-item"><span class="priv-num">#1</span><span style="color:var(--c1);font-size:12px">→</span><input class="priv-inp" id="pi-0" value="Name 1" placeholder="Alias"></div><div class="priv-item"><span class="priv-num">#2</span><span style="color:var(--c1);font-size:12px">→</span><input class="priv-inp" id="pi-1" value="Name 2" placeholder="Alias"></div><div class="priv-item"><span class="priv-num">#3</span><span style="color:var(--c1);font-size:12px">→</span><input class="priv-inp" id="pi-2" value="Person 3" placeholder="Alias"></div><div class="priv-item"><span class="priv-num">#4</span><span style="color:var(--c1);font-size:12px">→</span><input class="priv-inp" id="pi-3" value="Person 4" placeholder="Alias"></div><div class="priv-item"><span class="priv-num">#5</span><span style="color:var(--c1);font-size:12px">→</span><input class="priv-inp" id="pi-4" value="Person 5" placeholder="Alias"></div><div class="priv-item"><span class="priv-num">#6</span><span style="color:var(--c1);font-size:12px">→</span><input class="priv-inp" id="pi-5" value="Name 2" placeholder="Alias"></div><div class="priv-item"><span class="priv-num">#7</span><span style="color:var(--c1);font-size:12px">→</span><input class="priv-inp" id="pi-6" value="Person 7" placeholder="Alias"></div><div class="priv-item"><span class="priv-num">#8</span><span style="color:var(--c1);font-size:12px">→</span><input class="priv-inp" id="pi-7" value="Person 8" placeholder="Alias"></div><div class="priv-item"><span class="priv-num">#9</span><span style="color:var(--c1);font-size:12px">→</span><input class="priv-inp" id="pi-8" value="Person 9" placeholder="Alias"></div><div class="priv-item"><span class="priv-num">#10</span><span style="color:var(--c1);font-size:12px">→</span><input class="priv-inp" id="pi-9" value="Person 4 " placeholder="Alias"></div><div class="priv-item"><span class="priv-num">#11</span><span style="color:var(--c1);font-size:12px">→</span><input class="priv-inp" id="pi-10" value="Person 9 " placeholder="Alias"></div><div class="priv-item"><span class="priv-num">#12</span><span style="color:var(--c1);font-size:12px">→</span><input class="priv-inp" id="pi-11" value="Person 10" placeholder="Alias"></div></div><div style="margin-top:10px;display:flex;gap:7px;"><button class="tbtn" onclick="applyPrivacy()">Apply All</button><button class="tbtn" onclick="togglePrivacy()">Close</button></div></div>
+  <div class="cat-tabs" id="catTabs"><button class="cat-tab active" onclick="switchCat(&#39;Resentment&#39;,this)">Resentment<span class="cbadge">9</span></button><button class="cat-tab " onclick="switchCat(&#39;Fear&#39;,this)">Fear<span class="cbadge">0</span></button><button class="cat-tab " onclick="switchCat(&#39;Person 7 Centered&#39;,this)">Person 7-Centered<span class="cbadge">2</span></button><button class="cat-tab " onclick="switchCat(&#39;Dishonesty&#39;,this)">Dishonesty<span class="cbadge">1</span></button><button class="cat-tab " onclick="switchCat(&#39;Envy&#39;,this)">Envy<span class="cbadge">0</span></button><button class="cat-tab " onclick="switchCat(&#39;All&#39;,this)">All<span class="cbadge">12</span></button></div>
+  <div class="toolbar"><button class="tbtn" onclick="addPerson()">+ Add Person</button><button class="tbtn" onclick="togglePrivacy()">✎ Edit Names</button><span style="font-size:12px;color:var(--inkl);font-style:italic;margin-left:auto">Click any name in a card to rename it</span></div>
+  <div class="inv-list" id="invList"><div class="inv-card" id="card-0">
+  <div class="inv-hdr" onclick="togCard(0,event)">
+    <div class="avatar" id="av-0">P1</div>
+    <div class="hname-grp"><input class="edit-name" id="nm-0" value="Person 1" placeholder="Name or alias" onclick="event.stopPropagation()" oninput="updAv(0,this.value)" onchange="upd(0,&#39;p&#39;,this.value)">
+    <div class="pmeta"><span class="tag tl">Resentment</span><span class="tag ta">Forgiveness</span></div></div>
+    <span class="earr">▾</span>
+    <button class="del-btn" onclick="event.stopPropagation();delPerson(0)">✕</button>
+  </div>
+  <div class="inv-body">
+    <div class="fg2"><div><label class="fl">Category</label><select class="es" onchange="upd(0,&#39;t&#39;,this.value);rfTags(0)"><option selected="">Resentment</option><option>Fear</option><option>Person 7 Centered</option><option>Dishonesty</option><option>Envy</option><option>Other</option></select></div><div><label class="fl">Asset to Build</label><input class="ei" value="Forgiveness" onchange="upd(0,&#39;a&#39;,this.value)"></div></div>
+    <div class="fg"><label class="fl">What Happened</label><textarea class="ea" rows="3" onchange="upd(0,&#39;wh&#39;,this.value)">I wanted them to be my best friend. I loved them but they didn't reciprocate.</textarea></div>
+    <div class="fg2"><div><label class="fl">The Fear Underneath</label><textarea class="ea" rows="3" onchange="upd(0,&#39;f&#39;,this.value)">Being alone, having no friends, not having a real close connection.</textarea></div><div><label class="fl">My Part</label><textarea class="ea" rows="3" onchange="upd(0,&#39;r&#39;,this.value)">Better Friend — not so jealous. I made my happiness dependent on their response.</textarea></div></div>
+    <div class="fg"><label class="fl">Areas Affected</label><div class="affects-grid"><label class="aff-lbl"><input type="checkbox" checked="" onchange="updAff(0,&#39;Person 7-Esteem&#39;,this.checked)">Person 7-Esteem</label><label class="aff-lbl"><input type="checkbox" checked="" onchange="updAff(0,&#39;Personal Relationships&#39;,this.checked)">Personal Relationships</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(0,&#39;Sex Relationships&#39;,this.checked)">Sex Relationships</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(0,&#39;Financial Security&#39;,this.checked)">Financial Security</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(0,&#39;Recovery&#39;,this.checked)">Recovery</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(0,&#39;Family&#39;,this.checked)">Family</label></div></div>
+    <div class="fg"><label class="fl grn">✦ Person 8's Ideal</label><textarea class="ideal-a" rows="3" onchange="upd(0,&#39;g&#39;,this.value)">I think of others in a good loving way. I know that I matter and being a friend comes easy to me.</textarea></div>
+    <div class="fg2"><div><label class="fl">Amend Type</label><select class="es" onchange="upd(0,&#39;at&#39;,this.value)"><option>Direct Amends</option><option selected="">indirect Amends</option><option>Living Amends</option><option>Pray for Them</option><option>Amends-in-Kind</option></select></div><div><label class="fl">Method</label><select class="es" onchange="upd(0,&#39;am&#39;,this.value)"><option value="">— select —</option><option>In Person Conversation</option><option>Write a letter</option><option>Email</option><option selected="">Pray for them</option><option>2-way prayer</option><option>Journal</option><option>Other Action</option><option>Volunteer / Service</option><option>Phone call</option></select></div></div>
+    <div class="fg2"><div><label class="fl">Plan</label><input class="ei" value="Write an apology letter" onchange="upd(0,&#39;ad&#39;,this.value)" placeholder="What I will do"></div><div><label class="fl">Target Date</label><input class="ei" value="April 20" onchange="upd(0,&#39;adt&#39;,this.value)" placeholder="e.g. May 15"></div></div>
+  </div></div><div class="inv-card" id="card-1">
+  <div class="inv-hdr" onclick="togCard(1,event)">
+    <div class="avatar" id="av-1">P2</div>
+    <div class="hname-grp"><input class="edit-name" id="nm-1" value="Person 2" placeholder="Name or alias" onclick="event.stopPropagation()" oninput="updAv(1,this.value)" onchange="upd(1,&#39;p&#39;,this.value)">
+    <div class="pmeta"><span class="tag tl">Resentment</span><span class="tag ta">Service / Honesty</span></div></div>
+    <span class="earr">▾</span>
+    <button class="del-btn" onclick="event.stopPropagation();delPerson(1)">✕</button>
+  </div>
+  <div class="inv-body">
+    <div class="fg2"><div><label class="fl">Category</label><select class="es" onchange="upd(1,&#39;t&#39;,this.value);rfTags(1)"><option selected="">Resentment</option><option>Fear</option><option>Person 7 Centered</option><option>Dishonesty</option><option>Envy</option><option>Other</option></select></div><div><label class="fl">Asset to Build</label><input class="ei" value="Service / Honesty" onchange="upd(1,&#39;a&#39;,this.value)"></div></div>
+    <div class="fg"><label class="fl">What Happened</label><textarea class="ea" rows="3" onchange="upd(1,&#39;wh&#39;,this.value)">They didn't know how to raise a son. They were too busy getting drunk and were violent with my mom.</textarea></div>
+    <div class="fg2"><div><label class="fl">The Fear Underneath</label><textarea class="ea" rows="3" onchange="upd(1,&#39;f&#39;,this.value)">Not having a loving father to support me.</textarea></div><div><label class="fl">My Part</label><textarea class="ea" rows="3" onchange="upd(1,&#39;r&#39;,this.value)">I could have been more present when they got sick. I chose distance.</textarea></div></div>
+    <div class="fg"><label class="fl">Areas Affected</label><div class="affects-grid"><label class="aff-lbl"><input type="checkbox" checked="" onchange="updAff(1,&#39;Person 7-Esteem&#39;,this.checked)">Person 7-Esteem</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(1,&#39;Personal Relationships&#39;,this.checked)">Personal Relationships</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(1,&#39;Sex Relationships&#39;,this.checked)">Sex Relationships</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(1,&#39;Financial Security&#39;,this.checked)">Financial Security</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(1,&#39;Recovery&#39;,this.checked)">Recovery</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(1,&#39;Family&#39;,this.checked)">Family</label></div></div>
+    <div class="fg"><label class="fl grn">✦ Person 8's Ideal</label><textarea class="ideal-a" rows="3" onchange="upd(1,&#39;g&#39;,this.value)">I respect and love my Person 2 as they are. I know they did their best and loved me the best they could.</textarea></div>
+    <div class="fg2"><div><label class="fl">Amend Type</label><select class="es" onchange="upd(1,&#39;at&#39;,this.value)"><option>Direct Amends</option><option selected="">indirect Amends</option><option>Living Amends</option><option>Pray for Them</option><option>Amends-in-Kind</option></select></div><div><label class="fl">Method</label><select class="es" onchange="upd(1,&#39;am&#39;,this.value)"><option value="">— select —</option><option>In Person Conversation</option><option selected="">Write a letter</option><option>Email</option><option>Pray for them</option><option>2-way prayer</option><option>Journal</option><option>Other Action</option><option>Volunteer / Service</option><option>Phone call</option></select></div></div>
+    <div class="fg2"><div><label class="fl">Plan</label><input class="ei" value="Write a letter" onchange="upd(1,&#39;ad&#39;,this.value)" placeholder="What I will do"></div><div><label class="fl">Target Date</label><input class="ei" value="April 15" onchange="upd(1,&#39;adt&#39;,this.value)" placeholder="e.g. May 15"></div></div>
+  </div></div><div class="inv-card" id="card-2">
+  <div class="inv-hdr" onclick="togCard(2,event)">
+    <div class="avatar" id="av-2">P3</div>
+    <div class="hname-grp"><input class="edit-name" id="nm-2" value="Person 3" placeholder="Name or alias" onclick="event.stopPropagation()" oninput="updAv(2,this.value)" onchange="upd(2,&#39;p&#39;,this.value)">
+    <div class="pmeta"><span class="tag tl">Resentment</span><span class="tag ta">Humility</span></div></div>
+    <span class="earr">▾</span>
+    <button class="del-btn" onclick="event.stopPropagation();delPerson(2)">✕</button>
+  </div>
+  <div class="inv-body">
+    <div class="fg2"><div><label class="fl">Category</label><select class="es" onchange="upd(2,&#39;t&#39;,this.value);rfTags(2)"><option selected="">Resentment</option><option>Fear</option><option>Person 7 Centered</option><option>Dishonesty</option><option>Envy</option><option>Other</option></select></div><div><label class="fl">Asset to Build</label><input class="ei" value="Humility" onchange="upd(2,&#39;a&#39;,this.value)"></div></div>
+    <div class="fg"><label class="fl">What Happened</label><textarea class="ea" rows="3" onchange="upd(2,&#39;wh&#39;,this.value)"></textarea></div>
+    <div class="fg2"><div><label class="fl">The Fear Underneath</label><textarea class="ea" rows="3" onchange="upd(2,&#39;f&#39;,this.value)">Not being good enough.</textarea></div><div><label class="fl">My Part</label><textarea class="ea" rows="3" onchange="upd(2,&#39;r&#39;,this.value)">Too Person 7-centred. Lived with false pride, addicted to wanting more.</textarea></div></div>
+    <div class="fg"><label class="fl">Areas Affected</label><div class="affects-grid"><label class="aff-lbl"><input type="checkbox" checked="" onchange="updAff(2,&#39;Person 7-Esteem&#39;,this.checked)">Person 7-Esteem</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(2,&#39;Personal Relationships&#39;,this.checked)">Personal Relationships</label><label class="aff-lbl"><input type="checkbox" checked="" onchange="updAff(2,&#39;Sex Relationships&#39;,this.checked)">Sex Relationships</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(2,&#39;Financial Security&#39;,this.checked)">Financial Security</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(2,&#39;Recovery&#39;,this.checked)">Recovery</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(2,&#39;Family&#39;,this.checked)">Family</label></div></div>
+    <div class="fg"><label class="fl grn">✦ Person 8's Ideal</label><textarea class="ideal-a" rows="3" onchange="upd(2,&#39;g&#39;,this.value)">I know they loved me in their own way. When we are young, we try different relationships. I don't take it personally.</textarea></div>
+    <div class="fg2"><div><label class="fl">Amend Type</label><select class="es" onchange="upd(2,&#39;at&#39;,this.value)"><option>Direct Amends</option><option selected="">indirect Amends</option><option>Living Amends</option><option>Pray for Them</option><option>Amends-in-Kind</option></select></div><div><label class="fl">Method</label><select class="es" onchange="upd(2,&#39;am&#39;,this.value)"><option value="">— select —</option><option>In Person Conversation</option><option>Write a letter</option><option>Email</option><option selected="">Pray for them</option><option>2-way prayer</option><option>Journal</option><option>Other Action</option><option>Volunteer / Service</option><option>Phone call</option></select></div></div>
+    <div class="fg2"><div><label class="fl">Plan</label><input class="ei" value="Journal in a 2-way prayer and share with someone" onchange="upd(2,&#39;ad&#39;,this.value)" placeholder="What I will do"></div><div><label class="fl">Target Date</label><input class="ei" value="April 30" onchange="upd(2,&#39;adt&#39;,this.value)" placeholder="e.g. May 15"></div></div>
+  </div></div><div class="inv-card" id="card-3">
+  <div class="inv-hdr" onclick="togCard(3,event)">
+    <div class="avatar" id="av-3">P4</div>
+    <div class="hname-grp"><input class="edit-name" id="nm-3" value="Person 4" placeholder="Name or alias" onclick="event.stopPropagation()" oninput="updAv(3,this.value)" onchange="upd(3,&#39;p&#39;,this.value)">
+    <div class="pmeta"><span class="tag tl">Resentment</span><span class="tag ta">Action / Trust</span></div></div>
+    <span class="earr">▾</span>
+    <button class="del-btn" onclick="event.stopPropagation();delPerson(3)">✕</button>
+  </div>
+  <div class="inv-body">
+    <div class="fg2"><div><label class="fl">Category</label><select class="es" onchange="upd(3,&#39;t&#39;,this.value);rfTags(3)"><option selected="">Resentment</option><option>Fear</option><option>Person 7 Centered</option><option>Dishonesty</option><option>Envy</option><option>Other</option></select></div><div><label class="fl">Asset to Build</label><input class="ei" value="Action / Trust" onchange="upd(3,&#39;a&#39;,this.value)"></div></div>
+    <div class="fg"><label class="fl">What Happened</label><textarea class="ea" rows="3" onchange="upd(3,&#39;wh&#39;,this.value)">.</textarea></div>
+    <div class="fg2"><div><label class="fl">The Fear Underneath</label><textarea class="ea" rows="3" onchange="upd(3,&#39;f&#39;,this.value)">Being alone, others' judgment.</textarea></div><div><label class="fl">My Part</label><textarea class="ea" rows="3" onchange="upd(3,&#39;r&#39;,this.value)">Blinded by my endless desire to feel good. Didn't think about the consequences.</textarea></div></div>
+    <div class="fg"><label class="fl">Areas Affected</label><div class="affects-grid"><label class="aff-lbl"><input type="checkbox" checked="" onchange="updAff(3,&#39;Person 7-Esteem&#39;,this.checked)">Person 7-Esteem</label><label class="aff-lbl"><input type="checkbox" checked="" onchange="updAff(3,&#39;Personal Relationships&#39;,this.checked)">Personal Relationships</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(3,&#39;Sex Relationships&#39;,this.checked)">Sex Relationships</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(3,&#39;Financial Security&#39;,this.checked)">Financial Security</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(3,&#39;Recovery&#39;,this.checked)">Recovery</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(3,&#39;Family&#39;,this.checked)">Family</label></div></div>
+    <div class="fg"><label class="fl grn">✦ Person 8's Ideal</label><textarea class="ideal-a" rows="3" onchange="upd(3,&#39;g&#39;,this.value)">I admit I was blinded by my condition and I forgive them — all they really wanted was for everyone to be safe.</textarea></div>
+    <div class="fg2"><div><label class="fl">Amend Type</label><select class="es" onchange="upd(3,&#39;at&#39;,this.value)"><option>Direct Amends</option><option selected="">indirect Amends</option><option>Living Amends</option><option>Pray for Them</option><option>Amends-in-Kind</option></select></div><div><label class="fl">Method</label><select class="es" onchange="upd(3,&#39;am&#39;,this.value)"><option value="">— select —</option><option>In Person Conversation</option><option>Write a letter</option><option>Email</option><option selected="">Pray for them</option><option>2-way prayer</option><option>Journal</option><option>Other Action</option><option>Volunteer / Service</option><option>Phone call</option></select></div></div>
+    <div class="fg2"><div><label class="fl">Plan</label><input class="ei" value="Conscious contact — 2-way prayer" onchange="upd(3,&#39;ad&#39;,this.value)" placeholder="What I will do"></div><div><label class="fl">Target Date</label><input class="ei" value="May 7" onchange="upd(3,&#39;adt&#39;,this.value)" placeholder="e.g. May 15"></div></div>
+  </div></div><div class="inv-card" id="card-4">
+  <div class="inv-hdr" onclick="togCard(4,event)">
+    <div class="avatar" id="av-4">P5</div>
+    <div class="hname-grp"><input class="edit-name" id="nm-4" value="Person 5" placeholder="Name or alias" onclick="event.stopPropagation()" oninput="updAv(4,this.value)" onchange="upd(4,&#39;p&#39;,this.value)">
+    <div class="pmeta"><span class="tag tl">Resentment</span><span class="tag ta">Person 7-Respect</span></div></div>
+    <span class="earr">▾</span>
+    <button class="del-btn" onclick="event.stopPropagation();delPerson(4)">✕</button>
+  </div>
+  <div class="inv-body">
+    <div class="fg2"><div><label class="fl">Category</label><select class="es" onchange="upd(4,&#39;t&#39;,this.value);rfTags(4)"><option selected="">Resentment</option><option>Fear</option><option>Person 7 Centered</option><option>Dishonesty</option><option>Envy</option><option>Other</option></select></div><div><label class="fl">Asset to Build</label><input class="ei" value="Person 7-Respect" onchange="upd(4,&#39;a&#39;,this.value)"></div></div>
+    <div class="fg"><label class="fl">What Happened</label><textarea class="ea" rows="3" onchange="upd(4,&#39;wh&#39;,this.value)"></textarea></div>
+    <div class="fg2"><div><label class="fl">The Fear Underneath</label><textarea class="ea" rows="3" onchange="upd(4,&#39;f&#39;,this.value)">Not feeling strong enough in my own identity.</textarea></div><div><label class="fl">My Part</label><textarea class="ea" rows="3" onchange="upd(4,&#39;r&#39;,this.value)">I got seduced into being liked and wanted. My lust and pride took over.</textarea></div></div>
+    <div class="fg"><label class="fl">Areas Affected</label><div class="affects-grid"><label class="aff-lbl"><input type="checkbox" checked="" onchange="updAff(4,&#39;Person 7-Esteem&#39;,this.checked)">Person 7-Esteem</label><label class="aff-lbl"><input type="checkbox" checked="" onchange="updAff(4,&#39;Personal Relationships&#39;,this.checked)">Personal Relationships</label><label class="aff-lbl"><input type="checkbox" checked="" onchange="updAff(4,&#39;Sex Relationships&#39;,this.checked)">Sex Relationships</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(4,&#39;Financial Security&#39;,this.checked)">Financial Security</label><label class="aff-lbl"><input type="checkbox" checked="" onchange="updAff(4,&#39;Recovery&#39;,this.checked)">Recovery</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(4,&#39;Family&#39;,this.checked)">Family</label></div></div>
+    <div class="fg"><label class="fl grn">✦ Person 8's Ideal</label><textarea class="ideal-a" rows="3" onchange="upd(4,&#39;g&#39;,this.value)">I am strong and convicted in my own identity. My past experiences don't define me — they make me who I am today.</textarea></div>
+    <div class="fg2"><div><label class="fl">Amend Type</label><select class="es" onchange="upd(4,&#39;at&#39;,this.value)"><option selected="">Direct Amends</option><option>indirect Amends</option><option>Living Amends</option><option>Pray for Them</option><option>Amends-in-Kind</option></select></div><div><label class="fl">Method</label><select class="es" onchange="upd(4,&#39;am&#39;,this.value)"><option value="">— select —</option><option>In Person Conversation</option><option>Write a letter</option><option selected="">Email</option><option>Pray for them</option><option>2-way prayer</option><option>Journal</option><option>Other Action</option><option>Volunteer / Service</option><option>Phone call</option></select></div></div>
+    <div class="fg2"><div><label class="fl">Plan</label><input class="ei" value="Check-in" onchange="upd(4,&#39;ad&#39;,this.value)" placeholder="What I will do"></div><div><label class="fl">Target Date</label><input class="ei" value="May 14" onchange="upd(4,&#39;adt&#39;,this.value)" placeholder="e.g. May 15"></div></div>
+  </div></div><div class="inv-card" id="card-5">
+  <div class="inv-hdr" onclick="togCard(5,event)">
+    <div class="avatar" id="av-5">P6</div>
+    <div class="hname-grp"><input class="edit-name" id="nm-5" value="Person 6" placeholder="Name or alias" onclick="event.stopPropagation()" oninput="updAv(5,this.value)" onchange="upd(5,&#39;p&#39;,this.value)">
+    <div class="pmeta"><span class="tag tl">Resentment</span><span class="tag ta">Confidence / Leadership</span></div></div>
+    <span class="earr">▾</span>
+    <button class="del-btn" onclick="event.stopPropagation();delPerson(5)">✕</button>
+  </div>
+  <div class="inv-body">
+    <div class="fg2"><div><label class="fl">Category</label><select class="es" onchange="upd(5,&#39;t&#39;,this.value);rfTags(5)"><option selected="">Resentment</option><option>Fear</option><option>Person 7 Centered</option><option>Dishonesty</option><option>Envy</option><option>Other</option></select></div><div><label class="fl">Asset to Build</label><input class="ei" value="Confidence / Leadership" onchange="upd(5,&#39;a&#39;,this.value)"></div></div>
+    <div class="fg"><label class="fl">What Happened</label><textarea class="ea" rows="3" onchange="upd(5,&#39;wh&#39;,this.value)"></textarea></div>
+    <div class="fg2"><div><label class="fl">The Fear Underneath</label><textarea class="ea" rows="3" onchange="upd(5,&#39;f&#39;,this.value)">That I am not a cool person that others want to be around.</textarea></div><div><label class="fl">My Part</label><textarea class="ea" rows="3" onchange="upd(5,&#39;r&#39;,this.value)">I got myPerson 7 into trouble. I liked being the bad one — believed others liked that.</textarea></div></div>
+    <div class="fg"><label class="fl">Areas Affected</label><div class="affects-grid"><label class="aff-lbl"><input type="checkbox" checked="" onchange="updAff(5,&#39;Person 7-Esteem&#39;,this.checked)">Person 7-Esteem</label><label class="aff-lbl"><input type="checkbox" checked="" onchange="updAff(5,&#39;Personal Relationships&#39;,this.checked)">Personal Relationships</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(5,&#39;Sex Relationships&#39;,this.checked)">Sex Relationships</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(5,&#39;Financial Security&#39;,this.checked)">Financial Security</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(5,&#39;Recovery&#39;,this.checked)">Recovery</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(5,&#39;Family&#39;,this.checked)">Family</label></div></div>
+    <div class="fg"><label class="fl grn">✦ Person 8's Ideal</label><textarea class="ideal-a" rows="3" onchange="upd(5,&#39;g&#39;,this.value)">I am strong in my values. I use my Higher Power and assets to guide my decisions.</textarea></div>
+    <div class="fg2"><div><label class="fl">Amend Type</label><select class="es" onchange="upd(5,&#39;at&#39;,this.value)"><option>Direct Amends</option><option selected="">indirect Amends</option><option>Living Amends</option><option>Pray for Them</option><option>Amends-in-Kind</option></select></div><div><label class="fl">Method</label><select class="es" onchange="upd(5,&#39;am&#39;,this.value)"><option value="">— select —</option><option>In Person Conversation</option><option>Write a letter</option><option selected="">Email</option><option>Pray for them</option><option>2-way prayer</option><option>Journal</option><option>Other Action</option><option>Volunteer / Service</option><option>Phone call</option></select></div></div>
+    <div class="fg2"><div><label class="fl">Plan</label><input class="ei" value="Check-in" onchange="upd(5,&#39;ad&#39;,this.value)" placeholder="What I will do"></div><div><label class="fl">Target Date</label><input class="ei" value="May 14" onchange="upd(5,&#39;adt&#39;,this.value)" placeholder="e.g. May 15"></div></div>
+  </div></div><div class="inv-card" id="card-6">
+  <div class="inv-hdr" onclick="togCard(6,event)">
+    <div class="avatar" id="av-6">P7</div>
+    <div class="hname-grp"><input class="edit-name" id="nm-6" value="Person 7" placeholder="Name or alias" onclick="event.stopPropagation()" oninput="updAv(6,this.value)" onchange="upd(6,&#39;p&#39;,this.value)">
+    <div class="pmeta"><span class="tag tl">Resentment</span><span class="tag ta">Forgiveness / Loyalty</span></div></div>
+    <span class="earr">▾</span>
+    <button class="del-btn" onclick="event.stopPropagation();delPerson(6)">✕</button>
+  </div>
+  <div class="inv-body">
+    <div class="fg2"><div><label class="fl">Category</label><select class="es" onchange="upd(6,&#39;t&#39;,this.value);rfTags(6)"><option selected="">Resentment</option><option>Fear</option><option>Person 7 Centered</option><option>Dishonesty</option><option>Envy</option><option>Other</option></select></div><div><label class="fl">Asset to Build</label><input class="ei" value="Forgiveness / Loyalty" onchange="upd(6,&#39;a&#39;,this.value)"></div></div>
+    <div class="fg"><label class="fl">What Happened</label><textarea class="ea" rows="3" onchange="upd(6,&#39;wh&#39;,this.value)">I used to be a quitter. Had low Person 7-esteem and thought I wasn't good enough.</textarea></div>
+    <div class="fg2"><div><label class="fl">The Fear Underneath</label><textarea class="ea" rows="3" onchange="upd(6,&#39;f&#39;,this.value)">Being stuck in a cycle — unhappy and alone, emotional pain and suffering.</textarea></div><div><label class="fl">My Part</label><textarea class="ea" rows="3" onchange="upd(6,&#39;r&#39;,this.value)">Simply wasn't disciplined enough. Gave up on myPerson 7 before giving myPerson 7 a chance.</textarea></div></div>
+    <div class="fg"><label class="fl">Areas Affected</label><div class="affects-grid"><label class="aff-lbl"><input type="checkbox" checked="" onchange="updAff(6,&#39;Person 7-Esteem&#39;,this.checked)">Person 7-Esteem</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(6,&#39;Personal Relationships&#39;,this.checked)">Personal Relationships</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(6,&#39;Sex Relationships&#39;,this.checked)">Sex Relationships</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(6,&#39;Financial Security&#39;,this.checked)">Financial Security</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(6,&#39;Recovery&#39;,this.checked)">Recovery</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(6,&#39;Family&#39;,this.checked)">Family</label></div></div>
+    <div class="fg"><label class="fl grn">✦ Person 8's Ideal</label><textarea class="ideal-a" rows="3" onchange="upd(6,&#39;g&#39;,this.value)">Committed and free, Person 7-directed. Person 7-esteem grounded in confidence. I am disciplined and consistent.</textarea></div>
+    <div class="fg2"><div><label class="fl">Amend Type</label><select class="es" onchange="upd(6,&#39;at&#39;,this.value)"><option selected="">Direct Amends</option><option>indirect Amends</option><option>Living Amends</option><option>Pray for Them</option><option>Amends-in-Kind</option></select></div><div><label class="fl">Method</label><select class="es" onchange="upd(6,&#39;am&#39;,this.value)"><option value="">— select —</option><option>In Person Conversation</option><option>Write a letter</option><option>Email</option><option>Pray for them</option><option>2-way prayer</option><option selected="">Journal</option><option>Other Action</option><option>Volunteer / Service</option><option>Phone call</option></select></div></div>
+    <div class="fg2"><div><label class="fl">Plan</label><input class="ei" value="Journal, 2-way prayer" onchange="upd(6,&#39;ad&#39;,this.value)" placeholder="What I will do"></div><div><label class="fl">Target Date</label><input class="ei" value="April 20" onchange="upd(6,&#39;adt&#39;,this.value)" placeholder="e.g. May 15"></div></div>
+  </div></div><div class="inv-card" id="card-7">
+  <div class="inv-hdr" onclick="togCard(7,event)">
+    <div class="avatar" id="av-7">P8</div>
+    <div class="hname-grp"><input class="edit-name" id="nm-7" value="Person 8" placeholder="Name or alias" onclick="event.stopPropagation()" oninput="updAv(7,this.value)" onchange="upd(7,&#39;p&#39;,this.value)">
+    <div class="pmeta"><span class="tag tl">Resentment</span><span class="tag ta">Love / Faith</span></div></div>
+    <span class="earr">▾</span>
+    <button class="del-btn" onclick="event.stopPropagation();delPerson(7)">✕</button>
+  </div>
+  <div class="inv-body">
+    <div class="fg2"><div><label class="fl">Category</label><select class="es" onchange="upd(7,&#39;t&#39;,this.value);rfTags(7)"><option selected="">Resentment</option><option>Fear</option><option>Person 7 Centered</option><option>Dishonesty</option><option>Envy</option><option>Other</option></select></div><div><label class="fl">Asset to Build</label><input class="ei" value="Love / Faith" onchange="upd(7,&#39;a&#39;,this.value)"></div></div>
+    <div class="fg"><label class="fl">What Happened</label><textarea class="ea" rows="3" onchange="upd(7,&#39;wh&#39;,this.value)"> </textarea></div>
+    <div class="fg2"><div><label class="fl">The Fear Underneath</label><textarea class="ea" rows="3" onchange="upd(7,&#39;f&#39;,this.value)">That it's all random and nothing matters — that it's all a lie.</textarea></div><div><label class="fl">My Part</label><textarea class="ea" rows="3" onchange="upd(7,&#39;r&#39;,this.value)">Closed-minded to possibilities beyond what I can currently see.</textarea></div></div>
+    <div class="fg"><label class="fl">Areas Affected</label><div class="affects-grid"><label class="aff-lbl"><input type="checkbox" checked="" onchange="updAff(7,&#39;Person 7-Esteem&#39;,this.checked)">Person 7-Esteem</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(7,&#39;Personal Relationships&#39;,this.checked)">Personal Relationships</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(7,&#39;Sex Relationships&#39;,this.checked)">Sex Relationships</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(7,&#39;Financial Security&#39;,this.checked)">Financial Security</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(7,&#39;Recovery&#39;,this.checked)">Recovery</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(7,&#39;Family&#39;,this.checked)">Family</label></div></div>
+    <div class="fg"><label class="fl grn">✦ Person 8's Ideal</label><textarea class="ideal-a" rows="3" onchange="upd(7,&#39;g&#39;,this.value)">Acceptance and trust. I experience Person 8 as accessible and understandable. Open-minded to possibilities beyond what I see.</textarea></div>
+    <div class="fg2"><div><label class="fl">Amend Type</label><select class="es" onchange="upd(7,&#39;at&#39;,this.value)"><option selected="">Direct Amends</option><option>indirect Amends</option><option>Living Amends</option><option>Pray for Them</option><option>Amends-in-Kind</option></select></div><div><label class="fl">Method</label><select class="es" onchange="upd(7,&#39;am&#39;,this.value)"><option value="">— select —</option><option>In Person Conversation</option><option>Write a letter</option><option>Email</option><option selected="">Pray for them</option><option>2-way prayer</option><option>Journal</option><option>Other Action</option><option>Volunteer / Service</option><option>Phone call</option></select></div></div>
+    <div class="fg2"><div><label class="fl">Plan</label><input class="ei" value="Journal — 2-way prayer" onchange="upd(7,&#39;ad&#39;,this.value)" placeholder="What I will do"></div><div><label class="fl">Target Date</label><input class="ei" value="April 20" onchange="upd(7,&#39;adt&#39;,this.value)" placeholder="e.g. May 15"></div></div>
+  </div></div><div class="inv-card" id="card-11">
+  <div class="inv-hdr" onclick="togCard(11,event)">
+    <div class="avatar" id="av-11">P1</div>
+    <div class="hname-grp"><input class="edit-name" id="nm-11" value="Person 10" placeholder="Name or alias" onclick="event.stopPropagation()" oninput="updAv(11,this.value)" onchange="upd(11,&#39;p&#39;,this.value)">
+    <div class="pmeta"><span class="tag tl">Resentment</span><span class="tag ta">Honesty</span></div></div>
+    <span class="earr">▾</span>
+    <button class="del-btn" onclick="event.stopPropagation();delPerson(11)">✕</button>
+  </div>
+  <div class="inv-body">
+    <div class="fg2"><div><label class="fl">Category</label><select class="es" onchange="upd(11,&#39;t&#39;,this.value);rfTags(11)"><option selected="">Resentment</option><option>Fear</option><option>Person 7 Centered</option><option>Dishonesty</option><option>Envy</option><option>Other</option></select></div><div><label class="fl">Asset to Build</label><input class="ei" value="Honesty" onchange="upd(11,&#39;a&#39;,this.value)"></div></div>
+    <div class="fg"><label class="fl">What Happened</label><textarea class="ea" rows="3" onchange="upd(11,&#39;wh&#39;,this.value)">They don't want to be my friend because they don't like my partner.</textarea></div>
+    <div class="fg2"><div><label class="fl">The Fear Underneath</label><textarea class="ea" rows="3" onchange="upd(11,&#39;f&#39;,this.value)">Not being liked, not being a good enough friend.</textarea></div><div><label class="fl">My Part</label><textarea class="ea" rows="3" onchange="upd(11,&#39;r&#39;,this.value)">I stopped calling. I only engaged when I could use substances together.</textarea></div></div>
+    <div class="fg"><label class="fl">Areas Affected</label><div class="affects-grid"><label class="aff-lbl"><input type="checkbox" checked="" onchange="updAff(11,&#39;Person 7-Esteem&#39;,this.checked)">Person 7-Esteem</label><label class="aff-lbl"><input type="checkbox" checked="" onchange="updAff(11,&#39;Personal Relationships&#39;,this.checked)">Personal Relationships</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(11,&#39;Sex Relationships&#39;,this.checked)">Sex Relationships</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(11,&#39;Financial Security&#39;,this.checked)">Financial Security</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(11,&#39;Recovery&#39;,this.checked)">Recovery</label><label class="aff-lbl"><input type="checkbox" onchange="updAff(11,&#39;Family&#39;,this.checked)">Family</label></div></div>
+    <div class="fg"><label class="fl grn">✦ Person 8's Ideal</label><textarea class="ideal-a" rows="3" onchange="upd(11,&#39;g&#39;,this.value)">I consistently reach out and make meaningful effort to spend time together in healthy ways.</textarea></div>
+    <div class="fg2"><div><label class="fl">Amend Type</label><select class="es" onchange="upd(11,&#39;at&#39;,this.value)"><option selected="">Direct Amends</option><option>indirect Amends</option><option>Living Amends</option><option>Pray for Them</option><option>Amends-in-Kind</option></select></div><div><label class="fl">Method</label><select class="es" onchange="upd(11,&#39;am&#39;,this.value)"><option value="">— select —</option><option selected="">In Person Conversation</option><option>Write a letter</option><option>Email</option><option>Pray for them</option><option>2-way prayer</option><option>Journal</option><option>Other Action</option><option>Volunteer / Service</option><option>Phone call</option></select></div></div>
+    <div class="fg2"><div><label class="fl">Plan</label><input class="ei" value="Meet and talk honestly about my recovery." onchange="upd(11,&#39;ad&#39;,this.value)" placeholder="What I will do"></div><div><label class="fl">Target Date</label><input class="ei" value="May 30" onchange="upd(11,&#39;adt&#39;,this.value)" placeholder="e.g. May 15"></div></div>
+  </div></div></div>
+  <div class="grad-box" style="margin-top:24px">
+    <h3>Step Four — Completion</h3>
+    <div class="grad-checklist">
+      <label class="grad-item chk" id="gi-s4-1"><input type="checkbox" onchange="gradCheck(4,0,this)"> The inventory is thorough — no major resentments, fears, or harms have been omitted</label>
+      <label class="grad-item chk" id="gi-s4-2"><input type="checkbox" onchange="gradCheck(4,1,this)"> The sponsee has been honest about their part in each situation</label>
+      <label class="grad-item chk" id="gi-s4-3"><input type="checkbox" onchange="gradCheck(4,2,this)"> <strong>I am convinced <span class="sponsee-name-span">the sponsee</span> has made a searching and fearless moral inventory</strong></label>
+    </div>
+    <button class="grad-btn" id="gradBtn4" onclick="graduateStep(4)" style="background:var(--c4)">✦ Graduate Step Four ✦</button>
+  </div>
+  <div class="step-footer"><button class="nbtn" onclick="showStep(3)">← Step Three</button><button class="nbtn pri" onclick="showStep(5)">Step Five →</button></div>
+</section>
+
+<section class="step-panel active" id="panel-5">
+  <div class="step-hdr"><div class="step-badge" style="background:var(--c5);">5</div><div><h1>Admitted to Person 8, to Ourselves, and to Another Human Being</h1><div class="step-sub">the Exact Nature of Our Wrongs</div></div></div>
+  <div class="sq">"If we skip this vital step, we may not overcome our addiction. Time after time those in recovery have tried to keep to themselves certain facts about their lives."<cite>— Alcoholics Anonymous, p. 72–73</cite></div>
+  <div class="promise-box"><strong>The 5th Step Promise</strong>"Once we have taken this step, withholding nothing, we are delighted. We can look the world in the eye. We can be alone at perfect peace and ease. Our fears fall from us. We begin to feel the nearness of our Creator."</div>
+  <div id="s5list"><div class="share-row"><div class="avatar" style="width:30px;height:30px;font-size:11px">P1</div><div class="sn">Person 1</div><div class="st">Resentment</div><label class="stog"><input type="checkbox" checked="" onchange="st.inv[0].s5=this.checked;saveSt()">Shared</label><span style="font-size:11px;color:var(--c3);background:var(--plav);padding:2px 7px;border-radius:4px">Pray First</span></div><div class="share-row"><div class="avatar" style="width:30px;height:30px;font-size:11px">P2</div><div class="sn">Person 2</div><div class="st">Resentment</div><label class="stog"><input type="checkbox" checked="" onchange="st.inv[1].s5=this.checked;saveSt()">Shared</label></div><div class="share-row"><div class="avatar" style="width:30px;height:30px;font-size:11px">P3</div><div class="sn">Person 3</div><div class="st">Resentment</div><label class="stog"><input type="checkbox" checked="" onchange="st.inv[2].s5=this.checked;saveSt()">Shared</label><span style="font-size:11px;color:var(--c3);background:var(--plav);padding:2px 7px;border-radius:4px">Pray First</span></div><div class="share-row"><div class="avatar" style="width:30px;height:30px;font-size:11px">P4</div><div class="sn">Person 4</div><div class="st">Resentment</div><label class="stog"><input type="checkbox" checked="" onchange="st.inv[3].s5=this.checked;saveSt()">Shared</label></div><div class="share-row"><div class="avatar" style="width:30px;height:30px;font-size:11px">P5</div><div class="sn">Person 5</div><div class="st">Resentment</div><label class="stog"><input type="checkbox" checked="" onchange="st.inv[4].s5=this.checked;saveSt()">Shared</label></div><div class="share-row"><div class="avatar" style="width:30px;height:30px;font-size:11px">P6</div><div class="sn">Person 6</div><div class="st">Resentment</div><label class="stog"><input type="checkbox" checked="" onchange="st.inv[5].s5=this.checked;saveSt()">Shared</label><span style="font-size:11px;color:var(--c3);background:var(--plav);padding:2px 7px;border-radius:4px">Pray First</span></div><div class="share-row"><div class="avatar" style="width:30px;height:30px;font-size:11px">P7</div><div class="sn">Person 7</div><div class="st">Resentment</div><label class="stog"><input type="checkbox" checked="" onchange="st.inv[6].s5=this.checked;saveSt()">Shared</label></div><div class="share-row"><div class="avatar" style="width:30px;height:30px;font-size:11px">P8</div><div class="sn">Person 8</div><div class="st">Resentment</div><label class="stog"><input type="checkbox" checked="" onchange="st.inv[7].s5=this.checked;saveSt()">Shared</label></div><div class="share-row"><div class="avatar" style="width:30px;height:30px;font-size:11px">P9</div><div class="sn">Person 9</div><div class="st">Person 7 Centered</div><label class="stog"><input type="checkbox" checked="" onchange="st.inv[8].s5=this.checked;saveSt()">Shared</label></div><div class="share-row"><div class="avatar" style="width:30px;height:30px;font-size:11px">P4</div><div class="sn">Person 4 </div><div class="st">Person 7 Centered</div><label class="stog"><input type="checkbox" checked="" onchange="st.inv[9].s5=this.checked;saveSt()">Shared</label></div><div class="share-row"><div class="avatar" style="width:30px;height:30px;font-size:11px">P9</div><div class="sn">Person 9 </div><div class="st">Dishonesty</div><label class="stog"><input type="checkbox" checked="" onchange="st.inv[10].s5=this.checked;saveSt()">Shared</label></div><div class="share-row"><div class="avatar" style="width:30px;height:30px;font-size:11px">P1</div><div class="sn">Person 10</div><div class="st">Resentment</div><label class="stog"><input type="checkbox" checked="" onchange="st.inv[11].s5=this.checked;saveSt()">Shared</label></div></div>
+  <div class="grad-box" style="background:var(--pyellow);border-color:rgba(154,112,24,.3);margin-top:20px">
+    <h3 style="color:var(--c5)">Step Five — Completion</h3>
+    <div class="grad-checklist">
+      <label class="grad-item" id="gi-s5-1"><input type="checkbox" onchange="gradCheck(5,0,this)"> Nothing was held back — the exact nature of wrongs was shared fully</label>
+      <label class="grad-item" id="gi-s5-2"><input type="checkbox" onchange="gradCheck(5,1,this)"> <strong>I am convinced <span class="sponsee-name-span">the sponsee</span> has admitted the exact nature of their wrongs</strong></label>
+    </div>
+    <button class="grad-btn" id="gradBtn5" disabled="" onclick="graduateStep(5)" style="background:var(--c5)">✦ Graduate Step Five ✦</button>
+  </div>
+  <div class="step-footer"><button class="nbtn" onclick="showStep(4)">← Step Four</button><button class="nbtn pri" onclick="showStep(6)">Step Six →</button></div>
+</section>
+
+<section class="step-panel" id="panel-6">
+  <div class="step-hdr"><div class="step-badge" style="background:var(--c6);">6</div><div><h1>Were Entirely Ready to Have Person 8 Remove All These Defects</h1><div class="step-sub">of Character</div></div></div>
+  <div class="sq">"This is the step that separates the men from the boys. The best we can do, most of the time, is to develop the willingness to let go."<cite>— As Bill Sees It, p. 53</cite></div>
+  <div class="crit-box"><h4>What does "entirely ready" mean?</h4><ul class="crit-list"><li>I am willing to have Person 8 remove this — even if I still feel the pull toward it</li><li>I understand this defect has cost me more than it has given me</li><li>I accept I cannot remove it by will-power alone</li><li>I am asking Person 8 — not myPerson 7 — to do the removing</li></ul></div>
+  <div id="s6list"><div class="defect-card"><div class="dic">⚡</div><div style="flex:1"><div class="dname">Resentment</div><div class="ddesc">Reliving past wrongs and carrying anger forward.</div></div><label class="rtog " id="rl-0"><input type="checkbox" onchange="st.ready[0]=this.checked;document.getElementById(&#39;rl-0&#39;).className=&#39;rtog&#39;+(this.checked?&#39; chk&#39;:&#39;&#39;);saveSt()">Entirely Ready</label></div><div class="defect-card"><div class="dic">🎭</div><div style="flex:1"><div class="dname">Dishonesty</div><div class="ddesc">Saying one thing and doing another.</div></div><label class="rtog " id="rl-1"><input type="checkbox" onchange="st.ready[1]=this.checked;document.getElementById(&#39;rl-1&#39;).className=&#39;rtog&#39;+(this.checked?&#39; chk&#39;:&#39;&#39;);saveSt()">Entirely Ready</label></div><div class="defect-card"><div class="dic">🔒</div><div style="flex:1"><div class="dname">Person 7-Centered Fear</div><div class="ddesc">Making decisions based on what might be lost or not gained.</div></div><label class="rtog " id="rl-2"><input type="checkbox" onchange="st.ready[2]=this.checked;document.getElementById(&#39;rl-2&#39;).className=&#39;rtog&#39;+(this.checked?&#39; chk&#39;:&#39;&#39;);saveSt()">Entirely Ready</label></div><div class="defect-card"><div class="dic">👁</div><div style="flex:1"><div class="dname">Envy / Jealousy</div><div class="ddesc">Wanting what others have; comparing and resenting.</div></div><label class="rtog " id="rl-3"><input type="checkbox" onchange="st.ready[3]=this.checked;document.getElementById(&#39;rl-3&#39;).className=&#39;rtog&#39;+(this.checked?&#39; chk&#39;:&#39;&#39;);saveSt()">Entirely Ready</label></div><div class="defect-card"><div class="dic">🏆</div><div style="flex:1"><div class="dname">Pride / False Pride</div><div class="ddesc">The need to appear better than one truly is.</div></div><label class="rtog " id="rl-4"><input type="checkbox" onchange="st.ready[4]=this.checked;document.getElementById(&#39;rl-4&#39;).className=&#39;rtog&#39;+(this.checked?&#39; chk&#39;:&#39;&#39;);saveSt()">Entirely Ready</label></div><div class="defect-card"><div class="dic">🔥</div><div style="flex:1"><div class="dname">Lust</div><div class="ddesc">Using fantasy or desire to fill an emotional void.</div></div><label class="rtog " id="rl-5"><input type="checkbox" onchange="st.ready[5]=this.checked;document.getElementById(&#39;rl-5&#39;).className=&#39;rtog&#39;+(this.checked?&#39; chk&#39;:&#39;&#39;);saveSt()">Entirely Ready</label></div><div class="defect-card"><div class="dic">🌀</div><div style="flex:1"><div class="dname">Person 7ishness</div><div class="ddesc">Putting personal needs above the needs of others.</div></div><label class="rtog " id="rl-6"><input type="checkbox" onchange="st.ready[6]=this.checked;document.getElementById(&#39;rl-6&#39;).className=&#39;rtog&#39;+(this.checked?&#39; chk&#39;:&#39;&#39;);saveSt()">Entirely Ready</label></div><div class="defect-card"><div class="dic">🧱</div><div style="flex:1"><div class="dname">Closed-Mindedness</div><div class="ddesc">Refusing possibilities outside one's own thinking.</div></div><label class="rtog " id="rl-7"><input type="checkbox" onchange="st.ready[7]=this.checked;document.getElementById(&#39;rl-7&#39;).className=&#39;rtog&#39;+(this.checked?&#39; chk&#39;:&#39;&#39;);saveSt()">Entirely Ready</label></div><div class="defect-card"><div class="dic">⏳</div><div style="flex:1"><div class="dname">Lack of Discipline</div><div class="ddesc">Choosing comfort over commitment and follow-through.</div></div><label class="rtog " id="rl-8"><input type="checkbox" onchange="st.ready[8]=this.checked;document.getElementById(&#39;rl-8&#39;).className=&#39;rtog&#39;+(this.checked?&#39; chk&#39;:&#39;&#39;);saveSt()">Entirely Ready</label></div><div class="defect-card"><div class="dic">🕸</div><div style="flex:1"><div class="dname">Manipulation</div><div class="ddesc">Controlling outcomes through indirect rather than honest means.</div></div><label class="rtog " id="rl-9"><input type="checkbox" onchange="st.ready[9]=this.checked;document.getElementById(&#39;rl-9&#39;).className=&#39;rtog&#39;+(this.checked?&#39; chk&#39;:&#39;&#39;);saveSt()">Entirely Ready</label></div></div>
+  <div class="grad-box" style="background:var(--pblue);border-color:rgba(48,90,154,.3);margin-top:20px">
+    <h3 style="color:var(--c6)">Step Six — Completion</h3>
+    <div class="grad-checklist">
+      <label class="grad-item" id="gi-s6-1"><input type="checkbox" onchange="gradCheck(6,0,this)"> The sponsee has reviewed each defect and expressed genuine willingness</label>
+      <label class="grad-item" id="gi-s6-2"><input type="checkbox" onchange="gradCheck(6,1,this)"> <strong>I am convinced <span class="sponsee-name-span">the sponsee</span> is entirely ready for Person 8 to remove these defects</strong></label>
+    </div>
+    <button class="grad-btn" id="gradBtn6" disabled="" onclick="graduateStep(6)" style="background:var(--c6)">✦ Graduate Step Six ✦</button>
+  </div>
+  <div class="step-footer"><button class="nbtn" onclick="showStep(5)">← Step Five</button><button class="nbtn pri" onclick="showStep(7)">Step Seven →</button></div>
+</section>
+
+<section class="step-panel" id="panel-7">
+  <div class="step-hdr"><div class="step-badge" style="background:var(--c7);">7</div><div><h1>Humbly Asked Person 8 to Remove Our Shortcomings</h1></div></div>
+  <div class="prayer-box" style="border-color:var(--c7)"><div class="prayer-text">"My Creator, I am now willing that you should have all of me, good and bad. I pray that you now remove from me every single defect of character which stands in the way of my usefulness to you and my fellows. Grant me strength, as I go out from here, to do your bidding."</div><div class="prayer-src" style="color:var(--c7)">The 7th Step Prayer — Big Book, p. 76</div></div>
+  <div class="sec-label">Shortcomings to Surrender <span>from the Step Four inventory</span></div>
+  <div id="s7dlist"><div style="display:flex;align-items:center;gap:10px;background:var(--ppink);border:1px solid rgba(184,56,112,.15);border-radius:7px;padding:11px 13px;margin-bottom:6px"><div style="font-size:19px">⚡</div><div style="flex:1"><div style="font-family:&#39;Playfair Display&#39;,serif;font-weight:600;color:var(--hdr);font-size:14px">Resentment</div><div style="font-size:12.5px;color:var(--inkl)">Reliving past wrongs and carrying anger forward.</div></div><div style="font-size:18px;color:var(--c1)">→</div></div><div style="display:flex;align-items:center;gap:10px;background:var(--ppink);border:1px solid rgba(184,56,112,.15);border-radius:7px;padding:11px 13px;margin-bottom:6px"><div style="font-size:19px">🎭</div><div style="flex:1"><div style="font-family:&#39;Playfair Display&#39;,serif;font-weight:600;color:var(--hdr);font-size:14px">Dishonesty</div><div style="font-size:12.5px;color:var(--inkl)">Saying one thing and doing another.</div></div><div style="font-size:18px;color:var(--c1)">→</div></div><div style="display:flex;align-items:center;gap:10px;background:var(--ppink);border:1px solid rgba(184,56,112,.15);border-radius:7px;padding:11px 13px;margin-bottom:6px"><div style="font-size:19px">🔒</div><div style="flex:1"><div style="font-family:&#39;Playfair Display&#39;,serif;font-weight:600;color:var(--hdr);font-size:14px">Person 7-Centered Fear</div><div style="font-size:12.5px;color:var(--inkl)">Making decisions based on what might be lost or not gained.</div></div><div style="font-size:18px;color:var(--c1)">→</div></div><div style="display:flex;align-items:center;gap:10px;background:var(--ppink);border:1px solid rgba(184,56,112,.15);border-radius:7px;padding:11px 13px;margin-bottom:6px"><div style="font-size:19px">👁</div><div style="flex:1"><div style="font-family:&#39;Playfair Display&#39;,serif;font-weight:600;color:var(--hdr);font-size:14px">Envy / Jealousy</div><div style="font-size:12.5px;color:var(--inkl)">Wanting what others have; comparing and resenting.</div></div><div style="font-size:18px;color:var(--c1)">→</div></div><div style="display:flex;align-items:center;gap:10px;background:var(--ppink);border:1px solid rgba(184,56,112,.15);border-radius:7px;padding:11px 13px;margin-bottom:6px"><div style="font-size:19px">🏆</div><div style="flex:1"><div style="font-family:&#39;Playfair Display&#39;,serif;font-weight:600;color:var(--hdr);font-size:14px">Pride / False Pride</div><div style="font-size:12.5px;color:var(--inkl)">The need to appear better than one truly is.</div></div><div style="font-size:18px;color:var(--c1)">→</div></div><div style="display:flex;align-items:center;gap:10px;background:var(--ppink);border:1px solid rgba(184,56,112,.15);border-radius:7px;padding:11px 13px;margin-bottom:6px"><div style="font-size:19px">🔥</div><div style="flex:1"><div style="font-family:&#39;Playfair Display&#39;,serif;font-weight:600;color:var(--hdr);font-size:14px">Lust</div><div style="font-size:12.5px;color:var(--inkl)">Using fantasy or desire to fill an emotional void.</div></div><div style="font-size:18px;color:var(--c1)">→</div></div><div style="display:flex;align-items:center;gap:10px;background:var(--ppink);border:1px solid rgba(184,56,112,.15);border-radius:7px;padding:11px 13px;margin-bottom:6px"><div style="font-size:19px">🌀</div><div style="flex:1"><div style="font-family:&#39;Playfair Display&#39;,serif;font-weight:600;color:var(--hdr);font-size:14px">Person 7ishness</div><div style="font-size:12.5px;color:var(--inkl)">Putting personal needs above the needs of others.</div></div><div style="font-size:18px;color:var(--c1)">→</div></div><div style="display:flex;align-items:center;gap:10px;background:var(--ppink);border:1px solid rgba(184,56,112,.15);border-radius:7px;padding:11px 13px;margin-bottom:6px"><div style="font-size:19px">🧱</div><div style="flex:1"><div style="font-family:&#39;Playfair Display&#39;,serif;font-weight:600;color:var(--hdr);font-size:14px">Closed-Mindedness</div><div style="font-size:12.5px;color:var(--inkl)">Refusing possibilities outside one's own thinking.</div></div><div style="font-size:18px;color:var(--c1)">→</div></div><div style="display:flex;align-items:center;gap:10px;background:var(--ppink);border:1px solid rgba(184,56,112,.15);border-radius:7px;padding:11px 13px;margin-bottom:6px"><div style="font-size:19px">⏳</div><div style="flex:1"><div style="font-family:&#39;Playfair Display&#39;,serif;font-weight:600;color:var(--hdr);font-size:14px">Lack of Discipline</div><div style="font-size:12.5px;color:var(--inkl)">Choosing comfort over commitment and follow-through.</div></div><div style="font-size:18px;color:var(--c1)">→</div></div><div style="display:flex;align-items:center;gap:10px;background:var(--ppink);border:1px solid rgba(184,56,112,.15);border-radius:7px;padding:11px 13px;margin-bottom:6px"><div style="font-size:19px">🕸</div><div style="flex:1"><div style="font-family:&#39;Playfair Display&#39;,serif;font-weight:600;color:var(--hdr);font-size:14px">Manipulation</div><div style="font-size:12.5px;color:var(--inkl)">Controlling outcomes through indirect rather than honest means.</div></div><div style="font-size:18px;color:var(--c1)">→</div></div></div>
+  <div class="sec-label" style="margin-top:20px">Assets Person 8 Is Building</div>
+  <div id="s7alist"><div style="display:flex;align-items:center;gap:10px;background:var(--pgreen);border:1px solid rgba(58,104,80,.18);border-radius:7px;padding:11px 13px;margin-bottom:6px"><div style="width:7px;height:7px;background:var(--c4);border-radius:50%;flex-shrink:0;margin-top:6px"></div><div><div style="font-family:&#39;Playfair Display&#39;,serif;font-weight:600;color:var(--c4);font-size:14px">Forgiveness</div><div style="font-size:12.5px;color:var(--inkm)">Releasing the past and choosing freedom over resentment.</div></div></div><div style="display:flex;align-items:center;gap:10px;background:var(--pgreen);border:1px solid rgba(58,104,80,.18);border-radius:7px;padding:11px 13px;margin-bottom:6px"><div style="width:7px;height:7px;background:var(--c4);border-radius:50%;flex-shrink:0;margin-top:6px"></div><div><div style="font-family:&#39;Playfair Display&#39;,serif;font-weight:600;color:var(--c4);font-size:14px">Honesty</div><div style="font-size:12.5px;color:var(--inkm)">Speaking and living the truth, even when uncomfortable.</div></div></div><div style="display:flex;align-items:center;gap:10px;background:var(--pgreen);border:1px solid rgba(58,104,80,.18);border-radius:7px;padding:11px 13px;margin-bottom:6px"><div style="width:7px;height:7px;background:var(--c4);border-radius:50%;flex-shrink:0;margin-top:6px"></div><div><div style="font-family:&#39;Playfair Display&#39;,serif;font-weight:600;color:var(--c4);font-size:14px">Humility</div><div style="font-size:12.5px;color:var(--inkm)">Seeing onePerson 7 clearly — no better, no worse.</div></div></div><div style="display:flex;align-items:center;gap:10px;background:var(--pgreen);border:1px solid rgba(58,104,80,.18);border-radius:7px;padding:11px 13px;margin-bottom:6px"><div style="width:7px;height:7px;background:var(--c4);border-radius:50%;flex-shrink:0;margin-top:6px"></div><div><div style="font-family:&#39;Playfair Display&#39;,serif;font-weight:600;color:var(--c4);font-size:14px">Trust / Faith</div><div style="font-size:12.5px;color:var(--inkm)">Believing in something larger than one's own thinking.</div></div></div><div style="display:flex;align-items:center;gap:10px;background:var(--pgreen);border:1px solid rgba(58,104,80,.18);border-radius:7px;padding:11px 13px;margin-bottom:6px"><div style="width:7px;height:7px;background:var(--c4);border-radius:50%;flex-shrink:0;margin-top:6px"></div><div><div style="font-family:&#39;Playfair Display&#39;,serif;font-weight:600;color:var(--c4);font-size:14px">Service</div><div style="font-size:12.5px;color:var(--inkm)">Making life about others' well-being, not personal comfort.</div></div></div><div style="display:flex;align-items:center;gap:10px;background:var(--pgreen);border:1px solid rgba(58,104,80,.18);border-radius:7px;padding:11px 13px;margin-bottom:6px"><div style="width:7px;height:7px;background:var(--c4);border-radius:50%;flex-shrink:0;margin-top:6px"></div><div><div style="font-family:&#39;Playfair Display&#39;,serif;font-weight:600;color:var(--c4);font-size:14px">Courage</div><div style="font-size:12.5px;color:var(--inkm)">Acting rightly in spite of fear.</div></div></div><div style="display:flex;align-items:center;gap:10px;background:var(--pgreen);border:1px solid rgba(58,104,80,.18);border-radius:7px;padding:11px 13px;margin-bottom:6px"><div style="width:7px;height:7px;background:var(--c4);border-radius:50%;flex-shrink:0;margin-top:6px"></div><div><div style="font-family:&#39;Playfair Display&#39;,serif;font-weight:600;color:var(--c4);font-size:14px">Person 7-Discipline</div><div style="font-size:12.5px;color:var(--inkm)">Honoring commitments to Person 7 and others.</div></div></div><div style="display:flex;align-items:center;gap:10px;background:var(--pgreen);border:1px solid rgba(58,104,80,.18);border-radius:7px;padding:11px 13px;margin-bottom:6px"><div style="width:7px;height:7px;background:var(--c4);border-radius:50%;flex-shrink:0;margin-top:6px"></div><div><div style="font-family:&#39;Playfair Display&#39;,serif;font-weight:600;color:var(--c4);font-size:14px">Love / Compassion</div><div style="font-size:12.5px;color:var(--inkm)">Extending genuine care to all people.</div></div></div></div>
+  <div class="grad-box" style="background:var(--pgreen);border-color:rgba(58,104,80,.3);margin-top:20px">
+    <h3 style="color:var(--c7)">Step Seven — Completion</h3>
+    <div class="grad-checklist">
+      <label class="grad-item" id="gi-s7-1"><input type="checkbox" onchange="gradCheck(7,0,this)"> The 7th Step Prayer was said sincerely</label>
+      <label class="grad-item" id="gi-s7-2"><input type="checkbox" onchange="gradCheck(7,1,this)"> <strong>I am convinced <span class="sponsee-name-span">the sponsee</span> has humbly asked for removal of shortcomings</strong></label>
+    </div>
+    <button class="grad-btn" id="gradBtn7" disabled="" onclick="graduateStep(7)" style="background:var(--c7)">✦ Graduate Step Seven ✦</button>
+  </div>
+  <div class="step-footer"><button class="nbtn" onclick="showStep(6)">← Step Six</button><button class="nbtn pri" onclick="showStep(8)">Step Eight →</button></div>
+</section>
+
+<section class="step-panel" id="panel-8">
+  <div class="step-hdr"><div class="step-badge" style="background:var(--c8);">8</div><div><h1>Made a List of All Persons We Had Harmed</h1><div class="step-sub">and Became Willing to Make Amends to Them All</div></div></div>
+  <div class="sq">"Good judgment, careful timing, courage, and prudence — these are the qualities we shall need when we take Step Nine. Begin here by seeing clearly what you owe and to whom."<cite>— Old-Timer's saying, ca. 1943</cite></div>
+  <div class="crit-box" style="background:var(--plav);border-color:rgba(96,64,176,.2)"><h4 style="color:var(--c3)">Do I owe an amend?</h4><ul class="crit-list" style="--mark-color:var(--c3)"><li>Did I affect their Person 7-esteem, emotional security, or peace of mind?</li><li>Did I affect their personal relationships or family?</li><li>Did I affect their finances or livelihood?</li><li>Did I affect their sex life or intimate relationships?</li><li>Am I willing — not necessarily eager — to make this right?</li></ul></div>
+  <p style="font-size:13px;color:var(--inkl);margin-bottom:12px;font-style:italic">All fields are editable — click any cell to change it.</p>
+  <div class="amtbl-wrap"><table class="amtbl"><thead><tr><th>Person</th><th>What I Did</th><th>Amend Type</th><th>Method</th><th>Date</th></tr></thead><tbody id="s8tbody"><tr><td class="tdname">Person 1</td><td><input class="td-ei" style="min-width:140px" value="I wanted them to be my best friend. I loved them but they didn&#39;t reciprocate." onchange="upd(0,&#39;wh&#39;,this.value)"></td><td><select class="td-es" onchange="upd(0,&#39;at&#39;,this.value)"><option>Direct Amends</option><option selected="">indirect Amends</option><option>Living Amends</option><option>Pray for Them</option><option>Amends-in-Kind</option></select></td><td><select class="td-es" onchange="upd(0,&#39;am&#39;,this.value)"><option value="">—</option><option>In Person Conversation</option><option>Write a letter</option><option>Email</option><option selected="">Pray for them</option><option>2-way prayer</option><option>Journal</option><option>Other Action</option><option>Volunteer / Service</option><option>Phone call</option></select></td><td><input class="td-ei" value="April 20" onchange="upd(0,&#39;adt&#39;,this.value)" placeholder="Date" style="min-width:80px"></td></tr><tr><td class="tdname">Person 2</td><td><input class="td-ei" style="min-width:140px" value="They didn&#39;t know how to raise a son. They were too busy getting drunk and were v" onchange="upd(1,&#39;wh&#39;,this.value)"></td><td><select class="td-es" onchange="upd(1,&#39;at&#39;,this.value)"><option>Direct Amends</option><option selected="">indirect Amends</option><option>Living Amends</option><option>Pray for Them</option><option>Amends-in-Kind</option></select></td><td><select class="td-es" onchange="upd(1,&#39;am&#39;,this.value)"><option value="">—</option><option>In Person Conversation</option><option selected="">Write a letter</option><option>Email</option><option>Pray for them</option><option>2-way prayer</option><option>Journal</option><option>Other Action</option><option>Volunteer / Service</option><option>Phone call</option></select></td><td><input class="td-ei" value="April 15" onchange="upd(1,&#39;adt&#39;,this.value)" placeholder="Date" style="min-width:80px"></td></tr><tr><td class="tdname">Person 3</td><td><input class="td-ei" style="min-width:140px" value="" onchange="upd(2,&#39;wh&#39;,this.value)"></td><td><select class="td-es" onchange="upd(2,&#39;at&#39;,this.value)"><option>Direct Amends</option><option selected="">indirect Amends</option><option>Living Amends</option><option>Pray for Them</option><option>Amends-in-Kind</option></select></td><td><select class="td-es" onchange="upd(2,&#39;am&#39;,this.value)"><option value="">—</option><option>In Person Conversation</option><option>Write a letter</option><option>Email</option><option selected="">Pray for them</option><option>2-way prayer</option><option>Journal</option><option>Other Action</option><option>Volunteer / Service</option><option>Phone call</option></select></td><td><input class="td-ei" value="April 30" onchange="upd(2,&#39;adt&#39;,this.value)" placeholder="Date" style="min-width:80px"></td></tr><tr><td class="tdname">Person 4</td><td><input class="td-ei" style="min-width:140px" value="." onchange="upd(3,&#39;wh&#39;,this.value)"></td><td><select class="td-es" onchange="upd(3,&#39;at&#39;,this.value)"><option>Direct Amends</option><option selected="">indirect Amends</option><option>Living Amends</option><option>Pray for Them</option><option>Amends-in-Kind</option></select></td><td><select class="td-es" onchange="upd(3,&#39;am&#39;,this.value)"><option value="">—</option><option>In Person Conversation</option><option>Write a letter</option><option>Email</option><option selected="">Pray for them</option><option>2-way prayer</option><option>Journal</option><option>Other Action</option><option>Volunteer / Service</option><option>Phone call</option></select></td><td><input class="td-ei" value="May 7" onchange="upd(3,&#39;adt&#39;,this.value)" placeholder="Date" style="min-width:80px"></td></tr><tr><td class="tdname">Person 5</td><td><input class="td-ei" style="min-width:140px" value="" onchange="upd(4,&#39;wh&#39;,this.value)"></td><td><select class="td-es" onchange="upd(4,&#39;at&#39;,this.value)"><option selected="">Direct Amends</option><option>indirect Amends</option><option>Living Amends</option><option>Pray for Them</option><option>Amends-in-Kind</option></select></td><td><select class="td-es" onchange="upd(4,&#39;am&#39;,this.value)"><option value="">—</option><option>In Person Conversation</option><option>Write a letter</option><option selected="">Email</option><option>Pray for them</option><option>2-way prayer</option><option>Journal</option><option>Other Action</option><option>Volunteer / Service</option><option>Phone call</option></select></td><td><input class="td-ei" value="May 14" onchange="upd(4,&#39;adt&#39;,this.value)" placeholder="Date" style="min-width:80px"></td></tr><tr><td class="tdname">Person 6</td><td><input class="td-ei" style="min-width:140px" value="" onchange="upd(5,&#39;wh&#39;,this.value)"></td><td><select class="td-es" onchange="upd(5,&#39;at&#39;,this.value)"><option>Direct Amends</option><option selected="">indirect Amends</option><option>Living Amends</option><option>Pray for Them</option><option>Amends-in-Kind</option></select></td><td><select class="td-es" onchange="upd(5,&#39;am&#39;,this.value)"><option value="">—</option><option>In Person Conversation</option><option>Write a letter</option><option selected="">Email</option><option>Pray for them</option><option>2-way prayer</option><option>Journal</option><option>Other Action</option><option>Volunteer / Service</option><option>Phone call</option></select></td><td><input class="td-ei" value="May 14" onchange="upd(5,&#39;adt&#39;,this.value)" placeholder="Date" style="min-width:80px"></td></tr><tr><td class="tdname">Person 7</td><td><input class="td-ei" style="min-width:140px" value="I used to be a quitter. Had low Person 7-esteem and thought I wasn&#39;t good enough" onchange="upd(6,&#39;wh&#39;,this.value)"></td><td><select class="td-es" onchange="upd(6,&#39;at&#39;,this.value)"><option selected="">Direct Amends</option><option>indirect Amends</option><option>Living Amends</option><option>Pray for Them</option><option>Amends-in-Kind</option></select></td><td><select class="td-es" onchange="upd(6,&#39;am&#39;,this.value)"><option value="">—</option><option>In Person Conversation</option><option>Write a letter</option><option>Email</option><option>Pray for them</option><option>2-way prayer</option><option selected="">Journal</option><option>Other Action</option><option>Volunteer / Service</option><option>Phone call</option></select></td><td><input class="td-ei" value="April 20" onchange="upd(6,&#39;adt&#39;,this.value)" placeholder="Date" style="min-width:80px"></td></tr><tr><td class="tdname">Person 8</td><td><input class="td-ei" style="min-width:140px" value=" " onchange="upd(7,&#39;wh&#39;,this.value)"></td><td><select class="td-es" onchange="upd(7,&#39;at&#39;,this.value)"><option selected="">Direct Amends</option><option>indirect Amends</option><option>Living Amends</option><option>Pray for Them</option><option>Amends-in-Kind</option></select></td><td><select class="td-es" onchange="upd(7,&#39;am&#39;,this.value)"><option value="">—</option><option>In Person Conversation</option><option>Write a letter</option><option>Email</option><option selected="">Pray for them</option><option>2-way prayer</option><option>Journal</option><option>Other Action</option><option>Volunteer / Service</option><option>Phone call</option></select></td><td><input class="td-ei" value="April 20" onchange="upd(7,&#39;adt&#39;,this.value)" placeholder="Date" style="min-width:80px"></td></tr><tr><td class="tdname">Person 9</td><td><input class="td-ei" style="min-width:140px" value=" " onchange="upd(8,&#39;wh&#39;,this.value)"></td><td><select class="td-es" onchange="upd(8,&#39;at&#39;,this.value)"><option selected="">Direct Amends</option><option>indirect Amends</option><option>Living Amends</option><option>Pray for Them</option><option>Amends-in-Kind</option></select></td><td><select class="td-es" onchange="upd(8,&#39;am&#39;,this.value)"><option value="">—</option><option selected="">In Person Conversation</option><option>Write a letter</option><option>Email</option><option>Pray for them</option><option>2-way prayer</option><option>Journal</option><option>Other Action</option><option>Volunteer / Service</option><option>Phone call</option></select></td><td><input class="td-ei" value="March 26" onchange="upd(8,&#39;adt&#39;,this.value)" placeholder="Date" style="min-width:80px"></td></tr><tr><td class="tdname">Person 4 </td><td><input class="td-ei" style="min-width:140px" value="Chose my substance use over our friendship — not intentionally, but I didn&#39;t thi" onchange="upd(9,&#39;wh&#39;,this.value)"></td><td><select class="td-es" onchange="upd(9,&#39;at&#39;,this.value)"><option>Direct Amends</option><option selected="">indirect Amends</option><option>Living Amends</option><option>Pray for Them</option><option>Amends-in-Kind</option></select></td><td><select class="td-es" onchange="upd(9,&#39;am&#39;,this.value)"><option value="">—</option><option>In Person Conversation</option><option>Write a letter</option><option>Email</option><option>Pray for them</option><option>2-way prayer</option><option>Journal</option><option selected="">Other Action</option><option>Volunteer / Service</option><option>Phone call</option></select></td><td><input class="td-ei" value="August 10" onchange="upd(9,&#39;adt&#39;,this.value)" placeholder="Date" style="min-width:80px"></td></tr><tr><td class="tdname">Person 9 </td><td><input class="td-ei" style="min-width:140px" value=" ce use." onchange="upd(10,&#39;wh&#39;,this.value)"></td><td><select class="td-es" onchange="upd(10,&#39;at&#39;,this.value)"><option selected="">Direct Amends</option><option>indirect Amends</option><option>Living Amends</option><option>Pray for Them</option><option>Amends-in-Kind</option></select></td><td><select class="td-es" onchange="upd(10,&#39;am&#39;,this.value)"><option value="">—</option><option selected="">In Person Conversation</option><option>Write a letter</option><option>Email</option><option>Pray for them</option><option>2-way prayer</option><option>Journal</option><option>Other Action</option><option>Volunteer / Service</option><option>Phone call</option></select></td><td><input class="td-ei" value="April 20" onchange="upd(10,&#39;adt&#39;,this.value)" placeholder="Date" style="min-width:80px"></td></tr><tr><td class="tdname">Person 10</td><td><input class="td-ei" style="min-width:140px" value="They don&#39;t want to be my friend because they don&#39;t like my partner." onchange="upd(11,&#39;wh&#39;,this.value)"></td><td><select class="td-es" onchange="upd(11,&#39;at&#39;,this.value)"><option selected="">Direct Amends</option><option>indirect Amends</option><option>Living Amends</option><option>Pray for Them</option><option>Amends-in-Kind</option></select></td><td><select class="td-es" onchange="upd(11,&#39;am&#39;,this.value)"><option value="">—</option><option selected="">In Person Conversation</option><option>Write a letter</option><option>Email</option><option>Pray for them</option><option>2-way prayer</option><option>Journal</option><option>Other Action</option><option>Volunteer / Service</option><option>Phone call</option></select></td><td><input class="td-ei" value="May 30" onchange="upd(11,&#39;adt&#39;,this.value)" placeholder="Date" style="min-width:80px"></td></tr></tbody></table></div>
+  <div style="margin-top:10px"><button class="tbtn" onclick="addPerson()">+ Add Person</button></div>
+  <div class="grad-box" style="background:var(--plav);border-color:rgba(96,64,176,.3);margin-top:20px">
+    <h3 style="color:var(--c8)">Step Eight — Completion</h3>
+    <div class="grad-checklist">
+      <label class="grad-item" id="gi-s8-1"><input type="checkbox" onchange="gradCheck(8,0,this)"> The list is thorough — no person has been omitted out of fear or convenience</label>
+      <label class="grad-item" id="gi-s8-2"><input type="checkbox" onchange="gradCheck(8,1,this)"> The sponsee has genuine willingness (not just agreement) to make amends</label>
+      <label class="grad-item" id="gi-s8-3"><input type="checkbox" onchange="gradCheck(8,2,this)"> <strong>I am convinced <span class="sponsee-name-span">the sponsee</span> has made a complete and willing amends list</strong></label>
+    </div>
+    <button class="grad-btn" id="gradBtn8" disabled="" onclick="graduateStep(8)" style="background:var(--c8)">✦ Graduate Step Eight ✦</button>
+  </div>
+  <div class="step-footer"><button class="nbtn" onclick="showStep(7)">← Step Seven</button><button class="nbtn pri" onclick="showStep(9)">Step Nine →</button></div>
+</section>
+
+<section class="step-panel" id="panel-9">
+  <div class="step-hdr"><div class="step-badge" style="background:var(--c9);">9</div><div><h1>Made Direct Amends to Such People Wherever Possible</h1><div class="step-sub">Except When to Do So Would Injure Them or Others</div></div></div>
+  <div class="promise-box"><strong>The 9th Step Promises</strong>"If we are painstaking about this phase of our development, we will be amazed before we are half way through. We are going to know a new freedom and a new happiness. We will comprehend the word serenity and we will know peace."</div>
+  <div class="filter-row" id="filter9row"><button class="fbtn active" onclick="setF9(&#39;ALL&#39;,this)">All</button><button class="fbtn " onclick="setF9(&#39;Direct Amends&#39;,this)">Direct Amends</button><button class="fbtn " onclick="setF9(&#39;indirect Amends&#39;,this)">indirect Amends</button><button class="fbtn " onclick="setF9(&#39;Living Amends&#39;,this)">Living Amends</button><button class="fbtn " onclick="setF9(&#39;Pray for Them&#39;,this)">Pray for Them</button><button class="fbtn " onclick="setF9(&#39;Amends-in-Kind&#39;,this)">Amends-in-Kind</button></div>
+  <div id="s9list"><div class="aac " id="s9c-0"><div class="aac-hdr"><div class="avatar" style="width:30px;height:30px;font-size:11px">P1</div><div class="aac-name">Person 1</div><span class="abadge ab-i">indirect Amends</span></div><div class="aac-body"><div class="fl">What I Did</div><textarea class="ea" rows="2" onchange="upd(0,&#39;wh&#39;,this.value)">I wanted them to be my best friend. I loved them but they didn't reciprocate.</textarea><div class="fl">Person 8's Ideal</div><textarea class="ideal-a" rows="2" onchange="upd(0,&#39;g&#39;,this.value)">I think of others in a good loving way. I know that I matter and being a friend comes easy to me.</textarea><div class="fl">Plan</div><input class="ei" value="Write an apology letter" onchange="upd(0,&#39;ad&#39;,this.value)" placeholder="What I will do"><div class="aac-meta"><span class="mchip">Method: Pray for them</span><span class="mchip">Due: April 20</span><button class="done-btn " id="db-0" onclick="markDone(0)">Mark Done</button></div></div></div><div class="aac " id="s9c-1"><div class="aac-hdr"><div class="avatar" style="width:30px;height:30px;font-size:11px">P2</div><div class="aac-name">Person 2</div><span class="abadge ab-i">indirect Amends</span></div><div class="aac-body"><div class="fl">What I Did</div><textarea class="ea" rows="2" onchange="upd(1,&#39;wh&#39;,this.value)">They didn't know how to raise a son. They were too busy getting drunk and were violent with my mom.</textarea><div class="fl">Person 8's Ideal</div><textarea class="ideal-a" rows="2" onchange="upd(1,&#39;g&#39;,this.value)">I respect and love my Person 2 as they are. I know they did their best and loved me the best they could.</textarea><div class="fl">Plan</div><input class="ei" value="Write a letter" onchange="upd(1,&#39;ad&#39;,this.value)" placeholder="What I will do"><div class="aac-meta"><span class="mchip">Method: Write a letter</span><span class="mchip">Due: April 15</span><button class="done-btn " id="db-1" onclick="markDone(1)">Mark Done</button></div></div></div><div class="aac " id="s9c-2"><div class="aac-hdr"><div class="avatar" style="width:30px;height:30px;font-size:11px">P3</div><div class="aac-name">Person 3</div><span class="abadge ab-i">indirect Amends</span></div><div class="aac-body"><div class="fl">What I Did</div><textarea class="ea" rows="2" onchange="upd(2,&#39;wh&#39;,this.value)"></textarea><div class="fl">Person 8's Ideal</div><textarea class="ideal-a" rows="2" onchange="upd(2,&#39;g&#39;,this.value)">I know they loved me in their own way. When we are young, we try different relationships. I don't take it personally.</textarea><div class="fl">Plan</div><input class="ei" value="Journal in a 2-way prayer and share with someone" onchange="upd(2,&#39;ad&#39;,this.value)" placeholder="What I will do"><div class="aac-meta"><span class="mchip">Method: Pray for them</span><span class="mchip">Due: April 30</span><button class="done-btn " id="db-2" onclick="markDone(2)">Mark Done</button></div></div></div><div class="aac " id="s9c-3"><div class="aac-hdr"><div class="avatar" style="width:30px;height:30px;font-size:11px">P4</div><div class="aac-name">Person 4</div><span class="abadge ab-i">indirect Amends</span></div><div class="aac-body"><div class="fl">What I Did</div><textarea class="ea" rows="2" onchange="upd(3,&#39;wh&#39;,this.value)">.</textarea><div class="fl">Person 8's Ideal</div><textarea class="ideal-a" rows="2" onchange="upd(3,&#39;g&#39;,this.value)">I admit I was blinded by my condition and I forgive them — all they really wanted was for everyone to be safe.</textarea><div class="fl">Plan</div><input class="ei" value="Conscious contact — 2-way prayer" onchange="upd(3,&#39;ad&#39;,this.value)" placeholder="What I will do"><div class="aac-meta"><span class="mchip">Method: Pray for them</span><span class="mchip">Due: May 7</span><button class="done-btn " id="db-3" onclick="markDone(3)">Mark Done</button></div></div></div><div class="aac " id="s9c-4"><div class="aac-hdr"><div class="avatar" style="width:30px;height:30px;font-size:11px">P5</div><div class="aac-name">Person 5</div><span class="abadge ab-d">Direct Amends</span></div><div class="aac-body"><div class="fl">What I Did</div><textarea class="ea" rows="2" onchange="upd(4,&#39;wh&#39;,this.value)"></textarea><div class="fl">Person 8's Ideal</div><textarea class="ideal-a" rows="2" onchange="upd(4,&#39;g&#39;,this.value)">I am strong and convicted in my own identity. My past experiences don't define me — they make me who I am today.</textarea><div class="fl">Plan</div><input class="ei" value="Check-in" onchange="upd(4,&#39;ad&#39;,this.value)" placeholder="What I will do"><div class="aac-meta"><span class="mchip">Method: Email</span><span class="mchip">Due: May 14</span><button class="done-btn " id="db-4" onclick="markDone(4)">Mark Done</button></div></div></div><div class="aac " id="s9c-5"><div class="aac-hdr"><div class="avatar" style="width:30px;height:30px;font-size:11px">P6</div><div class="aac-name">Person 6</div><span class="abadge ab-i">indirect Amends</span></div><div class="aac-body"><div class="fl">What I Did</div><textarea class="ea" rows="2" onchange="upd(5,&#39;wh&#39;,this.value)"></textarea><div class="fl">Person 8's Ideal</div><textarea class="ideal-a" rows="2" onchange="upd(5,&#39;g&#39;,this.value)">I am strong in my values. I use my Higher Power and assets to guide my decisions.</textarea><div class="fl">Plan</div><input class="ei" value="Check-in" onchange="upd(5,&#39;ad&#39;,this.value)" placeholder="What I will do"><div class="aac-meta"><span class="mchip">Method: Email</span><span class="mchip">Due: May 14</span><button class="done-btn " id="db-5" onclick="markDone(5)">Mark Done</button></div></div></div><div class="aac " id="s9c-6"><div class="aac-hdr"><div class="avatar" style="width:30px;height:30px;font-size:11px">P7</div><div class="aac-name">Person 7</div><span class="abadge ab-d">Direct Amends</span></div><div class="aac-body"><div class="fl">What I Did</div><textarea class="ea" rows="2" onchange="upd(6,&#39;wh&#39;,this.value)">I used to be a quitter. Had low Person 7-esteem and thought I wasn't good enough.</textarea><div class="fl">Person 8's Ideal</div><textarea class="ideal-a" rows="2" onchange="upd(6,&#39;g&#39;,this.value)">Committed and free, Person 7-directed. Person 7-esteem grounded in confidence. I am disciplined and consistent.</textarea><div class="fl">Plan</div><input class="ei" value="Journal, 2-way prayer" onchange="upd(6,&#39;ad&#39;,this.value)" placeholder="What I will do"><div class="aac-meta"><span class="mchip">Method: Journal</span><span class="mchip">Due: April 20</span><button class="done-btn " id="db-6" onclick="markDone(6)">Mark Done</button></div></div></div><div class="aac " id="s9c-7"><div class="aac-hdr"><div class="avatar" style="width:30px;height:30px;font-size:11px">P8</div><div class="aac-name">Person 8</div><span class="abadge ab-d">Direct Amends</span></div><div class="aac-body"><div class="fl">What I Did</div><textarea class="ea" rows="2" onchange="upd(7,&#39;wh&#39;,this.value)"> </textarea><div class="fl">Person 8's Ideal</div><textarea class="ideal-a" rows="2" onchange="upd(7,&#39;g&#39;,this.value)">Acceptance and trust. I experience Person 8 as accessible and understandable. Open-minded to possibilities beyond what I see.</textarea><div class="fl">Plan</div><input class="ei" value="Journal — 2-way prayer" onchange="upd(7,&#39;ad&#39;,this.value)" placeholder="What I will do"><div class="aac-meta"><span class="mchip">Method: Pray for them</span><span class="mchip">Due: April 20</span><button class="done-btn " id="db-7" onclick="markDone(7)">Mark Done</button></div></div></div><div class="aac " id="s9c-8"><div class="aac-hdr"><div class="avatar" style="width:30px;height:30px;font-size:11px">P9</div><div class="aac-name">Person 9</div><span class="abadge ab-d">Direct Amends</span></div><div class="aac-body"><div class="fl">What I Did</div><textarea class="ea" rows="2" onchange="upd(8,&#39;wh&#39;,this.value)"> </textarea><div class="fl">Person 8's Ideal</div><textarea class="ideal-a" rows="2" onchange="upd(8,&#39;g&#39;,this.value)">I think in terms of "we" and us. I honor and appreciate them for who they truly are. I am honest, open, and emotionally present.</textarea><div class="fl">Plan</div><input class="ei" value="Write a letter and share" onchange="upd(8,&#39;ad&#39;,this.value)" placeholder="What I will do"><div class="aac-meta"><span class="mchip">Method: In Person Conversation</span><span class="mchip">Due: March 26</span><button class="done-btn " id="db-8" onclick="markDone(8)">Mark Done</button></div></div></div><div class="aac " id="s9c-9"><div class="aac-hdr"><div class="avatar" style="width:30px;height:30px;font-size:11px">P4</div><div class="aac-name">Person 4 </div><span class="abadge ab-i">indirect Amends</span></div><div class="aac-body"><div class="fl">What I Did</div><textarea class="ea" rows="2" onchange="upd(9,&#39;wh&#39;,this.value)">Chose my substance use over our friendship — not intentionally, but I didn't think it was a big deal.</textarea><div class="fl">Person 8's Ideal</div><textarea class="ideal-a" rows="2" onchange="upd(9,&#39;g&#39;,this.value)">Practicing a daily program — allowing me the freedom to be deeply conscious of how my choices impact others.</textarea><div class="fl">Plan</div><input class="ei" value="Write a letter and share" onchange="upd(9,&#39;ad&#39;,this.value)" placeholder="What I will do"><div class="aac-meta"><span class="mchip">Method: Other Action</span><span class="mchip">Due: August 10</span><button class="done-btn " id="db-9" onclick="markDone(9)">Mark Done</button></div></div></div><div class="aac " id="s9c-10"><div class="aac-hdr"><div class="avatar" style="width:30px;height:30px;font-size:11px">P9</div><div class="aac-name">Person 9 </div><span class="abadge ab-d">Direct Amends</span></div><div class="aac-body"><div class="fl">What I Did</div><textarea class="ea" rows="2" onchange="upd(10,&#39;wh&#39;,this.value)"> ce use.</textarea><div class="fl">Person 8's Ideal</div><textarea class="ideal-a" rows="2" onchange="upd(10,&#39;g&#39;,this.value)">Being transparent about my untreated condition. I am now able to be honest about every aspect of my life.</textarea><div class="fl">Plan</div><input class="ei" value="Write and share amend" onchange="upd(10,&#39;ad&#39;,this.value)" placeholder="What I will do"><div class="aac-meta"><span class="mchip">Method: In Person Conversation</span><span class="mchip">Due: April 20</span><button class="done-btn " id="db-10" onclick="markDone(10)">Mark Done</button></div></div></div><div class="aac " id="s9c-11"><div class="aac-hdr"><div class="avatar" style="width:30px;height:30px;font-size:11px">P1</div><div class="aac-name">Person 10</div><span class="abadge ab-d">Direct Amends</span></div><div class="aac-body"><div class="fl">What I Did</div><textarea class="ea" rows="2" onchange="upd(11,&#39;wh&#39;,this.value)">They don't want to be my friend because they don't like my partner.</textarea><div class="fl">Person 8's Ideal</div><textarea class="ideal-a" rows="2" onchange="upd(11,&#39;g&#39;,this.value)">I consistently reach out and make meaningful effort to spend time together in healthy ways.</textarea><div class="fl">Plan</div><input class="ei" value="Meet and talk honestly about my recovery." onchange="upd(11,&#39;ad&#39;,this.value)" placeholder="What I will do"><div class="aac-meta"><span class="mchip">Method: In Person Conversation</span><span class="mchip">Due: May 30</span><button class="done-btn " id="db-11" onclick="markDone(11)">Mark Done</button></div></div></div></div>
+  <div class="grad-box" style="background:var(--pmint);border-color:rgba(58,104,80,.3);margin-top:20px">
+    <h3 style="color:var(--c9)">Step Nine — Completion</h3>
+    <div class="grad-checklist">
+      <label class="grad-item" id="gi-s9-1"><input type="checkbox" onchange="gradCheck(9,0,this)"> Direct amends have been made to all possible persons</label>
+      <label class="grad-item" id="gi-s9-2"><input type="checkbox" onchange="gradCheck(9,1,this)"> Living amends are in active practice where direct amends were not possible</label>
+      <label class="grad-item" id="gi-s9-3"><input type="checkbox" onchange="gradCheck(9,2,this)"> <strong>I am convinced <span class="sponsee-name-span">the sponsee</span> has made all possible amends sincerely</strong></label>
+    </div>
+    <button class="grad-btn" id="gradBtn9" disabled="" onclick="graduateStep(9)" style="background:var(--c9)">✦ Graduate Step Nine ✦</button>
+  </div>
+  <div class="step-footer"><button class="nbtn" onclick="showStep(8)">← Step Eight</button><button class="nbtn pri" onclick="celebrateAll()">View All Diplomas ★</button></div>
+</section>
+
+</main>
+
+<!-- DIPLOMA MODAL -->
+<div class="modal-overlay" id="certModal">
+  <div class="diploma-wrap">
+    <div class="diploma" id="diplomaInner"></div>
+    <div class="diploma-btns">
+      <button class="diploma-close" onclick="closeCert()">Close</button>
+      <button class="diploma-print" onclick="window.print()">Print Diploma</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const STEP_NAMES={1:'Step One',2:'Step Two',3:'Step Three',4:'Step Four',5:'Step Five',6:'Step Six',7:'Step Seven',8:'Step Eight',9:'Step Nine'};
+const STEP_TEXTS={
+  1:'We admitted we were powerless over [allergen] — that our lives had become unmanageable.',
+  2:'Came to believe that a Power greater than ourselves could restore us to sanity.',
+  3:'Made a decision to turn our will and our lives over to the care of Person 8 as we understood Person 8.',
+  4:'Made a searching and fearless moral inventory of ourselves.',
+  5:'Admitted to Person 8, to ourselves, and to another human being the exact nature of our wrongs.',
+  6:'Were entirely ready to have Person 8 remove all these defects of character.',
+  7:'Humbly asked Person 8 to remove our shortcomings.',
+  8:'Made a list of all persons we had harmed, and became willing to make amends to them all.',
+  9:'Made direct amends to such people wherever possible, except when to do so would injure them or others.'
+};
+const STEP_COLORS={1:'var(--c1)',2:'var(--c2)',3:'var(--c3)',4:'var(--c4)',5:'var(--c5)',6:'var(--c6)',7:'var(--c7)',8:'var(--c8)',9:'var(--c9)'};
+const STEP_BGS={1:'var(--ppink)',2:'var(--pblue)',3:'var(--plav)',4:'var(--pmint)',5:'var(--pyellow)',6:'var(--pblue)',7:'var(--pgreen)',8:'var(--plav)',9:'var(--pmint)'};
+const AFFECTS=['Person 7-Esteem','Personal Relationships','Sex Relationships','Financial Security','Recovery','Family'];
+const TYPES=['Resentment','Fear','Person 7 Centered','Dishonesty','Envy','Other'];
+const AMEND_TYPES=['Direct Amends','indirect Amends','Living Amends','Pray for Them','Amends-in-Kind'];
+const METHODS=['In Person Conversation','Write a letter','Email','Pray for them','2-way prayer','Journal','Other Action','Volunteer / Service','Phone call'];
+const DEFECTS=[{n:'Resentment',ic:'⚡',d:'Reliving past wrongs and carrying anger forward.'},{n:'Dishonesty',ic:'🎭',d:'Saying one thing and doing another.'},{n:'Person 7-Centered Fear',ic:'🔒',d:'Making decisions based on what might be lost or not gained.'},{n:'Envy / Jealousy',ic:'👁',d:'Wanting what others have; comparing and resenting.'},{n:'Pride / False Pride',ic:'🏆',d:'The need to appear better than one truly is.'},{n:'Lust',ic:'🔥',d:'Using fantasy or desire to fill an emotional void.'},{n:'Person 7ishness',ic:'🌀',d:'Putting personal needs above the needs of others.'},{n:'Closed-Mindedness',ic:'🧱',d:'Refusing possibilities outside one\'s own thinking.'},{n:'Lack of Discipline',ic:'⏳',d:'Choosing comfort over commitment and follow-through.'},{n:'Manipulation',ic:'🕸',d:'Controlling outcomes through indirect rather than honest means.'}];
+const ASSETS=[{n:'Forgiveness',d:'Releasing the past and choosing freedom over resentment.'},{n:'Honesty',d:'Speaking and living the truth, even when uncomfortable.'},{n:'Humility',d:'Seeing onePerson 7 clearly — no better, no worse.'},{n:'Trust / Faith',d:'Believing in something larger than one\'s own thinking.'},{n:'Service',d:'Making life about others\' well-being, not personal comfort.'},{n:'Courage',d:'Acting rightly in spite of fear.'},{n:'Person 7-Discipline',d:'Honoring commitments to Person 7 and others.'},{n:'Love / Compassion',d:'Extending genuine care to all people.'}];
+
+const DEF_INV=[
+  {p:'Person 1',t:'Resentment',a:'Forgiveness',wh:'I wanted them to be my best friend. I loved them but they didn\'t reciprocate.',af:['Person 7-Esteem','Personal Relationships'],f:'Being alone, having no friends, not having a real close connection.',r:'Better Friend — not so jealous. I made my happiness dependent on their response.',g:'I think of others in a good loving way. I know that I matter and being a friend comes easy to me.',s5:true,pr:'Pray4M',at:'indirect Amends',am:'Pray for them',ad:'Write an apology letter',adt:'April 20'},
+  {p:'Person 2',t:'Resentment',a:'Service / Honesty',wh:'They didn\'t know how to raise a son. They were too busy getting drunk and were violent with my mom.',af:['Person 7-Esteem'],f:'Not having a loving father to support me.',r:'I could have been more present when they got sick. I chose distance.',g:'I respect and love my Person 2 as they are. I know they did their best and loved me the best they could.',s5:true,pr:'Yes',at:'indirect Amends',am:'Write a letter',ad:'Write a letter',adt:'April 15'},
+  {p:'Person 3',t:'Resentment',a:'Humility',wh:'',af:['Person 7-Esteem','Sex Relationships'],f:'Not being good enough.',r:'Too Person 7-centred. Lived with false pride, addicted to wanting more.',g:'I know they loved me in their own way. When we are young, we try different relationships. I don\'t take it personally.',s5:true,pr:'Pray4M',at:'indirect Amends',am:'Pray for them',ad:'Journal in a 2-way prayer and share with someone',adt:'April 30'},
+  {p:'Person 4',t:'Resentment',a:'Action / Trust',wh:'.',af:['Person 7-Esteem','Personal Relationships'],f:'Being alone, others\' judgment.',r:'Blinded by my endless desire to feel good. Didn\'t think about the consequences.',g:'I admit I was blinded by my condition and I forgive them — all they really wanted was for everyone to be safe.',s5:true,pr:'Yes',at:'indirect Amends',am:'Pray for them',ad:'Conscious contact — 2-way prayer',adt:'May 7'},
+  {p:'Person 5',t:'Resentment',a:'Person 7-Respect',wh:'',af:['Person 7-Esteem','Personal Relationships','Sex Relationships','Recovery'],f:'Not feeling strong enough in my own identity.',r:'I got seduced into being liked and wanted. My lust and pride took over.',g:'I am strong and convicted in my own identity. My past experiences don\'t define me — they make me who I am today.',s5:true,pr:'Yes',at:'Direct Amends',am:'Email',ad:'Check-in',adt:'May 14'},
+  {p:'Person 6',t:'Resentment',a:'Confidence / Leadership',wh:'',af:['Person 7-Esteem','Personal Relationships'],f:'That I am not a cool person that others want to be around.',r:'I got myPerson 7 into trouble. I liked being the bad one — believed others liked that.',g:'I am strong in my values. I use my Higher Power and assets to guide my decisions.',s5:true,pr:'Pray4M',at:'indirect Amends',am:'Email',ad:'Check-in',adt:'May 14'},
+  {p:'Person 7',t:'Resentment',a:'Forgiveness / Loyalty',wh:'I used to be a quitter. Had low Person 7-esteem and thought I wasn\'t good enough.',af:['Person 7-Esteem'],f:'Being stuck in a cycle — unhappy and alone, emotional pain and suffering.',r:'Simply wasn\'t disciplined enough. Gave up on myPerson 7 before giving myPerson 7 a chance.',g:'Committed and free, Person 7-directed. Person 7-esteem grounded in confidence. I am disciplined and consistent.',s5:true,pr:'Yes',at:'Direct Amends',am:'Journal',ad:'Journal, 2-way prayer',adt:'April 20'},
+  {p:'Person 8',t:'Resentment',a:'Love / Faith',wh:' ',af:['Person 7-Esteem'],f:'That it\'s all random and nothing matters — that it\'s all a lie.',r:'Closed-minded to possibilities beyond what I can currently see.',g:'Acceptance and trust. I experience Person 8 as accessible and understandable. Open-minded to possibilities beyond what I see.',s5:true,pr:'Yes',at:'Direct Amends',am:'Pray for them',ad:'Journal — 2-way prayer',adt:'April 20'},
+  {p:'Person 9',t:'Person 7 Centered',a:'Connection / Intimacy',wh:' ',af:['Person 7-Esteem','Sex Relationships'],f:'No connection, just distance — staying only because it\'s convenient.',r:'Used to not knowing how to be an honest, open partner.',g:'I think in terms of "we" and us. I honor and appreciate them for who they truly are. I am honest, open, and emotionally present.',s5:true,pr:'Yes',at:'Direct Amends',am:'In Person Conversation',ad:'Write a letter and share',adt:'March 26'},
+  {p:'Person 4 ',t:'Person 7 Centered',a:'Recovery / Friendship',wh:'Chose my substance use over our friendship — not intentionally, but I didn\'t think it was a big deal.',af:['Personal Relationships'],f:'Losing my best friend and climbing partner.',r:'I didn\'t think about how my condition would affect them.',g:'Practicing a daily program — allowing me the freedom to be deeply conscious of how my choices impact others.',s5:true,pr:'Yes',at:'indirect Amends',am:'Other Action',ad:'Write a letter and share',adt:'August 10'},
+  {p:'Person 9 ',t:'Dishonesty',a:'Courage / Vulnerability',wh:' ce use.',af:['Person 7-Esteem','Personal Relationships','Sex Relationships'],f:'My true Person 7 is not lovable — especially with them.',r:'Needed more courage and vulnerability to be myPerson 7.',g:'Being transparent about my untreated condition. I am now able to be honest about every aspect of my life.',s5:true,pr:'Yes',at:'Direct Amends',am:'In Person Conversation',ad:'Write and share amend',adt:'April 20'},
+  {p:'Person 10',t:'Resentment',a:'Honesty',wh:'They don\'t want to be my friend because they don\'t like my partner.',af:['Person 7-Esteem','Personal Relationships'],f:'Not being liked, not being a good enough friend.',r:'I stopped calling. I only engaged when I could use substances together.',g:'I consistently reach out and make meaningful effort to spend time together in healthy ways.',s5:true,pr:'Yes',at:'Direct Amends',am:'In Person Conversation',ad:'Meet and talk honestly about my recovery.',adt:'May 30'}
+];
+
+let st={
+  sponseeName:'', sponsorName:'', allergen:'our substance or compulsive behavior',
+  completedSteps:{},
+  s1Phase:1, s2Phase:1, s3Phase:1,
+  evidence:{},
+  convChecks:{}, gradChecks:{},
+  curCat:'Resentment', f9:'ALL',
+  inv:[], ready:{}, done9:{}
+};
+
+function loadSt(){
+  try{const s=localStorage.getItem('bb-v5');if(s){const d=JSON.parse(s);Object.assign(st,d);}}
+  catch(e){}
+  if(!st.inv||!st.inv.length)st.inv=JSON.parse(JSON.stringify(DEF_INV));
+}
+function saveSt(){
+  clearTimeout(saveSt._t);
+  saveSt._t=setTimeout(()=>{
+    try{localStorage.setItem('bb-v5',JSON.stringify(st));}catch(e){}
+  },600);
+}
+
+function setSetting(k,v){st[k]=v;saveSt();updateAllergenSpans();updateSponseeSpans();if(k==='sponseeName'){document.querySelectorAll('.sponsee-name-span').forEach(el=>el.textContent=v||'the sponsee');document.getElementById('s1-sponsee-name').textContent=v||'the sponsee';}saveSt();}
+function updateAllergenSpans(){const a=st.allergen||'our substance or compulsive behavior';document.querySelectorAll('.allergen-span').forEach(el=>el.textContent=a);}
+function updateSponseeSpans(){const n=st.sponseeName||'the sponsee';document.querySelectorAll('.sponsee-name-span').forEach(el=>el.textContent=n);}
+
+function saveEv(id){st.evidence[id]=document.getElementById(id).value;saveSt();}
+function convCheck(step,key,el){if(!st.convChecks[step])st.convChecks[step]={};st.convChecks[step][key]=el.checked;el.closest('.conv-item').className='conv-item'+(el.checked?' checked':'');saveSt();}
+function gradCheck(step,idx,el){if(!st.gradChecks[step])st.gradChecks[step]={};st.gradChecks[step][idx]=el.checked;el.closest('.grad-item').className='grad-item'+(el.checked?' chk':'');const btn=document.getElementById('gradBtn'+step);if(btn)checkGradBtn(step);saveSt();}
+function checkGradBtn(step){const gc=st.gradChecks[step]||{};const btn=document.getElementById('gradBtn'+step);if(!btn)return;const count={1:6,2:4,3:3,4:3,5:2,6:2,7:2,8:3,9:3}[step]||2;let all=true;for(let i=0;i<count;i++)if(!gc[i])all=false;btn.disabled=!all;}
+
+function showPhase(step,phase,btn){
+  const all=document.querySelectorAll('#panel-'+step+' .phase-content');
+  all.forEach(el=>el.style.display='none');
+  const target=document.getElementById('s'+step+'p'+phase);
+  if(target)target.style.display='block';
+  document.querySelectorAll('#phaseNav'+step+' .phase-btn').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  st['s'+step+'Phase']=phase;saveSt();
+}
+
+function graduateStep(step){
+  const d=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  st.completedSteps[step]={date:d,sponsee:st.sponseeName,allergen:st.allergen};
+  document.querySelectorAll('.step-nav .snav-btn')[['★',1,2,3,4,5,6,7,8,9].indexOf(step)>-1?step:step].classList.add('done');
+  saveSt();
+  renderTookGrid();
+  showCertificate(step);
+  updateNavDots();
+}
+
+function updateNavDots(){const btns=document.querySelectorAll('.snav-btn');[0,...Object.keys(st.completedSteps).map(Number)].forEach(s=>{const idx=s===0?0:s;if(btns[idx])btns[idx].classList.add('done');});}
+
+function showCertificate(step){
+  const comp=st.completedSteps[step];
+  if(!comp)return;
+  const col=STEP_COLORS[step];const bg=STEP_BGS[step];
+  const txt=STEP_TEXTS[step].replace('[allergen]',comp.allergen||st.allergen||'our substance or compulsive behavior');
+  const sn=comp.sponsee||'The Sponsee';const spn=st.sponsorName||'The Sponsor';
+  document.getElementById('diplomaInner').innerHTML=`
+  <div class="diploma" style="border-color:${col};border-color:${col}">
+    <div class="diploma-inner" style="border-color:${col};background:${bg}">
+      <div class="diploma-ornament" style="color:${col}">✦ ✦ ✦</div>
+      <div class="diploma-series" style="color:${col}">The Twelve Steps of Recovery</div>
+      <div class="diploma-main-title" style="color:${col}">Certificate of Completion</div>
+      <div class="diploma-of" style="color:${col}">Big Book Method</div>
+      <div class="diploma-cert-text">This is to certify that</div>
+      <div class="diploma-name" style="color:${col};border-color:${col}">${sn}</div>
+      <div class="diploma-has">has sincerely taken and completed</div>
+      <div class="diploma-step-num" style="color:${col}">${STEP_NAMES[step]}</div>
+      <div class="diploma-step-text">"${txt}"</div>
+      <div class="diploma-date">Completed on ${comp.date}</div>
+      <div class="diploma-sigs">
+        <div class="diploma-sig"><div class="sig-line" style="border-color:${col}"></div><div class="sig-role">Sponsor</div></div>
+        <div class="diploma-sig"><div class="sig-line" style="border-color:${col}"></div><div class="sig-role">Sponsee</div></div>
+      </div>
+      <div class="diploma-ornament" style="color:${col};margin-top:16px">✦ ✦ ✦</div>
+    </div>
+  </div>`;
+  document.getElementById('certModal').classList.add('open');
+}
+
+function closeCert(){document.getElementById('certModal').classList.remove('open');}
+
+function renderTookGrid(){
+  const grid=document.getElementById('tookGrid');
+  grid.innerHTML='';
+  for(let s=1;s<=9;s++){
+    const comp=st.completedSteps[s];
+    const col=STEP_COLORS[s];const bg=STEP_BGS[s];
+    const div=document.createElement('div');
+    div.className='took-card'+(comp?'':' empty');
+    div.style.borderColor=col;div.style.background=comp?bg:'#fff';
+    div.innerHTML=`<div class="took-num" style="color:${col}">${s}</div><div class="took-name" style="color:${col}">${STEP_NAMES[s]}</div><div class="took-date">${comp?'Completed '+comp.date:'Not yet taken'}</div><div class="took-check">${comp?'✓':''}</div>`;
+    if(comp)div.onclick=()=>showCertificate(s);
+    grid.appendChild(div);
+  }
+}
+
+/* ── STEPS 4-9 ── */
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function ini(n){if(!n)return'?';return n.trim().split(/\s+/).slice(0,2).map(w=>w[0]||'').join('').toUpperCase()||'?';}
+function bc(t){const m={'Direct Amends':'ab-d','indirect Amends':'ab-i','Living Amends':'ab-l','Pray for Them':'ab-p','Amends-in-Kind':'ab-k'};return m[t]||'ab-i';}
+
+function buildCatTabs(){
+  document.getElementById('catTabs').innerHTML=['Resentment','Fear','Person 7 Centered','Dishonesty','Envy','All'].map(c=>{
+    const n=c==='All'?st.inv.length:st.inv.filter(i=>i.t===c).length;
+    return`<button class="cat-tab ${c===st.curCat?'active':''}" onclick="switchCat('${c}',this)">${c==='Person 7 Centered'?'Person 7-Centered':c}<span class="cbadge">${n}</span></button>`;
+  }).join('');
+}
+function switchCat(c,btn){st.curCat=c;document.querySelectorAll('.cat-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');renderInv();}
+function renderInv(){
+  const el=document.getElementById('invList');
+  const fil=st.curCat==='All'?st.inv:st.inv.filter(i=>i.t===st.curCat);
+  if(!fil.length){el.innerHTML='<div style="padding:18px;color:var(--inkl);font-style:italic">No entries here. Click "+ Add Person" to begin.</div>';return;}
+  el.innerHTML=fil.map(item=>{const idx=st.inv.indexOf(item);return card4(idx,item);}).join('');
+}
+function card4(idx,item){
+  const afchk=AFFECTS.map(a=>`<label class="aff-lbl"><input type="checkbox" ${(item.af||[]).includes(a)?'checked':''} onchange="updAff(${idx},'${a}',this.checked)">${a}</label>`).join('');
+  return`<div class="inv-card" id="card-${idx}">
+  <div class="inv-hdr" onclick="togCard(${idx},event)">
+    <div class="avatar" id="av-${idx}">${esc(ini(item.p))}</div>
+    <div class="hname-grp"><input class="edit-name" id="nm-${idx}" value="${esc(item.p)}" placeholder="Name or alias" onclick="event.stopPropagation()" oninput="updAv(${idx},this.value)" onchange="upd(${idx},'p',this.value)">
+    <div class="pmeta"><span class="tag tl">${esc(item.t)}</span><span class="tag ta">${esc(item.a)}</span></div></div>
+    <span class="earr">▾</span>
+    <button class="del-btn" onclick="event.stopPropagation();delPerson(${idx})">✕</button>
+  </div>
+  <div class="inv-body">
+    <div class="fg2"><div><label class="fl">Category</label><select class="es" onchange="upd(${idx},'t',this.value);rfTags(${idx})">${TYPES.map(t=>`<option ${item.t===t?'selected':''}>${t}</option>`).join('')}</select></div><div><label class="fl">Asset to Build</label><input class="ei" value="${esc(item.a)}" onchange="upd(${idx},'a',this.value)"></div></div>
+    <div class="fg"><label class="fl">What Happened</label><textarea class="ea" rows="3" onchange="upd(${idx},'wh',this.value)">${esc(item.wh)}</textarea></div>
+    <div class="fg2"><div><label class="fl">The Fear Underneath</label><textarea class="ea" rows="3" onchange="upd(${idx},'f',this.value)">${esc(item.f)}</textarea></div><div><label class="fl">My Part</label><textarea class="ea" rows="3" onchange="upd(${idx},'r',this.value)">${esc(item.r)}</textarea></div></div>
+    <div class="fg"><label class="fl">Areas Affected</label><div class="affects-grid">${afchk}</div></div>
+    <div class="fg"><label class="fl grn">✦ Person 8's Ideal</label><textarea class="ideal-a" rows="3" onchange="upd(${idx},'g',this.value)">${esc(item.g)}</textarea></div>
+    <div class="fg2"><div><label class="fl">Amend Type</label><select class="es" onchange="upd(${idx},'at',this.value)">${AMEND_TYPES.map(t=>`<option ${item.at===t?'selected':''}>${t}</option>`).join('')}</select></div><div><label class="fl">Method</label><select class="es" onchange="upd(${idx},'am',this.value)"><option value="">— select —</option>${METHODS.map(m=>`<option ${item.am===m?'selected':''}>${m}</option>`).join('')}</select></div></div>
+    <div class="fg2"><div><label class="fl">Plan</label><input class="ei" value="${esc(item.ad||'')}" onchange="upd(${idx},'ad',this.value)" placeholder="What I will do"></div><div><label class="fl">Target Date</label><input class="ei" value="${esc(item.adt||'')}" onchange="upd(${idx},'adt',this.value)" placeholder="e.g. May 15"></div></div>
+  </div></div>`;
+}
+function togCard(idx,e){if(e&&['INPUT','SELECT','TEXTAREA','BUTTON'].includes(e.target.tagName))return;const c=document.getElementById('card-'+idx);if(c)c.classList.toggle('open');}
+function upd(idx,field,val){st.inv[idx][field]=val;if(field==='t')buildCatTabs();saveSt();if(['p','at','am','adt','ad'].includes(field)){renderS5();renderS8();renderS9();}}
+function updAv(idx,val){const a=document.getElementById('av-'+idx);if(a)a.textContent=ini(val);}
+function rfTags(idx){const item=st.inv[idx];const c=document.getElementById('card-'+idx);if(!c)return;const m=c.querySelector('.pmeta');if(m)m.innerHTML=`<span class="tag tl">${esc(item.t)}</span><span class="tag ta">${esc(item.a)}</span>`;}
+function updAff(idx,af,chk){if(!st.inv[idx].af)st.inv[idx].af=[];if(chk){if(!st.inv[idx].af.includes(af))st.inv[idx].af.push(af);}else{st.inv[idx].af=st.inv[idx].af.filter(a=>a!==af);}saveSt();}
+function addPerson(){st.inv.push({p:'New Person',t:st.curCat==='All'?'Resentment':st.curCat,a:'',wh:'',af:[],f:'',r:'',g:'',s5:false,pr:'Yes',at:'indirect Amends',am:'',ad:'',adt:''});buildCatTabs();renderInv();renderS5();renderS8();renderS9();saveSt();setTimeout(()=>{const ni=st.inv.length-1;const c=document.getElementById('card-'+ni);if(c){c.classList.add('open');c.scrollIntoView({behavior:'smooth',block:'center'});}setTimeout(()=>{const nm=document.getElementById('nm-'+ni);if(nm){nm.focus();nm.select();}},250);},100);}
+function delPerson(idx){if(!confirm('Remove "'+st.inv[idx].p+'" from inventory?'))return;st.inv.splice(idx,1);buildCatTabs();renderInv();renderS5();renderS8();renderS9();saveSt();}
+function togglePrivacy(){const p=document.getElementById('privPanel');const o=p.classList.contains('open');if(!o){document.getElementById('privGrid').innerHTML=st.inv.map((item,idx)=>`<div class="priv-item"><span class="priv-num">#${idx+1}</span><span style="color:var(--c1);font-size:12px">→</span><input class="priv-inp" id="pi-${idx}" value="${esc(item.p)}" placeholder="Alias"></div>`).join('');}p.classList.toggle('open',!o);}
+function applyPrivacy(){st.inv.forEach((item,idx)=>{const e=document.getElementById('pi-'+idx);if(e&&e.value.trim())item.p=e.value.trim();});buildCatTabs();renderInv();renderS5();renderS8();renderS9();saveSt();togglePrivacy();}
+function renderS5(){document.getElementById('s5list').innerHTML=st.inv.map((item,idx)=>`<div class="share-row"><div class="avatar" style="width:30px;height:30px;font-size:11px">${esc(ini(item.p))}</div><div class="sn">${esc(item.p)}</div><div class="st">${esc(item.t)}</div><label class="stog"><input type="checkbox" ${item.s5?'checked':''} onchange="st.inv[${idx}].s5=this.checked;saveSt()">Shared</label>${item.pr==='Pray4M'?'<span style="font-size:11px;color:var(--c3);background:var(--plav);padding:2px 7px;border-radius:4px">Pray First</span>':''}</div>`).join('');}
+function renderS6(){document.getElementById('s6list').innerHTML=DEFECTS.map((d,idx)=>`<div class="defect-card"><div class="dic">${d.ic}</div><div style="flex:1"><div class="dname">${d.n}</div><div class="ddesc">${d.d}</div></div><label class="rtog ${st.ready[idx]?'chk':''}" id="rl-${idx}"><input type="checkbox" ${st.ready[idx]?'checked':''} onchange="st.ready[${idx}]=this.checked;document.getElementById('rl-${idx}').className='rtog'+(this.checked?' chk':'');saveSt()">Entirely Ready</label></div>`).join('');}
+function renderS7(){document.getElementById('s7dlist').innerHTML=DEFECTS.map(d=>`<div style="display:flex;align-items:center;gap:10px;background:var(--ppink);border:1px solid rgba(184,56,112,.15);border-radius:7px;padding:11px 13px;margin-bottom:6px"><div style="font-size:19px">${d.ic}</div><div style="flex:1"><div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--hdr);font-size:14px">${d.n}</div><div style="font-size:12.5px;color:var(--inkl)">${d.d}</div></div><div style="font-size:18px;color:var(--c1)">→</div></div>`).join('');document.getElementById('s7alist').innerHTML=ASSETS.map(a=>`<div style="display:flex;align-items:center;gap:10px;background:var(--pgreen);border:1px solid rgba(58,104,80,.18);border-radius:7px;padding:11px 13px;margin-bottom:6px"><div style="width:7px;height:7px;background:var(--c4);border-radius:50%;flex-shrink:0;margin-top:6px"></div><div><div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--c4);font-size:14px">${a.n}</div><div style="font-size:12.5px;color:var(--inkm)">${a.d}</div></div></div>`).join('');}
+function renderS8(){document.getElementById('s8tbody').innerHTML=st.inv.map((item,idx)=>`<tr><td class="tdname">${esc(item.p)}</td><td><input class="td-ei" style="min-width:140px" value="${esc((item.wh||'').substring(0,80))}" onchange="upd(${idx},'wh',this.value)"></td><td><select class="td-es" onchange="upd(${idx},'at',this.value)">${AMEND_TYPES.map(t=>`<option ${item.at===t?'selected':''}>${t}</option>`).join('')}</select></td><td><select class="td-es" onchange="upd(${idx},'am',this.value)"><option value="">—</option>${METHODS.map(m=>`<option ${item.am===m?'selected':''}>${m}</option>`).join('')}</select></td><td><input class="td-ei" value="${esc(item.adt||'')}" onchange="upd(${idx},'adt',this.value)" placeholder="Date" style="min-width:80px"></td></tr>`).join('');}
+function buildF9(){document.getElementById('filter9row').innerHTML=['ALL',...AMEND_TYPES].map(f=>`<button class="fbtn ${st.f9===f?'active':''}" onclick="setF9('${f}',this)">${f==='ALL'?'All':f}</button>`).join('');}
+function setF9(f,btn){st.f9=f;document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderS9();}
+function renderS9(){const fil=st.f9==='ALL'?st.inv:st.inv.filter(i=>i.at===st.f9);document.getElementById('s9list').innerHTML=fil.map(item=>{const idx=st.inv.indexOf(item);const isDone=st.done9[idx];return`<div class="aac ${isDone?'done':''}" id="s9c-${idx}"><div class="aac-hdr"><div class="avatar" style="width:30px;height:30px;font-size:11px">${esc(ini(item.p))}</div><div class="aac-name">${esc(item.p)}</div><span class="abadge ${bc(item.at)}">${esc(item.at)||'—'}</span></div><div class="aac-body"><div class="fl">What I Did</div><textarea class="ea" rows="2" onchange="upd(${idx},'wh',this.value)">${esc(item.wh)}</textarea><div class="fl">Person 8's Ideal</div><textarea class="ideal-a" rows="2" onchange="upd(${idx},'g',this.value)">${esc(item.g)}</textarea><div class="fl">Plan</div><input class="ei" value="${esc(item.ad||'')}" onchange="upd(${idx},'ad',this.value)" placeholder="What I will do"><div class="aac-meta">${item.am?`<span class="mchip">Method: ${esc(item.am)}</span>`:''}${item.adt?`<span class="mchip">Due: ${esc(item.adt)}</span>`:''}<button class="done-btn ${isDone?'ok':''}" id="db-${idx}" onclick="markDone(${idx})">${isDone?'✓ Done':'Mark Done'}</button></div></div></div>`;}).join('');}
+function markDone(idx){st.done9[idx]=!st.done9[idx];const c=document.getElementById('s9c-'+idx);const b=document.getElementById('db-'+idx);if(c)c.classList.toggle('done',st.done9[idx]);if(b){b.textContent=st.done9[idx]?'✓ Done':'Mark Done';b.className='done-btn'+(st.done9[idx]?' ok':'');}saveSt();}
+function celebrateAll(){showStep(0);}
+
+/* ── NAVIGATION ── */
+function showStep(n){
+  document.querySelectorAll('.step-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+n).classList.add('active');
+  document.querySelectorAll('.snav-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+  document.getElementById('progFill').style.width=(n===0?5:Math.round((n/10)*100))+'%';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ── EXPORT / IMPORT / RESET ── */
+function exportAll(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(st,null,2)],{type:'application/json'}));a.download='twelve-steps-backup.json';a.click();}
+function importAll(){const input=document.createElement('input');input.type='file';input.accept='.json';input.onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{try{const d=JSON.parse(ev.target.result);Object.assign(st,d);initAll();saveSt();alert('Imported successfully!');}catch(err){alert('Could not read file.');}};r.readAsText(f);};input.click();}
+function confirmReset(){if(confirm('Reset everything back to default? Cannot be undone.')){st={sponseeName:'',sponsorName:'',allergen:'our substance or compulsive behavior',completedSteps:{},s1Phase:1,s2Phase:1,s3Phase:1,evidence:{},convChecks:{},gradChecks:{},curCat:'Resentment',f9:'ALL',inv:JSON.parse(JSON.stringify(DEF_INV)),ready:{},done9:{}};initAll();saveSt();}}
+
+/* ── RESTORE STATE ── */
+function restoreEvidence(){Object.keys(st.evidence||{}).forEach(id=>{const el=document.getElementById(id);if(el)el.value=st.evidence[id]||'';});}
+function restoreGradChecks(){Object.keys(st.gradChecks||{}).forEach(step=>{const gc=st.gradChecks[step];Object.keys(gc).forEach(idx=>{const li=document.getElementById('gi-s'+step+'-'+(parseInt(idx)+1));if(li){const cb=li.querySelector('input');if(cb){cb.checked=gc[idx];li.className='grad-item'+(gc[idx]?' chk':'');}}});checkGradBtn(parseInt(step));});}
+function restoreConvChecks(){Object.keys(st.convChecks||{}).forEach(step=>{const cc=st.convChecks[step];Object.keys(cc).forEach(key=>{const li=document.getElementById('cc-'+step+'-'+key);if(li){const cb=li.querySelector('input');if(cb){cb.checked=cc[key];li.className='conv-item'+(cc[key]?' checked':'');}}});});}
+
+/* ── INIT ── */
+function initAll(){
+  document.getElementById('sponseeInp').value=st.sponseeName||'';
+  document.getElementById('sponsorInp').value=st.sponsorName||'';
+  document.getElementById('allergenInp').value=st.allergen||'';
+  updateAllergenSpans();
+  updateSponseeSpans();
+  buildCatTabs();renderInv();renderS5();renderS6();renderS7();renderS8();buildF9();renderS9();
+  renderTookGrid();updateNavDots();
+  restoreEvidence();restoreGradChecks();restoreConvChecks();
+}
+
+loadSt();
+initAll();
+</script>
+
+
+
+
+</body></html>
