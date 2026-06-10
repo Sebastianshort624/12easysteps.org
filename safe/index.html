@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Colombia Safety Plan — 12 Easy Steps</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0f2744;--gold:#C8960C;--green:#16A34A;--red:#DC2626;--orange:#ea580c;--blue:#2563EB;--bg:#f8fafc;--border:#e2e8f0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Inter",sans-serif;font-size:14px;background:var(--bg);color:#1e293b;min-height:100vh}
+.header{background:var(--navy);color:#fff;padding:20px 16px;text-align:center}
+.header h1{font-size:22px;font-weight:700;color:#fff;margin-bottom:3px}
+.header .sub{font-size:14px;color:rgba(255,255,255,.6)}
+.header .dates{font-size:13px;color:var(--gold);font-weight:600;margin-top:4px}
+.wrap{max-width:680px;margin:0 auto;padding:16px}
+/* Goal banner */
+.goal-banner{background:var(--navy);border-radius:10px;padding:16px 18px;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.goal-icon{font-size:24px;flex-shrink:0}
+.goal-text{font-size:14px;color:rgba(255,255,255,.85);line-height:1.6}
+.goal-text strong{color:var(--gold)}
+/* Success definition */
+.success-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.success-item{background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px 12px;display:flex;align-items:center;gap:8px;font-size:13px;color:#374151}
+.success-item .icon{font-size:16px;flex-shrink:0}
+/* Section cards */
+.section{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:14px}
+.sec-hdr{padding:12px 16px;font-weight:700;font-size:14px;display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none}
+.sec-hdr.navy{background:var(--navy);color:#fff}
+.sec-hdr.green{background:#166534;color:#fff}
+.sec-hdr.red{background:#7f1d1d;color:#fff}
+.sec-hdr.gold{background:#92400e;color:#fff}
+.sec-hdr .arrow{margin-left:auto;font-size:12px;transition:transform .2s}
+.sec-hdr.open .arrow{transform:rotate(90deg)}
+.sec-body{padding:14px 16px;display:none}
+.sec-body.open{display:block}
+/* Daily non-negotiables */
+.nn-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.nn-item{display:flex;align-items:flex-start;gap:8px;padding:6px 0;font-size:13px;color:#374151;border-bottom:1px solid #f1f5f9;line-height:1.4}
+.nn-item:last-child{border-bottom:none}
+.nn-item input[type=checkbox]{margin-top:2px;accent-color:var(--navy);flex-shrink:0;width:16px;height:16px}
+/* Day cards */
+.day-card{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:10px}
+.day-hdr{background:var(--navy);color:#fff;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none}
+.day-hdr .day-name{font-size:14px;font-weight:700}
+.day-hdr .day-date{font-size:12px;color:var(--gold);font-weight:600}
+.day-hdr .day-status{font-size:18px}
+.day-body{padding:12px 14px;display:none}
+.day-body.open{display:block}
+.meeting-badge{display:inline-flex;align-items:center;gap:5px;background:#EAF0F8;border:1px solid #bfdbfe;border-radius:6px;padding:5px 10px;font-size:12px;font-weight:600;color:#1e40af;margin-bottom:8px;margin-right:4px}
+.meeting-badge a{color:#1e40af;text-decoration:none}
+.meeting-badge a:hover{text-decoration:underline}
+.task-list{margin-top:6px}
+.task-item{display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:1px solid #f8fafc;font-size:13px;color:#374151}
+.task-item:last-child{border-bottom:none}
+.task-item input[type=checkbox]{margin-top:2px;accent-color:var(--navy);flex-shrink:0;width:15px;height:15px}
+.task-item label{cursor:pointer;line-height:1.4}
+.task-item.done label{text-decoration:line-through;color:#9ca3af}
+/* Emergency */
+.emergency-item{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid #fef2f2;font-size:13px;color:#7f1d1d}
+.emergency-item:last-child{border-bottom:none}
+.emergency-item input[type=checkbox]{margin-top:2px;accent-color:var(--red);flex-shrink:0;width:15px;height:15px}
+/* Contact card */
+.contact-card{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:12px 14px;margin-bottom:8px}
+.contact-title{font-size:12px;font-weight:700;color:#166534;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px;display:flex;align-items:center;gap:5px}
+.contact-row{font-size:13px;color:#374151;margin-bottom:3px;display:flex;gap:8px}
+.contact-row a{color:var(--blue);text-decoration:none}
+.contact-row a:hover{text-decoration:underline}
+/* Progress bar */
+.progress-wrap{background:#e2e8f0;border-radius:4px;height:8px;overflow:hidden;margin:8px 0 4px}
+.progress-fill{height:100%;background:var(--green);border-radius:4px;transition:width .4s}
+.progress-label{font-size:12px;color:#6b7280;display:flex;justify-content:space-between}
+/* Pill */
+.pill{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700;margin-left:6px}
+.pill.green{background:#dcfce7;color:#166534}
+.pill.yellow{background:#fef9c3;color:#854d0e}
+.pill.red{background:#fef2f2;color:#7f1d1d}
+/* Back link */
+.back-link{display:inline-flex;align-items:center;gap:6px;color:var(--gold);font-size:13px;font-weight:600;text-decoration:none;padding:8px 0;margin-bottom:12px}
+.back-link:hover{text-decoration:underline}
+/* Print */
+@media print{.day-body,.sec-body{display:block!important}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div style="font-size:20px;margin-bottom:4px">🇨🇴</div>
+  <h1>Colombia Sobriety Safety Plan</h1>
+  <div class="sub">12 Easy Steps</div>
+  <div class="dates">June 9 – June 19, 2026</div>
+</div>
+
+<div class="wrap">
+
+<a href="/" class="back-link">← Back to 12 Easy Steps</a>
+
+<!-- PRIMARY GOAL -->
+<div class="goal-banner">
+  <div class="goal-icon">🎯</div>
+  <div class="goal-text"><strong>Primary Goal:</strong> Stay sober, stay connected, and return home on June 19 with recovery stronger than when I arrived. 🇨🇴➡️🇺🇸</div>
+</div>
+
+<!-- TRIP PROGRESS -->
+<div class="section">
+  <div class="sec-hdr green open" onclick="toggleSec(this)">
+    <span>✅</span> Trip Success Definition <span class="arrow">▶</span>
+  </div>
+  <div class="sec-body open">
+    <div class="success-grid">
+      <div class="success-item"><span class="icon">🚫</span> No alcohol</div>
+      <div class="success-item"><span class="icon">🚫</span> No drugs</div>
+      <div class="success-item"><span class="icon">🚫</span> No nicotine</div>
+      <div class="success-item"><span class="icon">📞</span> Daily recovery contact</div>
+      <div class="success-item"><span class="icon">💛</span> Daily check-in with Vanessa</div>
+      <div class="success-item"><span class="icon">📖</span> Step work completed</div>
+      <div class="success-item"><span class="icon">🤝</span> Step 5 completed with Jim</div>
+      <div class="success-item"><span class="icon">🙏</span> Two prayer meetings attended</div>
+      <div class="success-item"><span class="icon">🎤</span> Shared at meetings every other day</div>
+      <div class="success-item"><span class="icon">✈️</span> Returned home sober &amp; stronger</div>
+    </div>
+    <div id="trip-progress-wrap" style="margin-top:10px">
+      <div class="progress-wrap"><div class="progress-fill" id="trip-bar" style="width:0%"></div></div>
+      <div class="progress-label"><span id="trip-pct">0%</span><span id="trip-days">Day 0 of 11</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- DAILY NON-NEGOTIABLES -->
+<div class="section">
+  <div class="sec-hdr navy open" onclick="toggleSec(this)">
+    <span>📋</span> Daily Non-Negotiables <span class="arrow">▶</span>
+  </div>
+  <div class="sec-body open">
+    <div class="nn-grid">
+      <label class="nn-item"><input type="checkbox" data-key="nn-vyvanse"> Give Vyvanse to Juan &amp; Serena on arrival</label>
+      <label class="nn-item"><input type="checkbox" data-key="nn-dose"> Take prescribed daily dose only</label>
+      <label class="nn-item"><input type="checkbox" data-key="nn-retrieve"> Retrieve medication from Serena daily only</label>
+      <label class="nn-item"><input type="checkbox" data-key="nn-noaccess"> No access to remaining medication bottle</label>
+      <label class="nn-item"><input type="checkbox" data-key="nn-prayer"> Morning prayer</label>
+      <label class="nn-item"><input type="checkbox" data-key="nn-walk"> Outdoor walk (min 10 min)</label>
+      <label class="nn-item"><input type="checkbox" data-key="nn-explore"> Get outside and explore safely</label>
+      <label class="nn-item"><input type="checkbox" data-key="nn-bootlog"> Boot Log</label>
+      <label class="nn-item"><input type="checkbox" data-key="nn-vanessa"> Daily check-in with Vanessa at 9 PM</label>
+      <label class="nn-item"><input type="checkbox" data-key="nn-meeting"> Attend at least 1 recovery meeting</label>
+      <label class="nn-item"><input type="checkbox" data-key="nn-reading"> Recovery reading or step work</label>
+      <label class="nn-item"><input type="checkbox" data-key="nn-noalc"> No alcohol ✓</label>
+    </div>
+  </div>
+</div>
+
+<!-- DAILY SCHEDULE -->
+<div class="section">
+  <div class="sec-hdr navy open" onclick="toggleSec(this)">
+    <span>📅</span> Daily Recovery Schedule <span class="arrow">▶</span>
+  </div>
+  <div class="sec-body open" id="days-container">
+
+    <!-- JUNE 9 -->
+    <div class="day-card" id="day-jun9">
+      <div class="day-hdr" onclick="toggleDay(this)">
+        <span><div class="day-name">June 9 — Tuesday</div><div class="day-date">Arrival Day</div></span>
+        <span class="day-status" id="status-jun9">⬜</span>
+      </div>
+      <div class="day-body">
+        <div><span class="meeting-badge">🎯 AA Zoom — Cali AA 6:00 PM</span></div>
+        <div class="task-list">
+          <label class="task-item"><input type="checkbox" data-day="jun9" data-task="0" onchange="updateDay('jun9')"><label>Arrival inventory</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun9" data-task="1" onchange="updateDay('jun9')"><label>Outdoor activity</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun9" data-task="2" onchange="updateDay('jun9')"><label>Step Work</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun9" data-task="3" onchange="updateDay('jun9')"><label>Boot Log</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun9" data-task="4" onchange="updateDay('jun9')"><label>Vanessa 9 PM</label></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- JUNE 10 -->
+    <div class="day-card" id="day-jun10">
+      <div class="day-hdr" onclick="toggleDay(this)">
+        <span><div class="day-name">June 10 — Wednesday</div><div class="day-date"></div></span>
+        <span class="day-status" id="status-jun10">⬜</span>
+      </div>
+      <div class="day-body">
+        <div><span class="meeting-badge">🎯 CA Zoom</span></div>
+        <div class="task-list">
+          <label class="task-item"><input type="checkbox" data-day="jun10" data-task="0" onchange="updateDay('jun10')"><label>Call Jim</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun10" data-task="1" onchange="updateDay('jun10')"><label>Step Work</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun10" data-task="2" onchange="updateDay('jun10')"><label>Outdoor activity</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun10" data-task="3" onchange="updateDay('jun10')"><label>Boot Log</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun10" data-task="4" onchange="updateDay('jun10')"><label>Vanessa 9 PM</label></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- JUNE 11 -->
+    <div class="day-card" id="day-jun11">
+      <div class="day-hdr" onclick="toggleDay(this)">
+        <span><div class="day-name">June 11 — Thursday</div><div class="day-date"></div></span>
+        <span class="day-status" id="status-jun11">⬜</span>
+      </div>
+      <div class="day-body">
+        <div><span class="meeting-badge">🎯 AA Zoom — Cali AA 6:00 PM</span></div>
+        <div class="task-list">
+          <label class="task-item"><input type="checkbox" data-day="jun11" data-task="0" onchange="updateDay('jun11')"><label>Share at meeting</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun11" data-task="1" onchange="updateDay('jun11')"><label>Step Work</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun11" data-task="2" onchange="updateDay('jun11')"><label>Outdoor activity</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun11" data-task="3" onchange="updateDay('jun11')"><label>Boot Log</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun11" data-task="4" onchange="updateDay('jun11')"><label>Vanessa 9 PM</label></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- JUNE 12 -->
+    <div class="day-card" id="day-jun12">
+      <div class="day-hdr" onclick="toggleDay(this)">
+        <span><div class="day-name">June 12 — Friday</div><div class="day-date"></div></span>
+        <span class="day-status" id="status-jun12">⬜</span>
+      </div>
+      <div class="day-body">
+        <div><span class="meeting-badge">🎯 PAA Home Group 7:00 AM</span></div>
+        <div class="task-list">
+          <label class="task-item"><input type="checkbox" data-day="jun12" data-task="0" onchange="updateDay('jun12')"><label>Call Jim</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun12" data-task="1" onchange="updateDay('jun12')"><label>Step Work</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun12" data-task="2" onchange="updateDay('jun12')"><label>Outdoor activity</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun12" data-task="3" onchange="updateDay('jun12')"><label>Boot Log</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun12" data-task="4" onchange="updateDay('jun12')"><label>Vanessa 9 PM</label></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- JUNE 13 -->
+    <div class="day-card" id="day-jun13">
+      <div class="day-hdr" onclick="toggleDay(this)">
+        <span><div class="day-name">June 13 — Saturday</div><div class="day-date">🙏 Two Meetings</div></span>
+        <span class="day-status" id="status-jun13">⬜</span>
+      </div>
+      <div class="day-body">
+        <div>
+          <span class="meeting-badge">🌅 Prayer Meeting #1 — 6:00 AM</span>
+          <span class="meeting-badge">🎯 AA Home Group — 8:00 AM</span>
+        </div>
+        <div class="task-list">
+          <label class="task-item"><input type="checkbox" data-day="jun13" data-task="0" onchange="updateDay('jun13')"><label>Share at meeting</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun13" data-task="1" onchange="updateDay('jun13')"><label>Step Work</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun13" data-task="2" onchange="updateDay('jun13')"><label>Outdoor activity</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun13" data-task="3" onchange="updateDay('jun13')"><label>Boot Log</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun13" data-task="4" onchange="updateDay('jun13')"><label>Vanessa 9 PM</label></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- JUNE 14 -->
+    <div class="day-card" id="day-jun14">
+      <div class="day-hdr" onclick="toggleDay(this)">
+        <span><div class="day-name">June 14 — Sunday</div><div class="day-date"></div></span>
+        <span class="day-status" id="status-jun14">⬜</span>
+      </div>
+      <div class="day-body">
+        <div><span class="meeting-badge">🎯 <a href="https://meet.google.com/omt-geit-eks" target="_blank">Cali AA Virtual — 10:30 AM</a></span></div>
+        <div class="task-list">
+          <label class="task-item"><input type="checkbox" data-day="jun14" data-task="0" onchange="updateDay('jun14')"><label>Attended Sun 12 Noon Meeting</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun14" data-task="1" onchange="updateDay('jun14')"><label>Call Jim</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun14" data-task="2" onchange="updateDay('jun14')"><label>Step Work</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun14" data-task="3" onchange="updateDay('jun14')"><label>Outdoor activity</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun14" data-task="4" onchange="updateDay('jun14')"><label>Boot Log</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun14" data-task="5" onchange="updateDay('jun14')"><label>Vanessa 9 PM</label></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- JUNE 15 -->
+    <div class="day-card" id="day-jun15">
+      <div class="day-hdr" onclick="toggleDay(this)">
+        <span><div class="day-name">June 15 — Monday</div><div class="day-date"></div></span>
+        <span class="day-status" id="status-jun15">⬜</span>
+      </div>
+      <div class="day-body">
+        <div><span class="meeting-badge">🎯 CA Zoom</span></div>
+        <div class="task-list">
+          <label class="task-item"><input type="checkbox" data-day="jun15" data-task="0" onchange="updateDay('jun15')"><label>Share at meeting</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun15" data-task="1" onchange="updateDay('jun15')"><label>Step Work</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun15" data-task="2" onchange="updateDay('jun15')"><label>Outdoor activity</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun15" data-task="3" onchange="updateDay('jun15')"><label>Boot Log</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun15" data-task="4" onchange="updateDay('jun15')"><label>Vanessa 9 PM</label></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- JUNE 16 -->
+    <div class="day-card" id="day-jun16">
+      <div class="day-hdr" onclick="toggleDay(this)">
+        <span><div class="day-name">June 16 — Tuesday</div><div class="day-date"></div></span>
+        <span class="day-status" id="status-jun16">⬜</span>
+      </div>
+      <div class="day-body">
+        <div><span class="meeting-badge">🎯 AA Zoom — Cali AA 6:00 PM</span></div>
+        <div class="task-list">
+          <label class="task-item"><input type="checkbox" data-day="jun16" data-task="0" onchange="updateDay('jun16')"><label>Call Jim</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun16" data-task="1" onchange="updateDay('jun16')"><label>Step 5 with Jim</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun16" data-task="2" onchange="updateDay('jun16')"><label>Outdoor activity</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun16" data-task="3" onchange="updateDay('jun16')"><label>Boot Log</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun16" data-task="4" onchange="updateDay('jun16')"><label>Vanessa 9 PM</label></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- JUNE 17 -->
+    <div class="day-card" id="day-jun17">
+      <div class="day-hdr" onclick="toggleDay(this)">
+        <span><div class="day-name">June 17 — Wednesday</div><div class="day-date"></div></span>
+        <span class="day-status" id="status-jun17">⬜</span>
+      </div>
+      <div class="day-body">
+        <div><span class="meeting-badge">🎯 NicA Zoom</span></div>
+        <div class="task-list">
+          <label class="task-item"><input type="checkbox" data-day="jun17" data-task="0" onchange="updateDay('jun17')"><label>Share at meeting</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun17" data-task="1" onchange="updateDay('jun17')"><label>Step 5 with Jim</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun17" data-task="2" onchange="updateDay('jun17')"><label>Outdoor activity</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun17" data-task="3" onchange="updateDay('jun17')"><label>Boot Log</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun17" data-task="4" onchange="updateDay('jun17')"><label>Vanessa 9 PM</label></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- JUNE 18 -->
+    <div class="day-card" id="day-jun18">
+      <div class="day-hdr" onclick="toggleDay(this)">
+        <span><div class="day-name">June 18 — Thursday</div><div class="day-date">🙏 Prayer Meeting #2</div></span>
+        <span class="day-status" id="status-jun18">⬜</span>
+      </div>
+      <div class="day-body">
+        <div>
+          <span class="meeting-badge">🌅 Prayer Meeting #2 — 6:00 AM</span>
+          <span class="meeting-badge">🎯 AA Zoom — Cali AA 6:00 PM</span>
+        </div>
+        <div class="task-list">
+          <label class="task-item"><input type="checkbox" data-day="jun18" data-task="0" onchange="updateDay('jun18')"><label>Call Jim</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun18" data-task="1" onchange="updateDay('jun18')"><label>Step Work</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun18" data-task="2" onchange="updateDay('jun18')"><label>Outdoor activity</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun18" data-task="3" onchange="updateDay('jun18')"><label>Boot Log</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun18" data-task="4" onchange="updateDay('jun18')"><label>Pack and check in to flight</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun18" data-task="5" onchange="updateDay('jun18')"><label>Vanessa 9 PM</label></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- JUNE 19 -->
+    <div class="day-card" id="day-jun19">
+      <div class="day-hdr" onclick="toggleDay(this)">
+        <span><div class="day-name">June 19 — Friday</div><div class="day-date">✈️ Travel Home Sober</div></span>
+        <span class="day-status" id="status-jun19">⬜</span>
+      </div>
+      <div class="day-body">
+        <div><span class="meeting-badge">🎯 PAA Home Group — 7:00 AM</span></div>
+        <div class="task-list">
+          <label class="task-item"><input type="checkbox" data-day="jun19" data-task="0" onchange="updateDay('jun19')"><label>Share at meeting</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun19" data-task="1" onchange="updateDay('jun19')"><label>Step Work</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun19" data-task="2" onchange="updateDay('jun19')"><label>Gratitude List</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun19" data-task="3" onchange="updateDay('jun19')"><label>Final Boot Log</label></label>
+          <label class="task-item"><input type="checkbox" data-day="jun19" data-task="4" onchange="updateDay('jun19')"><label>Vanessa 9 PM</label></label>
+          <label class="task-item" style="background:#f0fdf4;border-radius:6px;padding:6px 8px;border:1px solid #bbf7d0"><input type="checkbox" data-day="jun19" data-task="5" onchange="updateDay('jun19')"><label><strong style="color:#166534">✈️ Travel Home Sober</strong></label></label>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CALI AA INFO -->
+<div class="section">
+  <div class="sec-hdr green" onclick="toggleSec(this)">
+    <span>🇨🇴</span> Cali AA Information <span class="arrow">▶</span>
+  </div>
+  <div class="sec-body">
+    <div class="contact-card">
+      <div class="contact-title">🏛️ Grupo Central AA Cali — Virtual Meetings</div>
+      <div class="contact-row">Mon–Fri: <strong>6:00 PM – 7:30 PM</strong></div>
+      <div class="contact-row">Saturday: <strong>5:30 PM – 7:00 PM</strong></div>
+      <div class="contact-row">Sunday / Holidays: <strong>10:30 AM – 12:00 PM</strong></div>
+      <div class="contact-row" style="margin-top:8px">
+        <a href="https://meet.google.com/omt-geit-eks" target="_blank" style="background:#1e40af;color:#fff;padding:7px 14px;border-radius:6px;font-weight:700;font-size:13px;display:inline-block">📹 Join Meeting</a>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-title">📞 Contact Information</div>
+      <div class="contact-row">WhatsApp: <a href="https://wa.me/573166459240">+57 316 645 9240</a></div>
+      <div class="contact-row">Phone: <a href="tel:6028803029">(602) 880-3029</a></div>
+      <div class="contact-row">Email: <a href="mailto:aaintergruposcali@hotmail.com">aaintergruposcali@hotmail.com</a></div>
+      <div class="contact-row">Cra. 62B #9D-98 Piso 3 Of. 301, Barrio El Limonar, Cali</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-title">🌎 International Zoom — NA</div>
+      <div class="contact-row">Zoom ID: <strong>831 9433 0144</strong></div>
+      <div class="contact-row">Password: <strong>Heart</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- EMERGENCY PLAN -->
+<div class="section">
+  <div class="sec-hdr red" onclick="toggleSec(this)">
+    <span>🚨</span> Emergency Relapse Prevention <span class="arrow">▶</span>
+  </div>
+  <div class="sec-body">
+    <div style="font-size:13px;color:#7f1d1d;font-weight:600;margin-bottom:10px">If I experience cravings — in order:</div>
+    <div class="emergency-item"><input type="checkbox" data-key="em-0"><label>Call Jim immediately</label></div>
+    <div class="emergency-item"><input type="checkbox" data-key="em-1"><label>Attend the next available Zoom meeting</label></div>
+    <div class="emergency-item"><input type="checkbox" data-key="em-2"><label>Tell Vanessa honestly what is happening</label></div>
+    <div class="emergency-item"><input type="checkbox" data-key="em-3"><label>Leave any risky environment</label></div>
+    <div class="emergency-item"><input type="checkbox" data-key="em-4"><label>Take a 10–30 minute walk</label></div>
+    <div class="emergency-item"><input type="checkbox" data-key="em-5"><label>Read recovery literature</label></div>
+    <div class="emergency-item"><input type="checkbox" data-key="em-6"><label>Pray</label></div>
+    <div class="emergency-item"><input type="checkbox" data-key="em-7"><label>Delay any impulse for 30 minutes</label></div>
+    <div class="emergency-item"><input type="checkbox" data-key="em-8"><label>Join AA, CA, PAA, or NicA immediately</label></div>
+  </div>
+</div>
+
+<!-- REPORT CARD LINK -->
+<div style="background:var(--navy);border-radius:10px;padding:16px 18px;text-align:center;margin-bottom:20px">
+  <div style="font-size:14px;color:rgba(255,255,255,.7);margin-bottom:10px">Track your daily recovery activities</div>
+  <a href="/report/" style="display:inline-block;background:var(--gold);color:#fff;padding:11px 24px;border-radius:7px;font-weight:700;font-size:14px;text-decoration:none">📊 Open Vital Activity Report Card</a>
+</div>
+
+</div><!-- wrap -->
+
+<script>
+var SK = "colombia_safety_2026";
+function load(){try{return JSON.parse(localStorage.getItem(SK))||{};}catch(e){return{};}}
+function save(d){localStorage.setItem(SK,JSON.stringify(d));}
+
+var DAYS = ["jun9","jun10","jun11","jun12","jun13","jun14","jun15","jun16","jun17","jun18","jun19"];
+var DAY_TASKS = {jun9:5,jun10:5,jun11:5,jun12:5,jun13:5,jun14:6,jun15:5,jun16:5,jun17:5,jun18:6,jun19:6};
+var START = new Date("2026-06-09").getTime();
+var END   = new Date("2026-06-19").getTime();
+
+function toggleSec(hdr){
+  hdr.classList.toggle("open");
+  var body = hdr.nextElementSibling;
+  body.classList.toggle("open");
+}
+
+function toggleDay(hdr){
+  var body = hdr.nextElementSibling;
+  body.classList.toggle("open");
+}
+
+function updateDay(day){
+  var d = load();
+  if(!d.days) d.days = {};
+  if(!d.days[day]) d.days[day] = {};
+  var total = DAY_TASKS[day] || 5;
+  var done = 0;
+  document.querySelectorAll("[data-day='"+day+"']").forEach(function(cb){
+    d.days[day][cb.getAttribute("data-task")] = cb.checked;
+    if(cb.checked) done++;
+  });
+  save(d);
+  var pct = total > 0 ? Math.round(done/total*100) : 0;
+  var icon = pct === 100 ? "✅" : pct >= 50 ? "🟡" : done > 0 ? "🟠" : "⬜";
+  var statusEl = document.getElementById("status-"+day);
+  if(statusEl) statusEl.textContent = icon;
+  updateTripProgress();
+}
+
+function updateTripProgress(){
+  var d = load();
+  if(!d.days) d.days = {};
+  var totalTasks = 0, doneTasks = 0;
+  DAYS.forEach(function(day){
+    var t = DAY_TASKS[day]||5;
+    totalTasks += t;
+    var dayData = d.days[day]||{};
+    Object.values(dayData).forEach(function(v){if(v)doneTasks++;});
+  });
+  var pct = totalTasks > 0 ? Math.round(doneTasks/totalTasks*100) : 0;
+  var bar = document.getElementById("trip-bar");
+  var pctEl = document.getElementById("trip-pct");
+  if(bar) bar.style.width = pct + "%";
+  if(pctEl) pctEl.textContent = pct + "% complete";
+  
+  // Day counter
+  var now = Date.now();
+  var dayNum = Math.min(11, Math.max(0, Math.round((now - START) / 86400000) + 1));
+  var daysEl = document.getElementById("trip-days");
+  if(daysEl) daysEl.textContent = now > END ? "Trip complete 🎉" : "Day " + dayNum + " of 11";
+}
+
+function restoreState(){
+  var d = load();
+  // Restore day checkboxes
+  if(d.days){
+    DAYS.forEach(function(day){
+      var dayData = d.days[day]||{};
+      Object.keys(dayData).forEach(function(task){
+        var cb = document.querySelector("[data-day='"+day+"'][data-task='"+task+"']");
+        if(cb) cb.checked = dayData[task];
+      });
+      updateDay(day);
+    });
+  }
+  // Auto-open today's card
+  var now = Date.now();
+  DAYS.forEach(function(day, i){
+    var dayStart = START + i * 86400000;
+    var dayEnd = dayStart + 86400000;
+    if(now >= dayStart && now < dayEnd){
+      var card = document.getElementById("day-"+day);
+      if(card){
+        var body = card.querySelector(".day-body");
+        if(body) body.classList.add("open");
+      }
+    }
+  });
+  updateTripProgress();
+}
+
+document.addEventListener("DOMContentLoaded", restoreState);
+</script>
+</body>
+</html>
