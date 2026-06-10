@@ -344,82 +344,113 @@ init();
 
 <script>
 // ── SAFE TAB DATA ──────────────────────────────────────────────
-// Only items from the Colombia Safety Plan — goals set by user
-
 const SAFE_DAYS=[
   {id:'s610',label:'Wednesday, June 10',sub:'Day 2 · Colombia',
    meeting:'CA Zoom',
-   checks:['Morning prayer','Outdoor walk (min 10 min)','Boot Log','Vanessa check-in — 9:00 PM','Call Jim','Step work','Recovery reading','No alcohol','No drugs','No nicotine']},
+   checks:['Morning prayer','Outdoor walk (min 10 min)','Boot Log','Vanessa check-in — 9:00 PM','Call Jim','Step work','Recovery reading','No alcohol','No drugs','No nicotine'],
+   activities:['Boot Log','Daily Bootlog – Red & Yellow Circles','Morning Prayer / 2-Way Prayer','Recovery Time','Vanessa Check-in','CA Zoom','Step Work','Recovery Reading','Call Jim']},
   {id:'s611',label:'Thursday, June 11',sub:'Day 3 · Colombia',
    meeting:'AA Zoom — Cali AA 6:00 PM',
-   checks:['Morning prayer','Outdoor walk (min 10 min)','Boot Log','Vanessa check-in — 9:00 PM','Share at meeting','Step work','Recovery reading','No alcohol','No drugs','No nicotine']},
+   checks:['Morning prayer','Outdoor walk (min 10 min)','Boot Log','Vanessa check-in — 9:00 PM','Share at meeting','Step work','Recovery reading','No alcohol','No drugs','No nicotine'],
+   activities:['Boot Log','Daily Bootlog – Red & Yellow Circles','Morning Prayer / 2-Way Prayer','Recovery Time','Vanessa Check-in','AA Zoom – Cali AA','Share at Meeting','Step Work','Recovery Reading']},
   {id:'s612',label:'Friday, June 12',sub:'Day 4 · Colombia',
    meeting:'PAA Home Group — 7:00 AM',
-   checks:['Morning prayer','Outdoor walk (min 10 min)','Boot Log','Vanessa check-in — 9:00 PM','Call Jim','Step work','Recovery reading','No alcohol','No drugs','No nicotine']},
+   checks:['Morning prayer','Outdoor walk (min 10 min)','Boot Log','Vanessa check-in — 9:00 PM','Call Jim','Step work','Recovery reading','No alcohol','No drugs','No nicotine'],
+   activities:['Boot Log','Daily Bootlog – Red & Yellow Circles','Morning Prayer / 2-Way Prayer','Recovery Time','Vanessa Check-in','PAA Home Group','Step Work','Recovery Reading','Call Jim']},
   {id:'s613',label:'Saturday, June 13',sub:'Day 5 · Colombia',
    meeting:'Prayer Meeting #1 — 6:00 AM  |  AA Home Group — 8:00 AM',
-   checks:['Morning prayer','Outdoor walk (min 10 min)','Boot Log','Vanessa check-in — 9:00 PM','Share at meeting','Step work','Recovery reading','No alcohol','No drugs','No nicotine']},
+   checks:['Morning prayer','Outdoor walk (min 10 min)','Boot Log','Vanessa check-in — 9:00 PM','Share at meeting','Step work','Recovery reading','No alcohol','No drugs','No nicotine'],
+   activities:['Boot Log','Daily Bootlog – Red & Yellow Circles','Morning Prayer / 2-Way Prayer','Prayer Meeting #1','AA Home Group','Recovery Time','Vanessa Check-in','Share at Meeting','Step Work','Recovery Reading']},
   {id:'s614',label:'Sunday, June 14',sub:'Day 6 · Colombia',
    meeting:'Cali AA Virtual — 10:30 AM–12:00 PM',
-   checks:['Morning prayer','Outdoor walk (min 10 min)','Boot Log','Vanessa check-in — 9:00 PM','Call Jim','Step work','Attend Sun 12 noon meeting','No alcohol','No drugs','No nicotine']},
+   checks:['Morning prayer','Outdoor walk (min 10 min)','Boot Log','Vanessa check-in — 9:00 PM','Call Jim','Step work','Attend Sun 12 noon meeting','No alcohol','No drugs','No nicotine'],
+   activities:['Boot Log','Daily Bootlog – Red & Yellow Circles','Morning Prayer / 2-Way Prayer','Recovery Time','Vanessa Check-in','Cali AA Virtual','Step Work','Recovery Reading','Call Jim']},
   {id:'s615',label:'Monday, June 15',sub:'Day 7 · Colombia',
    meeting:'CA Zoom',
-   checks:['Morning prayer','Outdoor walk (min 10 min)','Boot Log','Vanessa check-in — 9:00 PM','Share at meeting','Step work','Recovery reading','No alcohol','No drugs','No nicotine']},
+   checks:['Morning prayer','Outdoor walk (min 10 min)','Boot Log','Vanessa check-in — 9:00 PM','Share at meeting','Step work','Recovery reading','No alcohol','No drugs','No nicotine'],
+   activities:['Boot Log','Daily Bootlog – Red & Yellow Circles','Morning Prayer / 2-Way Prayer','Recovery Time','Vanessa Check-in','CA Zoom','Share at Meeting','Step Work','Recovery Reading']},
   {id:'s616',label:'Tuesday, June 16',sub:'Day 8 · Colombia',
    meeting:'AA Zoom — Cali AA 6:00 PM',
-   checks:['Morning prayer','Outdoor walk (min 10 min)','Boot Log','Vanessa check-in — 9:00 PM','Call Jim','Step 5 with Jim','Step work','No alcohol','No drugs','No nicotine']},
+   checks:['Morning prayer','Outdoor walk (min 10 min)','Boot Log','Vanessa check-in — 9:00 PM','Call Jim','Step 5 with Jim','Step work','No alcohol','No drugs','No nicotine'],
+   activities:['Boot Log','Daily Bootlog – Red & Yellow Circles','Morning Prayer / 2-Way Prayer','Recovery Time','Vanessa Check-in','AA Zoom – Cali AA','Step 5 with Jim','Step Work','Call Jim']},
   {id:'s617',label:'Wednesday, June 17',sub:'Day 9 · Colombia',
    meeting:'NicA Zoom',
-   checks:['Morning prayer','Outdoor walk (min 10 min)','Boot Log','Vanessa check-in — 9:00 PM','Share at meeting','Step 5 with Jim','Step work','No alcohol','No drugs','No nicotine']},
+   checks:['Morning prayer','Outdoor walk (min 10 min)','Boot Log','Vanessa check-in — 9:00 PM','Share at meeting','Step 5 with Jim','Step work','No alcohol','No drugs','No nicotine'],
+   activities:['Boot Log','Daily Bootlog – Red & Yellow Circles','Morning Prayer / 2-Way Prayer','Recovery Time','Vanessa Check-in','NicA Zoom','Share at Meeting','Step 5 with Jim','Step Work']},
   {id:'s618',label:'Thursday, June 18',sub:'Day 10 · Pack & check in to flight',
    meeting:'Prayer Meeting #2 — 6:00 AM  |  AA Zoom — Cali AA 6:00 PM',
-   checks:['Morning prayer','Outdoor walk (min 10 min)','Boot Log','Vanessa check-in — 9:00 PM','Call Jim','Step work','Pack and check in to flight','No alcohol','No drugs','No nicotine']},
+   checks:['Morning prayer','Outdoor walk (min 10 min)','Boot Log','Vanessa check-in — 9:00 PM','Call Jim','Step work','Pack and check in to flight','No alcohol','No drugs','No nicotine'],
+   activities:['Boot Log','Daily Bootlog – Red & Yellow Circles','Morning Prayer / 2-Way Prayer','Prayer Meeting #2','AA Zoom – Cali AA','Recovery Time','Vanessa Check-in','Step Work','Call Jim','Pack & Check In to Flight']},
   {id:'s619',label:'Friday, June 19',sub:'Final day — travel home sober',
    meeting:'PAA Home Group — 7:00 AM',
-   checks:['Morning prayer','Outdoor walk (min 10 min)','Boot Log','Vanessa check-in — 9:00 PM','Share at meeting','Step work','Gratitude list','Final Boot Log','No alcohol','No drugs','No nicotine']}
+   checks:['Morning prayer','Outdoor walk (min 10 min)','Boot Log','Vanessa check-in — 9:00 PM','Share at meeting','Step work','Gratitude list','Final Boot Log','No alcohol','No drugs','No nicotine'],
+   activities:['Boot Log','Daily Bootlog – Red & Yellow Circles','Morning Prayer / 2-Way Prayer','Recovery Time','Vanessa Check-in','PAA Home Group','Share at Meeting','Step Work','Gratitude List','Final Boot Log']}
 ];
 
 const SAFE_EMERGENCY=['Call Jim immediately','Attend next available Zoom meeting','Tell Vanessa honestly what is happening','Leave any risky environment','Take a 10–30 minute walk','Read recovery literature','Pray','Delay any impulse for 30 minutes'];
 
-// Activity rows — from safety plan only, goals blank (user sets them)
-const SAFE_ACTIVITIES=[
-  {name:'Boot Log'},
-  {name:'Daily Bootlog – Red & Yellow Circles'},
-  {name:'Morning Prayer / 2-Way Prayer'},
-  {name:'Recovery Time'},
-  {name:'Vanessa Check-in'},
-  {name:'Zoom – AA / CA'},
-  {name:'Zoom – PAA / SAA / NicA'},
-  {name:'IRL Meeting'},
-  {name:'Share at a Meeting'},
-  {name:'Step Work'},
-  {name:'Recovery Reading'},
-  {name:'Call Jim'}
-];
-
 function safeGradeColor(l){return{A:["#D4F0E1","#1A6B3A","#9ADAB9"],B:["#ECFBF0","#1D7E44","#A8E8C0"],C:["#FEF3DC","#B7690A","#F5CE80"],D:["#FFF0E4","#B35A10","#F7C4A0"],F:["#FDECEA","#C0392B","#F5B0A8"]}[l]||["#f0f0f0","#333","#ccc"]}
 function safePG(p){if(p>=90)return"A";if(p>=80)return"B";if(p>=70)return"C";if(p>=60)return"D";return"F"}
 
+let safeRowCounter=0;
+function safeUid(){return 'sr'+(++safeRowCounter);}
+
 function safeRecalc(dayId){
+  const tbody=document.getElementById("safe-tbody-"+dayId);
+  if(!tbody)return;
   let earned=0,possible=0;
-  SAFE_ACTIVITIES.forEach((item,i)=>{
-    const gInp=document.getElementById("safe-goal-"+dayId+"-"+i);
-    const aInp=document.getElementById("safe-act-"+dayId+"-"+i);
+  tbody.querySelectorAll("tr").forEach(tr=>{
+    const gInp=tr.querySelector(".safe-goal-inp");
+    const aInp=tr.querySelector(".safe-act-inp");
     if(!gInp||!aInp)return;
     const goal=parseFloat(gInp.value)||0;
     const actual=parseFloat(aInp.value)||0;
-    if(goal>0){earned+=Math.min(actual,goal);possible+=goal;}
+    if(goal>0){
+      earned+=Math.min(actual,goal);
+      possible+=goal;
+      const pct=Math.round((Math.min(actual,goal)/goal)*100);
+      const grade=safePG(pct);
+      const gc=safeGradeColor(grade);
+      const pctCell=tr.querySelector(".safe-pct-cell");
+      const gpCell=tr.querySelector(".safe-grade-pill");
+      if(pctCell)pctCell.textContent=pct+"%";
+      if(gpCell){gpCell.textContent=grade;gpCell.style.background=gc[0];gpCell.style.color=gc[1];}
+    } else {
+      const pctCell=tr.querySelector(".safe-pct-cell");
+      const gpCell=tr.querySelector(".safe-grade-pill");
+      if(pctCell)pctCell.textContent="—";
+      if(gpCell){gpCell.textContent="—";gpCell.style.background="";gpCell.style.color="";}
+    }
   });
-  const pct=possible>0?Math.round((earned/possible)*100):0;
-  const grade=safePG(pct);
+  const pct=possible>0?Math.round((earned/possible)*100):null;
+  const grade=pct!==null?safePG(pct):"—";
   const gc=safeGradeColor(grade);
   const pctEl=document.getElementById("safe-pct-"+dayId);
   const gradeEl=document.getElementById("safe-grade-"+dayId);
+  const gradeBigEl=document.getElementById("safe-grade-big-"+dayId);
+  const pctBigEl=document.getElementById("safe-pct-big-"+dayId);
   const pbEl=document.getElementById("safe-pb-"+dayId);
-  const bgEl=document.getElementById("safe-grade-"+dayId);
-  if(pctEl)pctEl.textContent=pct+"%";
-  if(gradeEl){gradeEl.textContent=grade;gradeEl.style.background=gc[0];gradeEl.style.color=gc[1];}
-  if(pbEl){pbEl.style.width=pct+"%";pbEl.style.background=pct>=70?"#22A35A":pct>=50?"#E8C97A":"#E24B4A";}
+  if(pctEl)pctEl.textContent=pct!==null?pct+"%":"—";
+  if(gradeEl){gradeEl.textContent=grade;gradeEl.style.background=pct!==null?gc[0]:"";gradeEl.style.color=pct!==null?gc[1]:"";}
+  if(gradeBigEl){gradeBigEl.textContent=grade;gradeBigEl.style.color=pct!==null?gc[1]:"#C0392B";}
+  if(pctBigEl)pctBigEl.textContent=pct!==null?pct+"%":"Set your goals above";
+  if(pbEl&&pct!==null){pbEl.style.width=pct+"%";pbEl.style.background=pct>=70?"#22A35A":pct>=50?"#E8C97A":"#E24B4A";}
+}
+
+function safeAddRow(dayId,name){
+  const tbody=document.getElementById("safe-tbody-"+dayId);
+  if(!tbody)return;
+  const rid=safeUid();
+  const tr=document.createElement("tr");
+  tr.id="safe-row-"+rid;
+  tr.innerHTML=`<td><input type="text" class="name-input" placeholder="Activity name…" value="${name||''}"></td>
+    <td class="num"><input type="number" class="goal-input safe-goal-inp" min="0" step="0.25" placeholder="—" style="width:52px" oninput="safeRecalc('${dayId}')"></td>
+    <td class="num"><input type="number" class="goal-input safe-act-inp" min="0" step="0.25" placeholder="—" style="width:52px" oninput="safeRecalc('${dayId}')"></td>
+    <td class="num safe-pct-cell">—</td>
+    <td class="num"><span class="grade-pill safe-grade-pill">—</span></td>
+    <td><button class="del-btn" onclick="this.closest('tr').remove();safeRecalc('${dayId}')" title="Remove">×</button></td>`;
+  tbody.appendChild(tr);
+  if(!name)tr.querySelector('.name-input').focus();
 }
 
 function safeBuildDay(day){
@@ -428,7 +459,6 @@ function safeBuildDay(day){
   panel.id="safe-panel-"+day.id;
   panel.className="safe-day-panel";
 
-  // Checklist: meeting first, then day-specific checks
   const allChecks=[day.meeting,...day.checks];
   let checksHTML=allChecks.map((label,i)=>{
     const key="safe-chk-"+day.id+"-"+i;
@@ -436,26 +466,7 @@ function safeBuildDay(day){
     return `<div class="safe-check-row"><input type="checkbox" id="${key}" ${checked?"checked":""} onchange="safeCheckChange(this,'${key}')"><label class="safe-check-label${checked?" done":""}" for="${key}">${label}</label></div>`;
   }).join("");
 
-  let emergHTML=SAFE_EMERGENCY.map((e,i)=>`<div class="safe-check-row"><input type="checkbox"><label class="safe-check-label">${e}</label></div>`).join("");
-
-  // Activity rows — goal blank unless saved, actual blank unless saved
-  let actRows=SAFE_ACTIVITIES.map((item,i)=>{
-    const gKey="safe-goal-"+day.id+"-"+i;
-    const aKey="safe-act-"+day.id+"-"+i;
-    const gSaved=localStorage.getItem(gKey)||"";
-    const aSaved=localStorage.getItem(aKey)||"";
-    const pct=(gSaved&&aSaved&&parseFloat(gSaved)>0)?Math.round((Math.min(parseFloat(aSaved),parseFloat(gSaved))/parseFloat(gSaved))*100):null;
-    const grade=pct!==null?safePG(pct):"—";
-    const gc=safeGradeColor(grade);
-    return `<tr id="safe-row-${day.id}-${i}">
-      <td>${item.name}</td>
-      <td class="num"><input type="number" id="safe-goal-${day.id}-${i}" class="goal-input" min="0" step="0.25" value="${gSaved}" placeholder="—" style="width:52px" oninput="localStorage.setItem('safe-goal-${day.id}-${i}',this.value);safeRecalc('${day.id}')"></td>
-      <td class="num"><input type="number" id="safe-act-${day.id}-${i}" class="goal-input" min="0" step="0.25" value="${aSaved}" placeholder="—" style="width:52px" oninput="localStorage.setItem('safe-act-${day.id}-${i}',this.value);safeRecalc('${day.id}')"></td>
-      <td class="num" id="safe-ap-${day.id}-${i}">${pct!==null?pct+"%":"—"}</td>
-      <td class="num"><span class="grade-pill" style="background:${gc[0]};color:${gc[1]}">${grade}</span></td>
-      <td><button class="del-btn" onclick="this.closest('tr').remove();safeRecalc('${day.id}')" title="Remove">×</button></td>
-    </tr>`;
-  }).join("");
+  let emergHTML=SAFE_EMERGENCY.map(e=>`<div class="safe-check-row"><input type="checkbox"><label class="safe-check-label">${e}</label></div>`).join("");
 
   panel.innerHTML=`
     <div class="safe-day-heading">${day.label}</div>
@@ -474,13 +485,14 @@ function safeBuildDay(day){
     <div class="section-card">
       <div class="section-header high" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">
         <div class="sh-left"><span class="section-title">🛡️ Recovery Activities</span><span class="section-badge">Colombia Trip</span></div>
-        <div class="sh-right"><span class="section-pct" id="safe-pct-${day.id}">—</span><span class="grade-pill" id="safe-grade-${day.id}" style="background:#FDECEA;color:#C0392B">—</span><span class="toggle-arrow">▼</span></div>
+        <div class="sh-right"><span class="section-pct" id="safe-pct-${day.id}">—</span><span class="grade-pill" id="safe-grade-${day.id}">—</span><span class="toggle-arrow">▼</span></div>
       </div>
       <div class="section-body">
         <table class="report-table">
           <thead><tr><th>Activity</th><th class="num" style="width:64px">Goal</th><th class="num" style="width:64px">Actual</th><th class="num" style="width:50px">%</th><th class="num" style="width:56px">Grade</th><th class="num" style="width:34px"></th></tr></thead>
-          <tbody>${actRows}</tbody>
+          <tbody id="safe-tbody-${day.id}"></tbody>
         </table>
+        <button class="add-row-btn" onclick="safeAddRow('${day.id}')"><span class="plus">＋</span> Add Activity</button>
       </div>
     </div>
 
@@ -497,11 +509,21 @@ function safeBuildDay(day){
         </div>
       </div>
     </div>
-
     <div class="safe-print-row"><button onclick="window.print()">⎙ Print this day</button></div>
   `;
   container.appendChild(panel);
-  safeRecalc(day.id);
+
+  // Build activity rows for this specific day
+  day.activities.forEach(name=>safeAddRow(day.id,name));
+
+  // Restore checkboxes
+  panel.querySelectorAll("input[type=checkbox][id]").forEach(cb=>{
+    if(localStorage.getItem(cb.id)==="1"){
+      cb.checked=true;
+      const lbl=panel.querySelector('label[for="'+cb.id+'"]');
+      if(lbl)lbl.classList.add("done");
+    }
+  });
 }
 
 function safeCheckChange(cb,key){
@@ -518,57 +540,14 @@ function safeSwitchDay(id,btn){
   btn.classList.add("active");
 }
 
-// Also wire safeRecalc to update the big grade card
-const _origSafeRecalc=safeRecalc;
-safeRecalc=function(dayId){
-  let earned=0,possible=0;
-  SAFE_ACTIVITIES.forEach((item,i)=>{
-    const gInp=document.getElementById("safe-goal-"+dayId+"-"+i);
-    const aInp=document.getElementById("safe-act-"+dayId+"-"+i);
-    if(!gInp||!aInp)return;
-    const goal=parseFloat(gInp.value)||0;
-    const actual=parseFloat(aInp.value)||0;
-    if(goal>0){earned+=Math.min(actual,goal);possible+=goal;}
-    // update row pct
-    const pctCell=document.getElementById("safe-ap-"+dayId+"-"+i);
-    if(pctCell){
-      if(goal>0){
-        const rp=Math.round((Math.min(actual,goal)/goal)*100);
-        pctCell.textContent=rp+"%";
-        const gpEl=pctCell.nextElementSibling&&pctCell.nextElementSibling.querySelector(".grade-pill");
-        const grade=safePG(rp);
-        const gc=safeGradeColor(grade);
-        if(gpEl){gpEl.textContent=grade;gpEl.style.background=gc[0];gpEl.style.color=gc[1];}
-      } else {
-        pctCell.textContent="—";
-      }
-    }
-  });
-  const pct=possible>0?Math.round((earned/possible)*100):null;
-  const grade=pct!==null?safePG(pct):"—";
-  const gc=safeGradeColor(grade);
-  const pctEl=document.getElementById("safe-pct-"+dayId);
-  const gradeEl=document.getElementById("safe-grade-"+dayId);
-  const gradeBigEl=document.getElementById("safe-grade-big-"+dayId);
-  const pctBigEl=document.getElementById("safe-pct-big-"+dayId);
-  const pbEl=document.getElementById("safe-pb-"+dayId);
-  if(pctEl)pctEl.textContent=pct!==null?pct+"%":"—";
-  if(gradeEl){gradeEl.textContent=grade;gradeEl.style.background=pct!==null?gc[0]:"";gradeEl.style.color=pct!==null?gc[1]:"";}
-  if(gradeBigEl){gradeBigEl.textContent=grade;gradeBigEl.style.color=pct!==null?gc[1]:"#C0392B";}
-  if(pctBigEl)pctBigEl.textContent=pct!==null?pct+"%":"Set your goals above";
-  if(pbEl&&pct!==null){pbEl.style.width=pct+"%";pbEl.style.background=pct>=70?"#22A35A":pct>=50?"#E8C97A":"#E24B4A";}
-};
-
-// Build all panels
 SAFE_DAYS.forEach(day=>safeBuildDay(day));
 
-// Auto-activate today or first
 (function(){
   const today=new Date();
   const monthDay=(today.getMonth()+1)*100+today.getDate();
   const match=SAFE_DAYS.find(d=>{const n=parseInt(d.id.replace("s",""));return n===monthDay;});
   const targetId=match?match.id:"s610";
-  const btn=document.querySelector(".safe-day-btn[onclick*=\""+targetId+"\"]");
+  const btn=document.querySelector('.safe-day-btn[onclick*="'+targetId+'"]');
   if(btn)btn.click();
   else{const first=document.querySelector(".safe-day-btn");if(first)first.click();}
 })();
