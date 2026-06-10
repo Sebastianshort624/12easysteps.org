@@ -108,6 +108,7 @@ body{background:var(--lb1);color:var(--text-main);font-family:'Outfit',sans-seri
   <div class="tabs">
     <button class="tab-btn" onclick="switchTab(&#39;daily&#39;,this)">Daily Card</button>
     <button class="tab-btn active" onclick="switchTab(&#39;weekly&#39;,this)">Weekly Card</button>
+    <button class="tab-btn" onclick="switchTab(&#39;safe&#39;,this)">Safe</button>
   </div>
 </div>
 
@@ -276,7 +277,7 @@ function updateDates(){
 }
 
 function switchTab(id,btn){
-  ['daily','weekly'].forEach(t=>{document.getElementById('tab-'+t).style.display=t===id?'block':'none'});
+  ['daily','weekly','safe'].forEach(t=>{document.getElementById('tab-'+t).style.display=t===id?'block':'none'});
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
 }
@@ -294,5 +295,221 @@ function init(){
 init();
 </script>
 
+
+
+<div id="tab-safe" class="content" style="display:none;">
+
+<style>
+.safe-day-nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.2rem}
+.safe-day-btn{font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.45rem 1rem;border:1.5px solid var(--border);border-radius:6px;background:var(--white);color:var(--text-mid);cursor:pointer;transition:all .18s}
+.safe-day-btn:hover{background:var(--lb2);border-color:var(--blue3)}
+.safe-day-btn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.safe-day-btn.today-btn{border-color:var(--gold);color:var(--blue)}
+.safe-day-panel{display:none}
+.safe-day-panel.active{display:block}
+.safe-day-heading{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--blue);margin-bottom:.2rem}
+.safe-day-sub{font-size:.7rem;color:var(--text-light);letter-spacing:.08em;text-transform:uppercase;margin-bottom:1rem}
+.safe-meeting-badge{display:inline-flex;align-items:center;gap:.4rem;background:var(--blue);color:var(--gold2);font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.35rem .9rem;border-radius:4px;margin-bottom:1rem}
+.safe-section-label{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-mid);margin:1.2rem 0 .5rem;padding-bottom:.3rem;border-bottom:1.5px solid var(--border)}
+.safe-check-row{display:flex;align-items:flex-start;gap:.6rem;padding:.45rem 0;border-bottom:.5px solid var(--lb2)}
+.safe-check-row:last-child{border-bottom:none}
+.safe-check-row input[type=checkbox]{margin-top:2px;flex-shrink:0;cursor:pointer;accent-color:var(--blue);width:15px;height:15px}
+.safe-check-label{font-size:.85rem;color:var(--text-main);line-height:1.4;cursor:pointer}
+.safe-check-label.done{color:var(--text-light);text-decoration:line-through}
+.safe-emergency{border-left:3px solid var(--red);padding:.7rem 1rem;border-radius:0 6px 6px 0;background:var(--red-bg);margin:1rem 0}
+.safe-emergency-title{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:.6rem}
+.safe-grade-wrap .overall-card{margin-top:1rem}
+.safe-print-row{display:flex;justify-content:flex-end;margin-top:1rem}
+.safe-print-row button{background:transparent;border:1px solid rgba(27,58,107,.3);color:var(--text-mid);padding:.38rem 1rem;border-radius:4px;font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.safe-print-row button:hover{background:var(--lb1)}
+@media print{.safe-day-nav,.safe-print-row,.tabs,.header-right,.print-btn{display:none!important}.safe-day-panel{display:block!important}}
+</style>
+
+<div class="safe-day-nav" id="safeDayNav">
+  <button class="safe-day-btn" onclick="safeSwitchDay('s610',this)">Wed 6/10</button>
+  <button class="safe-day-btn" onclick="safeSwitchDay('s611',this)">Thu 6/11</button>
+  <button class="safe-day-btn" onclick="safeSwitchDay('s612',this)">Fri 6/12</button>
+  <button class="safe-day-btn" onclick="safeSwitchDay('s613',this)">Sat 6/13</button>
+  <button class="safe-day-btn" onclick="safeSwitchDay('s614',this)">Sun 6/14</button>
+  <button class="safe-day-btn" onclick="safeSwitchDay('s615',this)">Mon 6/15</button>
+  <button class="safe-day-btn" onclick="safeSwitchDay('s616',this)">Tue 6/16</button>
+  <button class="safe-day-btn" onclick="safeSwitchDay('s617',this)">Wed 6/17</button>
+  <button class="safe-day-btn" onclick="safeSwitchDay('s618',this)">Thu 6/18</button>
+  <button class="safe-day-btn" onclick="safeSwitchDay('s619',this)">Fri 6/19</button>
+</div>
+
+<div id="safe-panels-container"></div>
+
+</div>
+
+<script>
+// ── SAFE TAB DATA ──────────────────────────────────────────────
+const SAFE_DAYS=[
+  {id:'s610',label:'Wednesday, June 10',sub:'Day 2 · Colombia',meeting:'CA Zoom',extras:['Call Jim','Step work','Recovery reading']},
+  {id:'s611',label:'Thursday, June 11',sub:'Day 3 · Colombia',meeting:'AA Zoom — Cali AA 6:00 PM',extras:['Share at meeting','Step work','Recovery reading']},
+  {id:'s612',label:'Friday, June 12',sub:'Day 4 · Colombia',meeting:'PAA Home Group — 7:00 AM',extras:['Call Jim','Step work','Recovery reading']},
+  {id:'s613',label:'Saturday, June 13',sub:'Day 5 · Colombia',meeting:'Prayer Meeting #1 — 6:00 AM  |  AA Home Group — 8:00 AM',extras:['Share at meeting','Step work','Recovery reading']},
+  {id:'s614',label:'Sunday, June 14',sub:'Day 6 · Colombia',meeting:'Cali AA Virtual — 10:30 AM–12:00 PM',extras:['Call Jim','Step work','Attend Sun 12 noon meeting']},
+  {id:'s615',label:'Monday, June 15',sub:'Day 7 · Colombia',meeting:'CA Zoom',extras:['Share at meeting','Step work','Recovery reading']},
+  {id:'s616',label:'Tuesday, June 16',sub:'Day 8 · Colombia',meeting:'AA Zoom — Cali AA 6:00 PM',extras:['Call Jim','Step 5 with Jim','Step work']},
+  {id:'s617',label:'Wednesday, June 17',sub:'Day 9 · Colombia',meeting:'NicA Zoom',extras:['Share at meeting','Step 5 with Jim','Step work']},
+  {id:'s618',label:'Thursday, June 18',sub:'Day 10 · Pack & check in to flight',meeting:'Prayer Meeting #2 — 6:00 AM  |  AA Zoom — Cali AA 6:00 PM',extras:['Call Jim','Step work','Pack and check in to flight']},
+  {id:'s619',label:'Friday, June 19',sub:'Final day — travel home sober',meeting:'PAA Home Group — 7:00 AM',extras:['Share at meeting','Gratitude list','Final Boot Log']}
+];
+const SAFE_BASE=['Morning prayer','Outdoor walk (minimum 10 min)','Boot Log','Vanessa check-in — 9:00 PM','No alcohol','No drugs','No nicotine','Medication: prescribed dose only (from Serena)'];
+const SAFE_EMERGENCY=['Call Jim immediately','Attend next available Zoom meeting','Tell Vanessa honestly what is happening','Leave any risky environment','Take a 10–30 minute walk','Read recovery literature','Pray','Delay any impulse for 30 minutes'];
+const SAFE_HIGH=[{name:"Daily Bootlog – Red & Yellow Circles",goal:3},{name:"Recovery Time | Prayer Time",goal:3},{name:"Zoom – PAA / SAA",goal:3},{name:"Zoom – AA / CA",goal:2},{name:"IRL – AA / CA",goal:1},{name:"2 Way Prayer",goal:0.25},{name:"Share at a Meeting",goal:3}];
+const SAFE_MED=[{name:"Service Commitment",goal:0},{name:"Work with Sponsee / Sponsor",goal:0},{name:"Check Ins",goal:5},{name:"PAA Home Group",goal:1},{name:"AA Home Group",goal:1},{name:"Research Recovery",goal:1},{name:"Meeting Notes",goal:1},{name:"Movies – Green",goal:0.5},{name:"Working Out – Green Outer",goal:2},{name:"Couples Reading",goal:1}];
+const SAFE_LOW=[{name:"RCA Meeting",goal:0},{name:"Date Night",goal:1},{name:"Page 86–87 Listen / Read",goal:2},{name:"Use 10 Step / Recovery App",goal:0},{name:"Bike – Comp Green Outer Circle",goal:0.25}];
+
+function safeGradeColor(l){return{A:["#D4F0E1","#1A6B3A","#9ADAB9"],B:["#ECFBF0","#1D7E44","#A8E8C0"],C:["#FEF3DC","#B7690A","#F5CE80"],D:["#FFF0E4","#B35A10","#F7C4A0"],F:["#FDECEA","#C0392B","#F5B0A8"]}[l]||["#f0f0f0","#333","#ccc"]}
+function safePG(p){if(p>=90)return"A";if(p>=80)return"B";if(p>=70)return"C";if(p>=60)return"D";return"F"}
+
+function safeRecalc(dayId){
+  const tiers=[{key:"high",items:SAFE_HIGH,weight:.6},{key:"med",items:SAFE_MED,weight:.3},{key:"low",items:SAFE_LOW,weight:.1}];
+  let weighted=0;
+  tiers.forEach(({key,items,weight})=>{
+    let earned=0,possible=0;
+    items.forEach((item,i)=>{
+      if(item.goal>0){
+        const inp=document.getElementById("safe-act-"+dayId+"-"+key+"-"+i);
+        const val=inp?parseFloat(inp.value)||0:0;
+        earned+=Math.min(val,item.goal);possible+=item.goal;
+      }
+    });
+    const pct=possible>0?Math.round((earned/possible)*100):0;
+    const grade=safePG(pct);
+    const gc=safeGradeColor(grade);
+    const pctEl=document.getElementById("safe-"+key+"-pct-"+dayId);
+    const gpEl=document.getElementById("safe-"+key+"-gp-"+dayId);
+    const pbEl=document.getElementById("safe-"+key+"-pb-"+dayId);
+    const fhEl=document.getElementById("safe-fh-"+key+"-"+dayId);
+    const fpEl=document.getElementById("safe-fp-"+key+"-"+dayId);
+    const pbfEl=document.getElementById("safe-pb-"+key+"-"+dayId);
+    if(pctEl)pctEl.textContent=pct+"%";
+    if(gpEl){gpEl.textContent=grade;gpEl.style.background=gc[0];gpEl.style.color=gc[1];}
+    if(fhEl){fhEl.textContent=grade;fhEl.style.color=gc[1];}
+    if(fpEl)fpEl.textContent=pct+"%";
+    if(pbfEl){pbfEl.style.width=pct+"%";pbfEl.style.background=pct>=70?"#22A35A":pct>=50?"#E8C97A":"#E24B4A";}
+    weighted+=pct*weight;
+  });
+  const wRound=Math.round(weighted);
+  const wGrade=safePG(wRound);
+  const wGc=safeGradeColor(wGrade);
+  const wEl=document.getElementById("safe-weighted-"+dayId);
+  const wGEl=document.getElementById("safe-wgrade-"+dayId);
+  if(wEl)wEl.textContent=wRound+"%";
+  if(wGEl){wGEl.textContent=wGrade;wGEl.style.background=wGc[0];wGEl.style.color=wGc[1];}
+}
+
+function safeBuildDay(day){
+  const container=document.getElementById("safe-panels-container");
+  const panel=document.createElement("div");
+  panel.id="safe-panel-"+day.id;
+  panel.className="safe-day-panel";
+
+  // checklist items: meeting checkbox first, then base, then extras
+  const checkItems=[{label:day.meeting,key:"meeting"},...SAFE_BASE.map((l,i)=>({label:l,key:"base"+i})),...day.extras.map((l,i)=>({label:l,key:"extra"+i}))];
+  let checksHTML="";
+  checkItems.forEach(item=>{
+    const storageKey="safe-chk-"+day.id+"-"+item.key;
+    checksHTML+=`<div class="safe-check-row"><input type="checkbox" id="${storageKey}" onchange="safeCheckChange(this,'${storageKey}')"><label class="safe-check-label" for="${storageKey}">${item.label}</label></div>`;
+  });
+
+  let emergHTML="";
+  SAFE_EMERGENCY.forEach((e,i)=>{emergHTML+=`<div class="safe-check-row"><input type="checkbox"><label class="safe-check-label">${e}</label></div>`;});
+
+  const tierRows=(items,key)=>items.map((item,i)=>{
+    const sk="safe-act-"+day.id+"-"+key+"-"+i;
+    const saved=localStorage.getItem(sk)||0;
+    const pct=item.goal>0?Math.round((parseFloat(saved)/item.goal)*100):0;
+    const grade=item.goal>0?safePG(pct):"—";
+    const gc=safeGradeColor(grade);
+    return `<tr><td><span class="safe-act-name">${item.name}</span></td><td class="num">${item.goal}</td><td class="num"><input type="number" id="${sk}" class="goal-input" min="0" step="0.25" value="${saved}" style="width:52px" oninput="localStorage.setItem('${sk}',this.value);safeRecalc('${day.id}')"></td><td class="num" id="safe-ap-${day.id}-${key}-${i}">${item.goal>0?pct+"%":"—"}</td><td class="num"><span class="grade-pill" style="background:${gc[0]};color:${gc[1]}">${grade}</span></td></tr>`;
+  }).join("");
+
+  const sectionBlock=(emoji,label,badge,key,items,weightLabel)=>`
+    <div class="section-card">
+      <div class="section-header ${key}" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">
+        <div class="sh-left"><span class="section-title">${emoji} ${label}</span><span class="section-badge">${badge}</span></div>
+        <div class="sh-right"><span class="section-pct" id="safe-${key}-pct-${day.id}">0%</span><span class="grade-pill" id="safe-${key}-gp-${day.id}" style="background:#FDECEA;color:#C0392B">F</span><span class="toggle-arrow">▼</span></div>
+      </div>
+      <div class="section-body">
+        <table class="report-table"><thead><tr><th>Activity</th><th class="num" style="width:64px">Goal</th><th class="num" style="width:64px">Actual</th><th class="num" style="width:50px">%</th><th class="num" style="width:56px">Grade</th></tr></thead>
+        <tbody>${tierRows(items,key)}</tbody></table>
+      </div>
+    </div>`;
+
+  panel.innerHTML=`
+    <div class="safe-day-heading">${day.label}</div>
+    <div class="safe-day-sub">${day.sub}</div>
+    <div class="safe-meeting-badge">📅 ${day.meeting}</div>
+
+    <div class="safe-section-label">Today's checklist</div>
+    <div>${checksHTML}</div>
+
+    <div class="safe-section-label">Emergency plan — if cravings hit</div>
+    <div class="safe-emergency">
+      <div class="safe-emergency-title">🚨 Relapse prevention steps</div>
+      ${emergHTML}
+    </div>
+
+    ${sectionBlock("🔴","High Priority","60% of Grade","high",SAFE_HIGH,"60%")}
+    ${sectionBlock("🟡","Medium Priority","30% of Grade","med",SAFE_MED,"30%")}
+    ${sectionBlock("🟢","Lower Priority","10% of Grade","low",SAFE_LOW,"10%")}
+
+    <div class="overall-card" style="margin-top:1rem">
+      <div class="overall-header">Overall Daily Grade</div>
+      <div class="overall-body">
+        <div class="overall-grid">
+          <div class="overall-item"><div class="label">🔴 High Priority — 60%</div><div class="big-grade" id="safe-fh-high-${day.id}" style="color:#C0392B">F</div><div class="sub-pct" id="safe-fp-high-${day.id}">0%</div><div class="prog-bar-wrap"><div class="prog-bar-track"><div class="prog-bar-fill" id="safe-pb-high-${day.id}" style="background:#E24B4A;width:0%"></div></div></div></div>
+          <div class="overall-item"><div class="label">🟡 Medium Priority — 30%</div><div class="big-grade" id="safe-fh-med-${day.id}" style="color:#C0392B">F</div><div class="sub-pct" id="safe-fp-med-${day.id}">0%</div><div class="prog-bar-wrap"><div class="prog-bar-track"><div class="prog-bar-fill" id="safe-pb-med-${day.id}" style="background:#E24B4A;width:0%"></div></div></div></div>
+          <div class="overall-item"><div class="label">🟢 Lower Priority — 10%</div><div class="big-grade" id="safe-fh-low-${day.id}" style="color:#C0392B">F</div><div class="sub-pct" id="safe-fp-low-${day.id}">0%</div><div class="prog-bar-wrap"><div class="prog-bar-track"><div class="prog-bar-fill" id="safe-pb-low-${day.id}" style="background:#E24B4A;width:0%"></div></div></div></div>
+        </div>
+        <div class="weighted-row"><div class="weighted-label">60% High · 30% Medium · 10% Low</div><span class="weighted-pct" id="safe-weighted-${day.id}">0%</span><span class="grade-pill" id="safe-wgrade-${day.id}" style="background:#FDECEA;color:#C0392B">F</span></div>
+      </div>
+    </div>
+    <div class="safe-print-row"><button onclick="window.print()">⎙ Print this day</button></div>
+  `;
+  container.appendChild(panel);
+
+  // restore checkboxes
+  panel.querySelectorAll("input[type=checkbox][id]").forEach(cb=>{
+    if(localStorage.getItem(cb.id)==="1"){cb.checked=true;const lbl=panel.querySelector("label[for=\""+cb.id+"\"]");if(lbl)lbl.classList.add("done");}
+  });
+  safeRecalc(day.id);
+}
+
+function safeCheckChange(cb,key){
+  localStorage.setItem(key,cb.checked?"1":"0");
+  const lbl=document.querySelector("label[for=\""+key+"\"]");
+  if(lbl)lbl.classList.toggle("done",cb.checked);
+}
+
+function safeSwitchDay(id,btn){
+  document.querySelectorAll(".safe-day-panel").forEach(p=>p.classList.remove("active"));
+  document.querySelectorAll(".safe-day-btn").forEach(b=>b.classList.remove("active"));
+  const panel=document.getElementById("safe-panel-"+id);
+  if(panel){panel.classList.add("active");}
+  btn.classList.add("active");
+}
+
+// Build all day panels
+SAFE_DAYS.forEach(day=>safeBuildDay(day));
+
+// Auto-activate today or first day
+(function(){
+  const today=new Date();
+  const monthDay=(today.getMonth()+1)*100+today.getDate();
+  const match=SAFE_DAYS.find(d=>{const n=parseInt(d.id.replace("s",""));return n===monthDay;});
+  const targetId=match?match.id:"s610";
+  const btn=document.querySelector(".safe-day-btn[onclick*=\""+targetId+"\"]");
+  if(btn)btn.click();
+  else{
+    const first=document.querySelector(".safe-day-btn");
+    if(first)first.click();
+  }
+})();
+</script>
 
 </body></html>
