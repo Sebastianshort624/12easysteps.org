@@ -447,12 +447,13 @@ function safeBuildDay(day){
     const pct=(gSaved&&aSaved&&parseFloat(gSaved)>0)?Math.round((Math.min(parseFloat(aSaved),parseFloat(gSaved))/parseFloat(gSaved))*100):null;
     const grade=pct!==null?safePG(pct):"—";
     const gc=safeGradeColor(grade);
-    return `<tr>
+    return `<tr id="safe-row-${day.id}-${i}">
       <td>${item.name}</td>
       <td class="num"><input type="number" id="safe-goal-${day.id}-${i}" class="goal-input" min="0" step="0.25" value="${gSaved}" placeholder="—" style="width:52px" oninput="localStorage.setItem('safe-goal-${day.id}-${i}',this.value);safeRecalc('${day.id}')"></td>
       <td class="num"><input type="number" id="safe-act-${day.id}-${i}" class="goal-input" min="0" step="0.25" value="${aSaved}" placeholder="—" style="width:52px" oninput="localStorage.setItem('safe-act-${day.id}-${i}',this.value);safeRecalc('${day.id}')"></td>
       <td class="num" id="safe-ap-${day.id}-${i}">${pct!==null?pct+"%":"—"}</td>
       <td class="num"><span class="grade-pill" style="background:${gc[0]};color:${gc[1]}">${grade}</span></td>
+      <td><button class="del-btn" onclick="this.closest('tr').remove();safeRecalc('${day.id}')" title="Remove">×</button></td>
     </tr>`;
   }).join("");
 
@@ -477,7 +478,7 @@ function safeBuildDay(day){
       </div>
       <div class="section-body">
         <table class="report-table">
-          <thead><tr><th>Activity</th><th class="num" style="width:64px">Goal</th><th class="num" style="width:64px">Actual</th><th class="num" style="width:50px">%</th><th class="num" style="width:56px">Grade</th></tr></thead>
+          <thead><tr><th>Activity</th><th class="num" style="width:64px">Goal</th><th class="num" style="width:64px">Actual</th><th class="num" style="width:50px">%</th><th class="num" style="width:56px">Grade</th><th class="num" style="width:34px"></th></tr></thead>
           <tbody>${actRows}</tbody>
         </table>
       </div>
