@@ -392,44 +392,42 @@ const SAFE_EMERGENCY=['Call Jim immediately','Attend next available Zoom meeting
 function safeGradeColor(l){return{A:["#D4F0E1","#1A6B3A","#9ADAB9"],B:["#ECFBF0","#1D7E44","#A8E8C0"],C:["#FEF3DC","#B7690A","#F5CE80"],D:["#FFF0E4","#B35A10","#F7C4A0"],F:["#FDECEA","#C0392B","#F5B0A8"]}[l]||["#f0f0f0","#333","#ccc"]}
 function safePG(p){if(p>=90)return"A";if(p>=80)return"B";if(p>=70)return"C";if(p>=60)return"D";return"F"}
 
-let safeRowCounter=0;
+var safeRowCounter=0;
 function safeUid(){return 'sr'+(++safeRowCounter);}
 
 function safeRecalc(dayId){
-  const tbody=document.getElementById("safe-tbody-"+dayId);
+  var tbody=document.getElementById("safe-tbody-"+dayId);
   if(!tbody)return;
-  let earned=0,possible=0;
-  tbody.querySelectorAll("tr").forEach(tr=>{
-    const gInp=tr.querySelector(".safe-goal-inp");
-    const aInp=tr.querySelector(".safe-act-inp");
+  var earned=0,possible=0;
+  tbody.querySelectorAll("tr").forEach(function(tr){
+    var gInp=tr.querySelector(".safe-goal-inp");
+    var aInp=tr.querySelector(".safe-act-inp");
     if(!gInp||!aInp)return;
-    const goal=parseFloat(gInp.value)||0;
-    const actual=parseFloat(aInp.value)||0;
+    var goal=parseFloat(gInp.value)||0;
+    var actual=parseFloat(aInp.value)||0;
+    var pctCell=tr.querySelector(".safe-pct-cell");
+    var gpCell=tr.querySelector(".safe-grade-pill");
     if(goal>0){
       earned+=Math.min(actual,goal);
       possible+=goal;
-      const pct=Math.round((Math.min(actual,goal)/goal)*100);
-      const grade=safePG(pct);
-      const gc=safeGradeColor(grade);
-      const pctCell=tr.querySelector(".safe-pct-cell");
-      const gpCell=tr.querySelector(".safe-grade-pill");
-      if(pctCell)pctCell.textContent=pct+"%";
-      if(gpCell){gpCell.textContent=grade;gpCell.style.background=gc[0];gpCell.style.color=gc[1];}
+      var rp=Math.round((Math.min(actual,goal)/goal)*100);
+      var rg=safePG(rp);
+      var rgc=safeGradeColor(rg);
+      if(pctCell)pctCell.textContent=rp+"%";
+      if(gpCell){gpCell.textContent=rg;gpCell.style.background=rgc[0];gpCell.style.color=rgc[1];}
     } else {
-      const pctCell=tr.querySelector(".safe-pct-cell");
-      const gpCell=tr.querySelector(".safe-grade-pill");
       if(pctCell)pctCell.textContent="—";
       if(gpCell){gpCell.textContent="—";gpCell.style.background="";gpCell.style.color="";}
     }
   });
-  const pct=possible>0?Math.round((earned/possible)*100):null;
-  const grade=pct!==null?safePG(pct):"—";
-  const gc=safeGradeColor(grade);
-  const pctEl=document.getElementById("safe-pct-"+dayId);
-  const gradeEl=document.getElementById("safe-grade-"+dayId);
-  const gradeBigEl=document.getElementById("safe-grade-big-"+dayId);
-  const pctBigEl=document.getElementById("safe-pct-big-"+dayId);
-  const pbEl=document.getElementById("safe-pb-"+dayId);
+  var pct=possible>0?Math.round((earned/possible)*100):null;
+  var grade=pct!==null?safePG(pct):"—";
+  var gc=safeGradeColor(grade);
+  var pctEl=document.getElementById("safe-pct-"+dayId);
+  var gradeEl=document.getElementById("safe-grade-"+dayId);
+  var gradeBigEl=document.getElementById("safe-grade-big-"+dayId);
+  var pctBigEl=document.getElementById("safe-pct-big-"+dayId);
+  var pbEl=document.getElementById("safe-pb-"+dayId);
   if(pctEl)pctEl.textContent=pct!==null?pct+"%":"—";
   if(gradeEl){gradeEl.textContent=grade;gradeEl.style.background=pct!==null?gc[0]:"";gradeEl.style.color=pct!==null?gc[1]:"";}
   if(gradeBigEl){gradeBigEl.textContent=grade;gradeBigEl.style.color=pct!==null?gc[1]:"#C0392B";}
@@ -438,19 +436,31 @@ function safeRecalc(dayId){
 }
 
 function safeAddRow(dayId,name){
-  const tbody=document.getElementById("safe-tbody-"+dayId);
-  if(!tbody)return;
-  const rid=safeUid();
-  const tr=document.createElement("tr");
+  var tbody=document.getElementById("safe-tbody-"+dayId);
+  if(!tbody){console.error("No tbody for",dayId);return;}
+  var rid=safeUid();
+  var tr=document.createElement("tr");
   tr.id="safe-row-"+rid;
-  tr.innerHTML=`<td><input type="text" class="name-input" placeholder="Activity name…" value="${name||''}"></td>
-    <td class="num"><input type="number" class="goal-input safe-goal-inp" min="0" step="0.25" placeholder="—" style="width:52px" oninput="safeRecalc('${dayId}')"></td>
-    <td class="num"><input type="number" class="goal-input safe-act-inp" min="0" step="0.25" placeholder="—" style="width:52px" oninput="safeRecalc('${dayId}')"></td>
-    <td class="num safe-pct-cell">—</td>
-    <td class="num"><span class="grade-pill safe-grade-pill">—</span></td>
-    <td><button class="del-btn" onclick="this.closest('tr').remove();safeRecalc('${dayId}')" title="Remove">×</button></td>`;
+  var td1=document.createElement("td");
+  var ni=document.createElement("input");ni.type="text";ni.className="name-input";ni.placeholder="Activity name…";ni.value=name||"";
+  td1.appendChild(ni);
+  var td2=document.createElement("td");td2.className="num";
+  var gi=document.createElement("input");gi.type="number";gi.className="goal-input safe-goal-inp";gi.min="0";gi.step="0.25";gi.placeholder="—";gi.style.width="52px";gi.setAttribute("oninput","safeRecalc('"+dayId+"')");
+  td2.appendChild(gi);
+  var td3=document.createElement("td");td3.className="num";
+  var ai=document.createElement("input");ai.type="number";ai.className="goal-input safe-act-inp";ai.min="0";ai.step="0.25";ai.placeholder="—";ai.style.width="52px";ai.setAttribute("oninput","safeRecalc('"+dayId+"')");
+  td3.appendChild(ai);
+  var td4=document.createElement("td");td4.className="num safe-pct-cell";td4.textContent="—";
+  var td5=document.createElement("td");td5.className="num";
+  var gp=document.createElement("span");gp.className="grade-pill safe-grade-pill";gp.textContent="—";
+  td5.appendChild(gp);
+  var td6=document.createElement("td");
+  var db=document.createElement("button");db.className="del-btn";db.title="Remove";db.textContent="×";
+  db.onclick=function(){tr.parentNode.removeChild(tr);safeRecalc(dayId);};
+  td6.appendChild(db);
+  tr.appendChild(td1);tr.appendChild(td2);tr.appendChild(td3);tr.appendChild(td4);tr.appendChild(td5);tr.appendChild(td6);
   tbody.appendChild(tr);
-  if(!name)tr.querySelector('.name-input').focus();
+  if(!name)ni.focus();
 }
 
 function safeBuildDay(day){
