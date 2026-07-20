@@ -78,7 +78,7 @@
     justify-content:flex-end;
     gap:10px;
     padding:18px 26px 0;
-    max-width:1200px;
+    max-width:900px;
     margin:0 auto;
   }
   .icon-btn{
@@ -101,15 +101,15 @@
 
   /* ===================== HEADER ===================== */
   header.hero{
-    max-width:1200px;
+    max-width:900px;
     margin:0 auto;
-    padding:10px 26px 30px;
+    padding:10px 26px 26px;
     text-align:center;
   }
   header.hero h1{
     font-family:var(--serif);
     font-weight:600;
-    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    font-size:clamp(2.2rem, 5vw, 3.4rem);
     margin:0 0 6px;
     letter-spacing:0.01em;
     color:var(--ink);
@@ -117,49 +117,49 @@
   header.hero .subtitle{
     font-family:var(--serif);
     font-style:italic;
-    font-size:1.15rem;
+    font-size:1.1rem;
     color:var(--ink-soft);
     letter-spacing:0.03em;
     margin:0;
   }
 
-  /* ===================== SECTION 0 : PARTICIPANTS SETUP ===================== */
+  /* ===================== SETUP ===================== */
   .setup-section{
-    max-width:1200px;
-    margin:0 auto 28px;
+    max-width:900px;
+    margin:0 auto 24px;
     padding:0 26px;
   }
   .setup-card{
     background:var(--paper);
     border-radius:var(--radius);
     box-shadow:var(--shadow);
-    padding:26px 30px;
+    padding:24px 28px;
   }
   .setup-card h2{
     font-family:var(--serif);
     font-weight:600;
-    font-size:1.4rem;
+    font-size:1.3rem;
     margin:0 0 4px;
   }
   .setup-card .setup-hint{
-    font-size:0.85rem;
+    font-size:0.83rem;
     color:var(--ink-soft);
-    margin:0 0 18px;
+    margin:0 0 16px;
   }
   .participant-name-grid{
     display:grid;
     grid-template-columns:repeat(4, 1fr);
-    gap:18px;
+    gap:16px;
   }
-  @media (max-width:860px){
+  @media (max-width:760px){
     .participant-name-grid{grid-template-columns:1fr 1fr;}
   }
-  @media (max-width:480px){
+  @media (max-width:460px){
     .participant-name-grid{grid-template-columns:1fr;}
   }
   .participant-name-field label{
     display:block;
-    font-size:0.72rem;
+    font-size:0.7rem;
     text-transform:uppercase;
     letter-spacing:0.08em;
     color:var(--ink-soft);
@@ -168,7 +168,7 @@
   .participant-name-field input{
     width:100%;
     font-family:var(--serif);
-    font-size:1.15rem;
+    font-size:1.1rem;
     border:none;
     border-bottom:2px solid var(--line);
     background:transparent;
@@ -176,143 +176,160 @@
     padding:4px 2px 8px;
   }
   .participant-name-field input:focus{outline:none;border-bottom-color:var(--blue-deep);}
+  .date-row{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+  .date-row label{font-size:0.78rem;text-transform:uppercase;letter-spacing:0.09em;color:var(--ink-soft);}
+  .date-input{border:none;background:transparent;font-family:var(--sans);font-size:0.95rem;color:var(--ink);border-bottom:1px solid var(--line);padding:2px 2px 4px;}
+  .date-input:focus{outline:none;border-bottom-color:var(--blue-deep);}
 
-  /* ===================== SECTION 1 : PRAYER + TIMER ===================== */
-  .prayer-section{
-    max-width:1200px;
-    margin:0 auto;
+  /* ===================== TIMER (shared) ===================== */
+  .timer-section{
+    max-width:900px;
+    margin:0 auto 26px;
     padding:0 26px;
   }
-
-  .timer-row{
-    margin-bottom:28px;
-  }
-
   .timer-card{
     background:var(--paper);
     border-radius:var(--radius);
     box-shadow:var(--shadow);
-    padding:24px;
+    padding:22px;
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    gap:14px;
-    max-width:340px;
+    gap:12px;
+    max-width:320px;
     margin:0 auto;
   }
   .timer-card .timer-label{
     font-family:var(--serif);
-    font-size:1.1rem;
+    font-size:1.05rem;
     font-weight:600;
     color:var(--ink);
     text-align:center;
     margin:0;
   }
   .timer-card .timer-sublabel{
-    font-size:0.78rem;
+    font-size:0.76rem;
     color:var(--ink-soft);
     text-align:center;
-    margin:-10px 0 4px;
+    margin:-8px 0 2px;
   }
-  .timer-ring-wrap{
-    position:relative;
-    width:180px;height:180px;
-  }
+  .timer-ring-wrap{position:relative;width:160px;height:160px;}
   .timer-ring-wrap svg{transform:rotate(-90deg);}
   .ring-bg{fill:none;stroke:var(--line);stroke-width:8;}
   .ring-progress{
-    fill:none;
-    stroke:var(--blue-deep);
-    stroke-width:8;
-    stroke-linecap:round;
+    fill:none;stroke:var(--blue-deep);stroke-width:8;stroke-linecap:round;
     transition:stroke-dashoffset 1s linear, stroke 1s ease;
   }
   .timer-time{
-    position:absolute;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-family:var(--serif);
-    font-size:2.1rem;
-    font-weight:600;
-    color:var(--ink);
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-size:1.9rem;font-weight:600;color:var(--ink);
   }
-  .timer-controls{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-    justify-content:center;
-  }
+  .timer-controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;}
   .timer-controls button{
-    font-family:var(--sans);
-    font-size:0.82rem;
-    letter-spacing:0.03em;
-    padding:8px 16px;
-    border-radius:999px;
-    border:1px solid var(--line);
-    background:transparent;
-    color:var(--ink-soft);
-    cursor:pointer;
-    transition:all 0.2s ease;
+    font-family:var(--sans);font-size:0.8rem;letter-spacing:0.03em;padding:7px 15px;
+    border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink-soft);
+    cursor:pointer;transition:all 0.2s ease;
   }
   .timer-controls button:hover{background:var(--blue);color:#fff;border-color:var(--blue);}
   .timer-controls button.primary{background:var(--blue-deep);color:#fff;border-color:var(--blue-deep);}
   .timer-controls button.primary:hover{opacity:0.88;}
   .timer-msg{
-    font-family:var(--serif);
-    font-style:italic;
-    font-size:0.95rem;
-    color:var(--blue-deep);
-    text-align:center;
-    min-height:1.2em;
+    font-family:var(--serif);font-style:italic;font-size:0.92rem;color:var(--blue-deep);
+    text-align:center;min-height:1.2em;
   }
-  .timer-msg-actions{
-    display:none;
-    gap:8px;
-  }
+  .timer-msg-actions{display:none;gap:8px;}
   .timer-msg-actions.show{display:flex;}
 
-  /* ===================== PRAYER WRITING GRID ===================== */
-  .prayer-heading{
-    text-align:center;
-    font-family:var(--serif);
-    font-size:1.6rem;
+  /* ===================== PARTICIPANT PAGE SWITCHER ===================== */
+  .page-section{
+    max-width:900px;
+    margin:0 auto;
+    padding:0 26px;
+  }
+  .participant-tabs{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-bottom:18px;
+  }
+  .participant-tab{
+    font-family:var(--sans);
+    font-size:0.85rem;
     font-weight:600;
-    margin:0 0 18px;
+    padding:10px 20px;
+    border-radius:999px;
+    border:1.5px solid var(--line);
+    background:var(--paper);
+    color:var(--ink-soft);
+    cursor:pointer;
+    transition:all 0.2s ease;
+  }
+  .participant-tab:hover{border-color:var(--blue-deep);color:var(--blue-deep);}
+  .participant-tab.active{background:var(--blue-deep);border-color:var(--blue-deep);color:#fff;}
+
+  .page-header{
+    text-align:center;
+    margin-bottom:18px;
+  }
+  .page-header h2{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:1.7rem;
+    margin:0 0 4px;
     color:var(--ink);
   }
-  .prayer-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:22px;
-    margin-bottom:30px;
+  .page-header .page-sub{
+    font-size:0.8rem;
+    color:var(--ink-soft);
   }
-  @media (max-width:860px){
-    .prayer-grid{grid-template-columns:1fr;}
+
+  /* sub-tabs: My Prayer / Feedback I Received / Notes I Took */
+  .sub-tabs{
+    display:flex;
+    gap:6px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-bottom:22px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:0;
   }
+  .sub-tab{
+    font-family:var(--sans);
+    font-size:0.8rem;
+    font-weight:600;
+    letter-spacing:0.02em;
+    padding:10px 16px;
+    border:none;
+    background:transparent;
+    color:var(--ink-soft);
+    cursor:pointer;
+    border-bottom:2px solid transparent;
+    margin-bottom:-1px;
+    transition:all 0.2s ease;
+  }
+  .sub-tab:hover{color:var(--blue-deep);}
+  .sub-tab.active{color:var(--blue-deep);border-bottom-color:var(--blue-deep);}
+
+  .sub-panel{display:none;}
+  .sub-panel.active{display:block;}
+
+  /* ===================== WRITING CARDS ===================== */
   .writing-card{
     background:var(--paper);
     border-radius:var(--radius);
     box-shadow:var(--shadow);
     padding:28px 30px;
-    display:flex;
-    flex-direction:column;
+    margin-bottom:22px;
   }
   .writing-card h3{
-    font-family:var(--serif);
+    font-family:var(--sans);
     font-weight:600;
-    font-size:1.3rem;
-    margin:0 0 4px;
-    color:var(--ink);
-  }
-  .writing-card .writing-sub{
-    font-size:0.74rem;
-    text-transform:uppercase;
-    letter-spacing:0.08em;
-    color:var(--ink-soft);
-    margin:0 0 14px;
+    font-size:0.86rem;
+    letter-spacing:0.02em;
+    color:var(--blue-deep);
+    margin:0 0 12px;
   }
   textarea{
     width:100%;
@@ -327,7 +344,12 @@
     min-height:160px;
   }
   textarea:focus{outline:none;}
-  .writing-card textarea{min-height:180px;}
+  .fb-textarea, .notes-textarea{
+    font-family:var(--sans);
+    font-size:0.98rem;
+    line-height:1.65;
+    min-height:110px;
+  }
 
   .stats-row{
     display:flex;
@@ -343,8 +365,8 @@
 
   /* ===================== TOOLBAR ===================== */
   .toolbar{
-    max-width:1200px;
-    margin:0 auto 34px;
+    max-width:900px;
+    margin:26px auto 10px;
     padding:0 26px;
     display:flex;
     flex-wrap:wrap;
@@ -366,92 +388,10 @@
   .toolbar button:hover{border-color:var(--blue-deep);color:var(--blue-deep);transform:translateY(-1px);}
   .toolbar button.danger:hover{border-color:#c17b6b;color:#c17b6b;}
 
-  /* ===================== SECTION 2 : FEEDBACK WORKSPACE ===================== */
-  .feedback-section{
-    max-width:1200px;
-    margin:0 auto;
-    padding:0 26px;
-  }
-  .feedback-heading{
-    text-align:center;
-    font-family:var(--serif);
-    font-size:1.6rem;
-    font-weight:600;
-    margin:0 0 6px;
-    color:var(--ink);
-  }
-  .feedback-hint{
-    text-align:center;
-    font-size:0.82rem;
-    color:var(--ink-soft);
-    margin:0 0 28px;
-  }
-
-  .participant-block{
-    margin-bottom:36px;
-  }
-  .participant-block-title{
-    font-family:var(--serif);
-    font-weight:600;
-    font-size:1.25rem;
-    color:var(--blue-deep);
-    margin:0 0 14px;
-    padding-bottom:8px;
-    border-bottom:1px solid var(--line);
-  }
-  .participant-block-title .p-index{
-    font-size:0.7rem;
-    text-transform:uppercase;
-    letter-spacing:0.08em;
-    color:var(--ink-soft);
-    font-family:var(--sans);
-    font-weight:600;
-    margin-right:8px;
-    vertical-align:middle;
-  }
-
-  .grid-row{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:22px;
-    margin-bottom:16px;
-  }
-  @media (max-width:860px){
-    .grid-row{grid-template-columns:1fr;}
-  }
-  .fbox{
-    background:var(--paper);
-    border-radius:var(--radius-sm);
-    box-shadow:var(--shadow-soft);
-    padding:22px 24px;
-    display:flex;
-    flex-direction:column;
-  }
-  .fbox h4{
-    font-family:var(--sans);
-    font-weight:600;
-    font-size:0.86rem;
-    letter-spacing:0.02em;
-    color:var(--blue-deep);
-    margin:0 0 12px;
-    min-height:2.4em;
-  }
-  .fbox textarea{
-    font-family:var(--sans);
-    font-size:0.95rem;
-    line-height:1.6;
-    min-height:120px;
-    flex:1;
-  }
-  .fbox .stats-row{margin-top:10px;padding-top:10px;font-size:0.7rem;}
-
-  .notes-box{max-width:none;}
-  .notes-box h4 span{opacity:.6;font-weight:400;}
-
   /* ===================== FOCUS MODE ===================== */
   body.focus-mode .toolbar,
-  body.focus-mode .feedback-section,
   body.focus-mode .setup-section,
+  body.focus-mode .participant-tabs,
   body.focus-mode .topbar > *:not(.exit-focus-btn){
     display:none !important;
   }
@@ -472,9 +412,8 @@
   @media print{
     body{background:#fff;}
     body::before{display:none;}
-    .topbar, .toolbar, .timer-card, .icon-btn{display:none !important;}
-    .prayer-grid{grid-template-columns:1fr;}
-    .writing-card, .fbox{box-shadow:none;border:1px solid #ccc;}
+    .topbar, .toolbar, .timer-card, .icon-btn, .participant-tabs{display:none !important;}
+    .writing-card{box-shadow:none;border:1px solid #ccc;}
   }
 
   ::selection{background:var(--gold);color:#fff;}
@@ -490,51 +429,78 @@
 
 <header class="hero">
   <h1>2-Way Prayer</h1>
-  <p class="subtitle">Be still. Listen. Write. Reflect. — a four-person group practice.</p>
+  <p class="subtitle">Be still. Listen. Write. Reflect.</p>
 </header>
 
 <section class="setup-section">
   <div class="setup-card">
     <h2>Meeting Setup</h2>
-    <p class="setup-hint">Enter the date and the names of all four participants before beginning.</p>
-    <div class="date-row" style="margin-bottom:18px;display:flex;align-items:center;gap:10px;">
-      <label for="prayerDate" style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.09em;color:var(--ink-soft);">Date</label>
-      <input type="text" id="prayerDate" class="date-input" style="border:none;background:transparent;font-family:var(--sans);font-size:0.95rem;color:var(--ink);border-bottom:1px solid var(--line);padding:2px 2px 4px;" />
+    <p class="setup-hint">Enter the date and the names of all four participants. Each participant keeps their own private page below — no one writes on anyone else's page.</p>
+    <div class="date-row">
+      <label for="prayerDate">Date</label>
+      <input type="text" id="prayerDate" class="date-input" />
     </div>
     <div class="participant-name-grid" id="participantNameGrid"></div>
   </div>
 </section>
 
-<section class="prayer-section">
+<section class="timer-section">
+  <div class="timer-card">
+    <p class="timer-label">Silent Prayer</p>
+    <p class="timer-sublabel">Everyone writes independently, at the same time</p>
+    <div class="timer-ring-wrap">
+      <svg width="160" height="160" viewBox="0 0 180 180">
+        <circle class="ring-bg" cx="90" cy="90" r="80"></circle>
+        <circle class="ring-progress" id="ringProgress" cx="90" cy="90" r="80"
+                stroke-dasharray="502.4" stroke-dashoffset="0"></circle>
+      </svg>
+      <div class="timer-time" id="timerDisplay">10:00</div>
+    </div>
+    <div class="timer-controls">
+      <button class="primary" id="startBtn">Begin</button>
+      <button id="pauseBtn">Pause</button>
+      <button id="resetBtn">Reset</button>
+    </div>
+    <div class="timer-msg" id="timerMsg"></div>
+    <div class="timer-msg-actions" id="timerMsgActions">
+      <button id="continueBtn">Continue Writing</button>
+    </div>
+  </div>
+</section>
 
-  <div class="timer-row">
-    <div class="timer-card">
-      <p class="timer-label">Write Your Prayers</p>
-      <p class="timer-sublabel">All four participants write simultaneously</p>
-      <div class="timer-ring-wrap">
-        <svg width="180" height="180" viewBox="0 0 180 180">
-          <circle class="ring-bg" cx="90" cy="90" r="80"></circle>
-          <circle class="ring-progress" id="ringProgress" cx="90" cy="90" r="80"
-                  stroke-dasharray="502.4" stroke-dashoffset="0"></circle>
-        </svg>
-        <div class="timer-time" id="timerDisplay">10:00</div>
-      </div>
-      <div class="timer-controls">
-        <button class="primary" id="startBtn">Begin</button>
-        <button id="pauseBtn">Pause</button>
-        <button id="resetBtn">Reset</button>
-      </div>
-      <div class="timer-msg" id="timerMsg"></div>
-      <div class="timer-msg-actions" id="timerMsgActions">
-        <button id="continueBtn">Continue Writing</button>
-        <button id="reflectBtn">Reflect</button>
-      </div>
+<section class="page-section">
+  <div class="participant-tabs" id="participantTabs"></div>
+
+  <div class="page-header">
+    <h2 id="pageHeaderName">Participant 1</h2>
+    <p class="page-sub">This page belongs only to this participant.</p>
+  </div>
+
+  <div class="sub-tabs" id="subTabs">
+    <button class="sub-tab active" data-view="prayer">My Prayer</button>
+    <button class="sub-tab" data-view="feedback">Feedback I Received</button>
+    <button class="sub-tab" data-view="notes">Notes I Took While Others Shared</button>
+  </div>
+
+  <div class="sub-panel active" id="panelPrayer">
+    <div class="writing-card">
+      <h3>My 10-Minute Prayer</h3>
+      <textarea id="prayerTextarea" placeholder="Begin writing whatever comes to mind as you listen…" spellcheck="true"></textarea>
+      <div class="stats-row" id="prayerStats"></div>
     </div>
   </div>
 
-  <h2 class="prayer-heading">Prayers</h2>
-  <div class="prayer-grid" id="prayerGrid"></div>
+  <div class="sub-panel" id="panelFeedback">
+    <div id="feedbackBoxes"></div>
+  </div>
 
+  <div class="sub-panel" id="panelNotes">
+    <div class="writing-card">
+      <h3>Notes I Took While Others Shared</h3>
+      <textarea id="notesTextarea" class="notes-textarea" placeholder="What stood out to you as you listened to each person's prayer…" spellcheck="true"></textarea>
+      <div class="stats-row" id="notesStats"></div>
+    </div>
+  </div>
 </section>
 
 <div class="toolbar">
@@ -545,14 +511,6 @@
   <button id="clearAllBtn" class="danger">Clear All</button>
 </div>
 
-<section class="feedback-section">
-  <h2 class="feedback-heading">Prayer Feedback Workspace</h2>
-  <p class="feedback-hint">After each participant reads their prayer aloud, the other three write feedback for them.</p>
-
-  <div id="participantBlocks"></div>
-
-</section>
-
 <footer>
   Ctrl+S to save &nbsp;·&nbsp; Ctrl+P to print &nbsp;·&nbsp; Esc to exit Focus Mode
 </footer>
@@ -561,25 +519,29 @@
 (function(){
   'use strict';
 
-  var STORAGE_KEY = '2way_prayer_group_state_v2';
-  var N = 4; // number of participants
+  var STORAGE_KEY = '2way_prayer_pages_state_v3';
+  var N = 4;
 
-  /* ---------- state ---------- */
+  /* =====================================================
+     STATE — each participant owns a completely separate
+     record. Nobody ever writes into another participant's
+     record. No sample/placeholder data is ever stored.
+  ===================================================== */
   function defaultParticipants(){
     var arr = [];
-    for(var i=0;i<N;i++){ arr.push({ name:'', prayer:'' }); }
+    for(var i=0;i<N;i++){
+      arr.push({ name:'', prayer:'', feedback:{}, notes:'' });
+    }
     return arr;
   }
   function defaultState(){
     return {
       date:'',
       darkMode:false,
+      activeParticipant:0,
+      activeView:'prayer',
       timer:{ remaining:600, running:false },
-      participants: defaultParticipants(),
-      /* feedback[to][from] = feedback text that participant `from` wrote about participant `to`'s prayer */
-      feedback:{},
-      /* notes[i] = optional facilitator notes for participant i */
-      notes:['','','','']
+      participants: defaultParticipants()
     };
   }
   var state;
@@ -587,9 +549,14 @@
     var saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
     if(saved && Array.isArray(saved.participants) && saved.participants.length === N){
       state = Object.assign(defaultState(), saved);
-      state.participants = saved.participants;
-      state.feedback = saved.feedback || {};
-      state.notes = (Array.isArray(saved.notes) && saved.notes.length === N) ? saved.notes : ['','','',''];
+      state.participants = saved.participants.map(function(p){
+        return {
+          name: p && p.name || '',
+          prayer: p && p.prayer || '',
+          feedback: (p && p.feedback) || {},
+          notes: (p && p.notes) || ''
+        };
+      });
     }else{
       state = defaultState();
     }
@@ -598,8 +565,6 @@
   function persist(){
     try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){}
   }
-
-  function feedbackKey(toIdx, fromIdx){ return toIdx + '_from_' + fromIdx; }
 
   function participantLabel(idx){
     var n = (state.participants[idx].name || '').trim();
@@ -620,9 +585,7 @@
   });
 
   /* ---------- focus mode ---------- */
-  function setFocus(on){
-    document.body.classList.toggle('focus-mode', on);
-  }
+  function setFocus(on){ document.body.classList.toggle('focus-mode', on); }
   document.getElementById('focusBtn').addEventListener('click', function(){ setFocus(true); });
   document.getElementById('exitFocusBtn').addEventListener('click', function(){ setFocus(false); });
 
@@ -643,14 +606,13 @@
     var mins = Math.max(1, Math.round(words / 200));
     container.textContent = words + ' words  ·  ' + chars + ' characters  ·  ~' + mins + ' min read';
   }
-
   function autoGrow(ta){
     ta.style.height = 'auto';
     ta.style.height = (ta.scrollHeight + 4) + 'px';
   }
 
   /* =====================================================
-     PARTICIPANT NAME FIELDS
+     PARTICIPANT NAME FIELDS (setup)
   ===================================================== */
   var nameGrid = document.getElementById('participantNameGrid');
   var nameInputs = [];
@@ -669,7 +631,8 @@
       input.addEventListener('input', function(){
         state.participants[idx].name = input.value;
         persist();
-        refreshAllLabels();
+        renderTabs();
+        renderPage();
       });
       field.appendChild(label);
       field.appendChild(input);
@@ -679,175 +642,142 @@
   }
 
   /* =====================================================
-     PRAYER WRITING GRID (one per participant)
+     PARTICIPANT TABS (which private page is showing)
   ===================================================== */
-  var prayerGrid = document.getElementById('prayerGrid');
-  var prayerTextareas = [];
-  var prayerStatsEls = [];
-  var prayerTitleEls = [];
-
-  for(var pi=0; pi<N; pi++){
-    (function(idx){
-      var card = document.createElement('div');
-      card.className = 'writing-card';
-      var h3 = document.createElement('h3');
-      h3.dataset.prayerTitle = idx;
-      var sub = document.createElement('p');
-      sub.className = 'writing-sub';
-      sub.textContent = "Written in the participant's own words";
-      var ta = document.createElement('textarea');
-      ta.placeholder = 'Begin writing whatever comes to mind as you listen…';
-      ta.spellcheck = true;
-      ta.value = state.participants[idx].prayer || '';
-      var stats = document.createElement('div');
-      stats.className = 'stats-row';
-
-      card.appendChild(h3);
-      card.appendChild(sub);
-      card.appendChild(ta);
-      card.appendChild(stats);
-      prayerGrid.appendChild(card);
-
-      prayerTextareas.push(ta);
-      prayerStatsEls.push(stats);
-      prayerTitleEls.push(h3);
-
-      autoGrow(ta);
-      updateStats(stats, ta.value);
-
-      var t;
-      ta.addEventListener('input', function(){
-        autoGrow(ta);
-        updateStats(stats, ta.value);
-        clearTimeout(t);
-        t = setTimeout(function(){
-          state.participants[idx].prayer = ta.value;
+  var tabsContainer = document.getElementById('participantTabs');
+  function renderTabs(){
+    tabsContainer.innerHTML = '';
+    for(var i=0;i<N;i++){
+      (function(idx){
+        var btn = document.createElement('button');
+        btn.className = 'participant-tab' + (state.activeParticipant === idx ? ' active' : '');
+        btn.textContent = participantLabel(idx);
+        btn.addEventListener('click', function(){
+          state.activeParticipant = idx;
           persist();
-        }, 800);
-      });
-    })(pi);
+          renderTabs();
+          renderPage();
+        });
+        tabsContainer.appendChild(btn);
+      })(i);
+    }
   }
 
   /* =====================================================
-     FEEDBACK WORKSPACE
-     For each participant i: prayer feedback FROM every OTHER
-     participant j (never from i on their own prayer), plus one
-     optional facilitator-notes box.
+     SUB-TABS (My Prayer / Feedback I Received / Notes)
   ===================================================== */
-  var blocksContainer = document.getElementById('participantBlocks');
-  var feedbackTextareas = []; // {ta, toIdx, fromIdx}
-  var feedbackTitleEls = [];  // {el, toIdx, fromIdx}
-  var notesTextareas = [];    // {ta, idx}
+  var subTabButtons = document.querySelectorAll('.sub-tab');
+  subTabButtons.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      state.activeView = btn.dataset.view;
+      persist();
+      renderSubTabs();
+    });
+  });
+  function renderSubTabs(){
+    subTabButtons.forEach(function(btn){
+      btn.classList.toggle('active', btn.dataset.view === state.activeView);
+    });
+    ['prayer','feedback','notes'].forEach(function(v){
+      document.getElementById('panel' + v.charAt(0).toUpperCase() + v.slice(1))
+        .classList.toggle('active', v === state.activeView);
+    });
+  }
 
-  for(var bi=0; bi<N; bi++){
-    (function(toIdx){
-      var block = document.createElement('div');
-      block.className = 'participant-block';
+  /* =====================================================
+     RENDER THE CURRENTLY ACTIVE PARTICIPANT'S PAGE
+     Only this one participant's data is shown/edited at a time.
+  ===================================================== */
+  var pageHeaderName = document.getElementById('pageHeaderName');
+  var prayerTa = document.getElementById('prayerTextarea');
+  var prayerStats = document.getElementById('prayerStats');
+  var notesTa = document.getElementById('notesTextarea');
+  var notesStats = document.getElementById('notesStats');
+  var feedbackBoxesEl = document.getElementById('feedbackBoxes');
 
-      var title = document.createElement('h3');
-      title.className = 'participant-block-title';
-      title.dataset.blockTitle = toIdx;
-      block.appendChild(title);
+  var prayerSaveT, notesSaveT;
 
-      var row = document.createElement('div');
-      row.className = 'grid-row';
+  function renderPage(){
+    var idx = state.activeParticipant;
+    var p = state.participants[idx];
 
-      var others = [];
-      for(var k=0;k<N;k++){ if(k!==toIdx) others.push(k); }
+    pageHeaderName.textContent = participantLabel(idx) + "'s Page";
 
-      others.forEach(function(fromIdx){
-        var box = document.createElement('div');
-        box.className = 'fbox';
-        var h4 = document.createElement('h4');
-        h4.dataset.feedbackTitle = feedbackKey(toIdx, fromIdx);
+    /* --- my prayer --- */
+    prayerTa.value = p.prayer || '';
+    autoGrow(prayerTa);
+    updateStats(prayerStats, prayerTa.value);
+
+    /* --- feedback I received, one box per OTHER participant --- */
+    feedbackBoxesEl.innerHTML = '';
+    for(var k=0;k<N;k++){
+      if(k === idx) continue;
+      (function(fromIdx){
+        var card = document.createElement('div');
+        card.className = 'writing-card';
+        var h3 = document.createElement('h3');
+        h3.textContent = 'Feedback from ' + participantLabel(fromIdx);
         var ta = document.createElement('textarea');
+        ta.className = 'fb-textarea';
         ta.spellcheck = true;
-        var key = feedbackKey(toIdx, fromIdx);
-        ta.value = state.feedback[key] || '';
+        ta.placeholder = 'What ' + participantLabel(fromIdx) + ' shared with me…';
+        ta.value = p.feedback[fromIdx] || '';
         var stats = document.createElement('div');
         stats.className = 'stats-row';
 
-        box.appendChild(h4);
-        box.appendChild(ta);
-        box.appendChild(stats);
-        row.appendChild(box);
+        card.appendChild(h3);
+        card.appendChild(ta);
+        card.appendChild(stats);
+        feedbackBoxesEl.appendChild(card);
 
         autoGrow(ta);
         updateStats(stats, ta.value);
 
-        var t2;
+        var t;
         ta.addEventListener('input', function(){
           autoGrow(ta);
           updateStats(stats, ta.value);
-          clearTimeout(t2);
-          t2 = setTimeout(function(){
-            state.feedback[key] = ta.value;
+          clearTimeout(t);
+          t = setTimeout(function(){
+            state.participants[idx].feedback[fromIdx] = ta.value;
             persist();
           }, 800);
         });
+      })(k);
+    }
 
-        feedbackTextareas.push({ta:ta, toIdx:toIdx, fromIdx:fromIdx});
-        feedbackTitleEls.push({el:h4, toIdx:toIdx, fromIdx:fromIdx});
-      });
+    /* --- my notes while others shared --- */
+    notesTa.value = p.notes || '';
+    autoGrow(notesTa);
+    updateStats(notesStats, notesTa.value);
 
-      block.appendChild(row);
-
-      /* optional facilitator notes for this participant */
-      var notesRow = document.createElement('div');
-      notesRow.className = 'grid-row';
-      notesRow.style.gridTemplateColumns = '1fr';
-      var notesBox = document.createElement('div');
-      notesBox.className = 'fbox notes-box';
-      var notesH4 = document.createElement('h4');
-      notesH4.innerHTML = 'Facilitator Notes <span>(optional)</span>';
-      var notesTa = document.createElement('textarea');
-      notesTa.spellcheck = true;
-      notesTa.value = state.notes[toIdx] || '';
-      notesTa.style.minHeight = '80px';
-      var notesStats = document.createElement('div');
-      notesStats.className = 'stats-row';
-
-      notesBox.appendChild(notesH4);
-      notesBox.appendChild(notesTa);
-      notesBox.appendChild(notesStats);
-      notesRow.appendChild(notesBox);
-      block.appendChild(notesRow);
-
-      autoGrow(notesTa);
-      updateStats(notesStats, notesTa.value);
-
-      var t3;
-      notesTa.addEventListener('input', function(){
-        autoGrow(notesTa);
-        updateStats(notesStats, notesTa.value);
-        clearTimeout(t3);
-        t3 = setTimeout(function(){
-          state.notes[toIdx] = notesTa.value;
-          persist();
-        }, 800);
-      });
-
-      notesTextareas.push({ta:notesTa, idx:toIdx});
-
-      blocksContainer.appendChild(block);
-    })(bi);
+    renderSubTabs();
   }
 
-  /* ---------- keep all dynamic labels in sync with names ---------- */
-  function refreshAllLabels(){
-    prayerTitleEls.forEach(function(h3){
-      var idx = Number(h3.dataset.prayerTitle);
-      h3.textContent = participantLabel(idx) + "'s Prayer";
-    });
-    feedbackTitleEls.forEach(function(item){
-      item.el.textContent = 'Feedback from ' + participantLabel(item.fromIdx);
-    });
-    blocksContainer.querySelectorAll('[data-block-title]').forEach(function(h3){
-      var idx = Number(h3.dataset.blockTitle);
-      h3.innerHTML = '<span class="p-index">Participant ' + (idx+1) + '</span>' + participantLabel(idx);
-    });
-  }
-  refreshAllLabels();
+  prayerTa.addEventListener('input', function(){
+    autoGrow(prayerTa);
+    updateStats(prayerStats, prayerTa.value);
+    clearTimeout(prayerSaveT);
+    var idx = state.activeParticipant;
+    prayerSaveT = setTimeout(function(){
+      state.participants[idx].prayer = prayerTa.value;
+      persist();
+    }, 800);
+  });
+
+  notesTa.addEventListener('input', function(){
+    autoGrow(notesTa);
+    updateStats(notesStats, notesTa.value);
+    clearTimeout(notesSaveT);
+    var idx = state.activeParticipant;
+    notesSaveT = setTimeout(function(){
+      state.participants[idx].notes = notesTa.value;
+      persist();
+    }, 800);
+  });
+
+  renderTabs();
+  renderPage();
 
   /* ---------- timer ---------- */
   var TOTAL = 600;
@@ -871,7 +801,6 @@
     var sec = s % 60;
     return (m<10?'0':'')+m + ':' + (sec<10?'0':'')+sec;
   }
-
   function renderTimer(){
     display.textContent = formatTime(remaining);
     var pct = remaining / TOTAL;
@@ -910,7 +839,6 @@
     msgActions.classList.add('show');
     saveTimerState();
   }
-
   function tick(){
     if(remaining <= 0){ finishTimer(); return; }
     remaining -= 1;
@@ -918,7 +846,6 @@
     if(remaining <= 0){ finishTimer(); }
     else{ saveTimerState(); }
   }
-
   function saveTimerState(){
     state.timer = { remaining:remaining, running:running };
     persist();
@@ -949,50 +876,40 @@
   document.getElementById('continueBtn').addEventListener('click', function(){
     msgEl.textContent = '';
     msgActions.classList.remove('show');
-    if(prayerTextareas[0]) prayerTextareas[0].focus();
-  });
-  document.getElementById('reflectBtn').addEventListener('click', function(){
-    msgEl.textContent = 'Take a quiet moment before you write.';
-    document.querySelector('.feedback-section').scrollIntoView({behavior:'smooth'});
+    prayerTa.focus();
   });
 
-  /* resume in-progress timer visually (does not auto-run across reloads) */
   if(state.timer && state.timer.remaining != null){
     remaining = state.timer.remaining;
     renderTimer();
   }
 
-  /* ---------- toolbar actions ---------- */
+  /* ---------- toolbar actions (export ALL participants' own pages) ---------- */
   function gatherAllText(){
     var out = [];
     out.push('2-WAY PRAYER — GROUP MEETING — ' + (dateEl.value || ''));
     out.push('');
     out.push('PARTICIPANTS: ' + state.participants.map(function(_, i){ return participantLabel(i); }).join(', '));
-    out.push('');
-    out.push('=========================');
-    out.push('PRAYERS');
-    out.push('=========================');
+
     for(var i=0;i<N;i++){
+      var p = state.participants[i];
       out.push('');
-      out.push(participantLabel(i) + "'s Prayer:");
-      out.push(prayerTextareas[i].value || '(empty)');
-    }
-    out.push('');
-    out.push('=========================');
-    out.push('PRAYER FEEDBACK WORKSPACE');
-    out.push('=========================');
-    for(var j=0;j<N;j++){
+      out.push('=========================');
+      out.push(participantLabel(i) + "'s Page");
+      out.push('=========================');
       out.push('');
-      out.push('Participant ' + (j+1) + ' — ' + participantLabel(j));
-      feedbackTextareas.filter(function(item){ return item.toIdx === j; }).forEach(function(item){
-        out.push('  Feedback from ' + participantLabel(item.fromIdx) + ':');
-        out.push('  ' + (item.ta.value || '(empty)'));
-      });
-      var notesItem = notesTextareas.filter(function(item){ return item.idx === j; })[0];
-      if(notesItem && notesItem.ta.value){
-        out.push('  Facilitator Notes:');
-        out.push('  ' + notesItem.ta.value);
+      out.push('My Prayer:');
+      out.push(p.prayer || '(empty)');
+      out.push('');
+      out.push('Feedback I Received:');
+      for(var k=0;k<N;k++){
+        if(k===i) continue;
+        out.push('  From ' + participantLabel(k) + ':');
+        out.push('  ' + (p.feedback[k] || '(empty)'));
       }
+      out.push('');
+      out.push('Notes I Took While Others Shared:');
+      out.push(p.notes || '(empty)');
     }
     return out.join('\n');
   }
@@ -1007,7 +924,6 @@
       flashMsg('Clipboard not available');
     }
   });
-
   function flashMsg(text){
     var old = msgEl.textContent;
     msgEl.textContent = text;
@@ -1029,7 +945,6 @@
   document.getElementById('downloadTxtBtn').addEventListener('click', function(){
     downloadBlob(gatherAllText(), '2-way-prayer-' + (dateEl.value||'export').replace(/[^\w-]+/g,'_') + '.txt', 'text/plain');
   });
-
   document.getElementById('downloadHtmlBtn').addEventListener('click', function(){
     var text = gatherAllText().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
     var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>2-Way Prayer</title>' +
@@ -1047,20 +962,8 @@
     state.darkMode = keepDark;
 
     nameInputs.forEach(function(input){ input.value = ''; });
-    prayerTextareas.forEach(function(ta, i){
-      ta.value = '';
-      autoGrow(ta);
-      updateStats(prayerStatsEls[i], '');
-    });
-    feedbackTextareas.forEach(function(item){
-      item.ta.value = '';
-      autoGrow(item.ta);
-    });
-    notesTextareas.forEach(function(item){
-      item.ta.value = '';
-      autoGrow(item.ta);
-    });
-    refreshAllLabels();
+    renderTabs();
+    renderPage();
     persist();
   });
 
@@ -1070,17 +973,15 @@
     if(mod && e.key.toLowerCase()==='s'){
       e.preventDefault();
       document.getElementById('downloadTxtBtn').click();
-    }else if(mod && e.key.toLowerCase()==='p'){
-      // let native print proceed
     }else if(e.key === 'Escape'){
       setFocus(false);
     }
   });
 
   window.addEventListener('resize', function(){
-    prayerTextareas.forEach(autoGrow);
-    feedbackTextareas.forEach(function(item){ autoGrow(item.ta); });
-    notesTextareas.forEach(function(item){ autoGrow(item.ta); });
+    autoGrow(prayerTa);
+    autoGrow(notesTa);
+    document.querySelectorAll('.fb-textarea').forEach(autoGrow);
   });
 
 })();
