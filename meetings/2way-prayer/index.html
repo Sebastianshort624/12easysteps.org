@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2-Way Prayer</title>
+<style>
+  /* ============================================================
+     DESIGN TOKENS
+     ============================================================ */
+  :root{
+    --bg-1:#f4f8fc;
+    --bg-2:#eaf1f9;
+    --paper:#ffffff;
+    --ink:#1f2b3a;
+    --ink-soft:#5b6b7f;
+    --blue-deep:#2f5c8a;
+    --blue:#3f7cb5;
+    --blue-soft:#bcd7ef;
+    --blue-mist:#e3edf7;
+    --gold:#c9a34e;
+    --ring-track:#dbe7f3;
+    --border:#dbe6f2;
+    --shadow: 0 10px 30px rgba(31,71,110,0.08);
+    --shadow-soft: 0 4px 14px rgba(31,71,110,0.06);
+    --radius-lg:22px;
+    --radius-md:16px;
+    --radius-sm:10px;
+    --font-display: Georgia, 'Iowan Old Style', 'Palatino Linotype', Palatino, serif;
+    --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --transition: 0.35s cubic-bezier(.4,0,.2,1);
+  }
+
+  [data-theme="dark"]{
+    --bg-1:#0f1620;
+    --bg-2:#141d29;
+    --paper:#182230;
+    --ink:#eaf1f9;
+    --ink-soft:#93a5bb;
+    --blue-deep:#8fc0ee;
+    --blue:#6fa8d8;
+    --blue-soft:#2b435c;
+    --blue-mist:#1c2a3a;
+    --gold:#e0bf75;
+    --ring-track:#26364a;
+    --border:#25344a;
+    --shadow: 0 10px 30px rgba(0,0,0,0.35);
+    --shadow-soft: 0 4px 14px rgba(0,0,0,0.25);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:var(--font-body);
+    color:var(--ink);
+    background:
+      radial-gradient(1200px 600px at 10% -10%, var(--bg-2), transparent),
+      radial-gradient(1000px 500px at 110% 10%, var(--bg-2), transparent),
+      var(--bg-1);
+    min-height:100vh;
+    transition:background var(--transition), color var(--transition);
+    line-height:1.5;
+  }
+
+  a{color:inherit;}
+
+  /* ============================================================
+     TOP BAR / TOOLS
+     ============================================================ */
+  .toolbar{
+    position:sticky;
+    top:0;
+    z-index:50;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:14px 22px;
+    background:rgba(244,248,252,0.82);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  [data-theme="dark"] .toolbar{background:rgba(15,22,32,0.82);}
+
+  .toolbar-brand{
+    font-family:var(--font-display);
+    font-size:1.05rem;
+    letter-spacing:0.03em;
+    color:var(--blue-deep);
+  }
+
+  .toolbar-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
+  button{
+    font-family:var(--font-body);
+    cursor:pointer;
+  }
+
+  .btn{
+    border:1px solid var(--border);
+    background:var(--paper);
+    color:var(--ink);
+    padding:9px 16px;
+    border-radius:999px;
+    font-size:0.82rem;
+    font-weight:600;
+    letter-spacing:0.01em;
+    transition:transform 0.15s ease, box-shadow var(--transition), background var(--transition), color var(--transition);
+    box-shadow:var(--shadow-soft);
+  }
+  .btn:hover{transform:translateY(-1px); box-shadow:var(--shadow);}
+  .btn:active{transform:translateY(0);}
+  .btn:focus-visible{outline:3px solid var(--blue-soft); outline-offset:2px;}
+
+  .btn-primary{
+    background:linear-gradient(135deg, var(--blue), var(--blue-deep));
+    color:#fff;
+    border-color:transparent;
+  }
+  .btn-quiet{
+    background:transparent;
+    box-shadow:none;
+  }
+  .btn-danger{
+    color:#9a3b3b;
+  }
+
+  .icon-toggle{
+    width:40px;height:40px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--border);
+    background:var(--paper);
+    box-shadow:var(--shadow-soft);
+    font-size:1.05rem;
+  }
+
+  /* ============================================================
+     LAYOUT SHELL
+     ============================================================ */
+  .page{
+    max-width:1180px;
+    margin:0 auto;
+    padding:36px 22px 120px;
+  }
+
+  header.hero{
+    text-align:center;
+    margin-bottom:38px;
+  }
+  header.hero h1{
+    font-family:var(--font-display);
+    font-weight:400;
+    font-size:clamp(2.1rem, 4vw, 3rem);
+    margin:0 0 8px;
+    color:var(--blue-deep);
+    letter-spacing:0.01em;
+  }
+  header.hero p{
+    margin:0;
+    color:var(--ink-soft);
+    font-size:1.02rem;
+    font-style:italic;
+  }
+
+  .card{
+    background:var(--paper);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow);
+    transition:background var(--transition), border-color var(--transition);
+  }
+
+  /* ============================================================
+     SECTION 1 — MY 2-WAY PRAYER
+     ============================================================ */
+  section.prayer-section{
+    margin-bottom:56px;
+  }
+
+  .prayer-top{
+    display:grid;
+    grid-template-columns: 1fr 300px;
+    gap:28px;
+    align-items:center;
+    padding:32px;
+    margin-bottom:26px;
+  }
+  @media (max-width: 860px){
+    .prayer-top{grid-template-columns:1fr; text-align:center;}
+  }
+
+  .prayer-top h2{
+    font-family:var(--font-display);
+    font-size:1.9rem;
+    margin:0 0 10px;
+    color:var(--ink);
+  }
+
+  .date-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    justify-content:flex-start;
+  }
+  @media (max-width:860px){ .date-row{justify-content:center;} }
+  .date-row label{
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--ink-soft);
+  }
+  .date-row input[type="date"]{
+    border:1px solid var(--border);
+    background:var(--blue-mist);
+    color:var(--ink);
+    padding:7px 10px;
+    border-radius:var(--radius-sm);
+    font-family:var(--font-body);
+    font-size:0.88rem;
+  }
+
+  .prayer-actions{
+    margin-top:16px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  @media (max-width:860px){ .prayer-actions{justify-content:center;} }
+
+  /* --- Circular timer --- */
+  .timer-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
+  }
+  .timer-ring-box{
+    position:relative;
+    width:220px;
+    height:220px;
+  }
+  .timer-ring-box svg{
+    width:100%;
+    height:100%;
+    transform:rotate(-90deg);
+  }
+  .ring-track{
+    fill:none;
+    stroke:var(--ring-track);
+    stroke-width:10;
+  }
+  .ring-progress{
+    fill:none;
+    stroke:var(--blue);
+    stroke-width:10;
+    stroke-linecap:round;
+    transition:stroke-dashoffset 1s linear, stroke var(--transition);
+  }
+  .timer-center{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+  }
+  .timer-digits{
+    font-family:var(--font-display);
+    font-size:2.15rem;
+    color:var(--blue-deep);
+    font-variant-numeric:tabular-nums;
+  }
+  .timer-label{
+    font-size:0.68rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-top:2px;
+  }
+  .timer-controls{
+    display:flex;
+    gap:8px;
+  }
+  .timer-message{
+    min-height:20px;
+    font-size:0.88rem;
+    color:var(--blue-deep);
+    font-style:italic;
+    text-align:center;
+  }
+
+  /* --- Writing area --- */
+  .writing-card{
+    padding:30px;
+  }
+  .writing-card .field-label{
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--ink-soft);
+    margin-bottom:10px;
+    display:block;
+  }
+  textarea{
+    width:100%;
+    resize:none;
+    overflow:hidden;
+    border:1px solid var(--border);
+    background:
+      linear-gradient(var(--paper), var(--paper));
+    color:var(--ink);
+    border-radius:var(--radius-md);
+    padding:22px 24px;
+    font-family:var(--font-body);
+    font-size:1.05rem;
+    line-height:1.75;
+    min-height:260px;
+    transition:border-color var(--transition), box-shadow var(--transition);
+  }
+  textarea:focus-visible, input:focus-visible{
+    outline:none;
+    border-color:var(--blue);
+    box-shadow:0 0 0 4px var(--blue-soft);
+  }
+  .main-writing{
+    min-height:340px;
+  }
+
+  .stats-row{
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+    margin-top:12px;
+    font-size:0.8rem;
+    color:var(--ink-soft);
+  }
+  .stats-row strong{color:var(--ink);}
+
+  /* ============================================================
+     SECTION 2 — FEEDBACK GRID
+     ============================================================ */
+  section.feedback-section h2{
+    font-family:var(--font-display);
+    font-size:1.7rem;
+    text-align:center;
+    color:var(--ink);
+    margin:0 0 6px;
+  }
+  section.feedback-section > p.section-sub{
+    text-align:center;
+    color:var(--ink-soft);
+    margin:0 0 30px;
+    font-size:0.92rem;
+  }
+
+  .name-card{
+    max-width:420px;
+    margin:0 auto 34px;
+    padding:22px 26px;
+    text-align:center;
+  }
+  .name-card label{
+    display:block;
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--ink-soft);
+    margin-bottom:8px;
+  }
+  .name-card input[type="text"]{
+    width:100%;
+    text-align:center;
+    font-size:1.15rem;
+    padding:10px 14px;
+    border-radius:var(--radius-sm);
+    border:1px solid var(--border);
+    background:var(--blue-mist);
+    color:var(--ink);
+    font-family:var(--font-display);
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:22px;
+  }
+  @media (max-width: 980px){
+    .grid{grid-template-columns:repeat(2, 1fr);}
+  }
+  @media (max-width: 640px){
+    .grid{grid-template-columns:1fr;}
+  }
+
+  .fbox{
+    padding:22px;
+    display:flex;
+    flex-direction:column;
+  }
+  .fbox h3{
+    font-size:0.92rem;
+    font-weight:600;
+    margin:0 0 12px;
+    color:var(--blue-deep);
+    min-height:2.6em;
+  }
+  .fbox textarea{
+    min-height:160px;
+    font-size:0.96rem;
+  }
+  .fbox .stats-row{font-size:0.72rem; gap:14px;}
+
+  /* ============================================================
+     BREATHING / DECOR
+     ============================================================ */
+  .footer-note{
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:0.78rem;
+    margin-top:60px;
+  }
+
+  /* ============================================================
+     FOCUS MODE
+     ============================================================ */
+  body.focus-mode .toolbar,
+  body.focus-mode .feedback-section,
+  body.focus-mode .date-row,
+  body.focus-mode .prayer-actions,
+  body.focus-mode .footer-note,
+  body.focus-mode header.hero p{
+    display:none !important;
+  }
+  body.focus-mode .prayer-top{
+    grid-template-columns:1fr 300px;
+  }
+  body.focus-mode .page{
+    max-width:900px;
+    padding-top:40px;
+  }
+  .exit-focus-btn{display:none;}
+  body.focus-mode .exit-focus-btn{
+    display:inline-flex;
+    position:fixed;
+    top:18px;
+    right:18px;
+    z-index:60;
+  }
+
+  /* ============================================================
+     PRINT
+     ============================================================ */
+  @media print{
+    .toolbar, .timer-controls, .prayer-actions, .exit-focus-btn,
+    .name-card label + input, .stats-row, .footer-note, .icon-toggle,
+    .timer-ring-box{ display:none !important; }
+    body{background:#fff; color:#000;}
+    .card{box-shadow:none; border:1px solid #ccc;}
+    textarea{border:1px solid #ccc; min-height:auto;}
+    .page{padding:0; max-width:100%;}
+    .grid{grid-template-columns:1fr;}
+  }
+
+  .sr-only{
+    position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+    overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+</style>
+</head>
+<body>
+
+<button class="btn btn-primary exit-focus-btn" id="exitFocusBtn">Exit Focus (Esc)</button>
+
+<div class="toolbar">
+  <div class="toolbar-brand">12 Easy Steps &middot; 2-Way Prayer</div>
+  <div class="toolbar-actions">
+    <button class="btn" id="copyAllBtn">Copy All</button>
+    <button class="btn" id="printBtn">Print</button>
+    <button class="btn" id="downloadTxtBtn">Download TXT</button>
+    <button class="btn" id="downloadHtmlBtn">Download HTML</button>
+    <button class="btn" id="focusBtn">Focus Mode</button>
+    <button class="btn btn-danger" id="clearAllBtn">Clear All</button>
+    <button class="icon-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">&#9789;</button>
+  </div>
+</div>
+
+<div class="page">
+
+  <header class="hero">
+    <h1>2-Way Prayer</h1>
+    <p>Be still. Listen. Write. Reflect.</p>
+  </header>
+
+  <!-- ================= SECTION 1 ================= -->
+  <section class="prayer-section" id="prayerSection">
+
+    <div class="card prayer-top">
+      <div>
+        <h2>My 2-Way Prayer</h2>
+        <div class="date-row">
+          <label for="prayerDate">Date</label>
+          <input type="date" id="prayerDate">
+        </div>
+        <div class="prayer-actions">
+          <button class="btn" id="continueWritingBtn">Continue Writing</button>
+          <button class="btn" id="reflectBtn">Go to Feedback</button>
+        </div>
+      </div>
+
+      <div class="timer-wrap">
+        <div class="timer-ring-box">
+          <svg viewBox="0 0 220 220">
+            <circle class="ring-track" cx="110" cy="110" r="96"></circle>
+            <circle class="ring-progress" id="ringProgress" cx="110" cy="110" r="96"
+                    stroke-dasharray="603.19" stroke-dashoffset="0"></circle>
+          </svg>
+          <div class="timer-center">
+            <div class="timer-digits" id="timerDigits">10:00</div>
+            <div class="timer-label">Listening Time</div>
+          </div>
+        </div>
+        <div class="timer-controls">
+          <button class="btn btn-primary" id="beginBtn">Begin</button>
+          <button class="btn" id="pauseBtn">Pause</button>
+          <button class="btn" id="resetBtn">Reset</button>
+        </div>
+        <div class="timer-message" id="timerMessage" role="status" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div class="card writing-card">
+      <label class="field-label" for="mainWriting">My Prayer &amp; Writing</label>
+      <textarea id="mainWriting" class="main-writing" spellcheck="true"
+        aria-label="Main prayer and listening writing area"
+        placeholder="God, please remove anything that blocks me from hearing You. Help me be honest, open-minded, and willing. Guide my thoughts. Help me hear what You would have me know today. Amen.
+
+Begin writing here..."></textarea>
+      <div class="stats-row">
+        <span><strong id="mainWords">0</strong> Words</span>
+        <span><strong id="mainChars">0</strong> Characters</span>
+        <span><strong id="mainReadTime">0 min</strong> Estimated reading time</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 2 ================= -->
+  <section class="feedback-section" id="feedbackSection">
+    <h2>Prayer Feedback Workspace</h2>
+    <p class="section-sub">Feedback shared between you and your sponsor or prayer partner.</p>
+
+    <div class="card name-card">
+      <label for="partnerName">Enter Name</label>
+      <input type="text" id="partnerName" placeholder="e.g. John" autocomplete="off">
+    </div>
+
+    <div class="grid" id="feedbackGrid">
+      <!-- generated by JS -->
+    </div>
+  </section>
+
+  <p class="footer-note">Your writing stays on this device only, saved automatically as you go.</p>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============================================================
+     STORAGE HELPERS
+     ============================================================ */
+  const STORE_PREFIX = "twoWayPrayer_";
+  function save(key, value){
+    try{ localStorage.setItem(STORE_PREFIX + key, value); }catch(e){ /* storage unavailable */ }
+  }
+  function load(key, fallback){
+    try{
+      const v = localStorage.getItem(STORE_PREFIX + key);
+      return v === null ? fallback : v;
+    }catch(e){ return fallback; }
+  }
+
+  /* ============================================================
+     THEME
+     ============================================================ */
+  const themeToggle = document.getElementById('themeToggle');
+  function applyTheme(theme){
+    document.documentElement.setAttribute('data-theme', theme);
+    themeToggle.innerHTML = theme === 'dark' ? '&#9788;' : '&#9789;';
+  }
+  let currentTheme = load('theme', 'light');
+  applyTheme(currentTheme);
+  themeToggle.addEventListener('click', function(){
+    currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    applyTheme(currentTheme);
+    save('theme', currentTheme);
+  });
+
+  /* ============================================================
+     DATE
+     ============================================================ */
+  const dateInput = document.getElementById('prayerDate');
+  dateInput.value = load('date', new Date().toISOString().slice(0,10));
+  dateInput.addEventListener('change', () => save('date', dateInput.value));
+
+  /* ============================================================
+     AUTO-GROW + AUTOSAVE + STATS for a textarea
+     ============================================================ */
+  function wireTextarea(el, storageKey, statsEls){
+    // restore
+    const restored = load(storageKey, '');
+    if(restored) el.value = restored;
+
+    function grow(){
+      el.style.height = 'auto';
+      el.style.height = (el.scrollHeight + 2) + 'px';
+    }
+
+    function updateStats(){
+      const text = el.value.trim();
+      const words = text.length ? text.split(/\s+/).filter(Boolean).length : 0;
+      const chars = el.value.length;
+      const readMin = Math.max(1, Math.round(words / 200));
+      if(statsEls){
+        statsEls.words.textContent = words;
+        statsEls.chars.textContent = chars;
+        statsEls.read.textContent = words === 0 ? '0 min' : readMin + ' min';
+      }
+    }
+
+    let saveTimer;
+    function scheduleSave(){
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(() => save(storageKey, el.value), 600);
+    }
+
+    el.addEventListener('input', function(){
+      grow();
+      updateStats();
+      scheduleSave();
+    });
+
+    grow();
+    updateStats();
+  }
+
+  /* Main writing area */
+  wireTextarea(
+    document.getElementById('mainWriting'),
+    'mainWriting',
+    {
+      words: document.getElementById('mainWords'),
+      chars: document.getElementById('mainChars'),
+      read: document.getElementById('mainReadTime')
+    }
+  );
+
+  /* ============================================================
+     TIMER (10 minutes, circular progress ring)
+     ============================================================ */
+  const TOTAL_SECONDS = 10 * 60;
+  const ring = document.getElementById('ringProgress');
+  const CIRCUMFERENCE = 2 * Math.PI * 96; // ~603.19
+  const digits = document.getElementById('timerDigits');
+  const message = document.getElementById('timerMessage');
+  const beginBtn = document.getElementById('beginBtn');
+  const pauseBtn = document.getElementById('pauseBtn');
+  const resetBtn = document.getElementById('resetBtn');
+
+  let remaining = parseInt(load('timerRemaining', TOTAL_SECONDS), 10);
+  if(isNaN(remaining) || remaining < 0 || remaining > TOTAL_SECONDS) remaining = TOTAL_SECONDS;
+  let running = false;
+  let intervalId = null;
+  let audioCtx = null;
+
+  function formatTime(s){
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return (m < 10 ? '0' + m : m) + ':' + (sec < 10 ? '0' + sec : sec);
+  }
+
+  function colorForProgress(fraction){
+    // fraction: 1 = full time left, 0 = time up. Blue -> gold as time runs low.
+    if(fraction > 0.5) return getComputedStyle(document.documentElement).getPropertyValue('--blue').trim();
+    if(fraction > 0.15) return getComputedStyle(document.documentElement).getPropertyValue('--gold').trim();
+    return '#c0704a';
+  }
+
+  function render(){
+    digits.textContent = formatTime(remaining);
+    const fraction = remaining / TOTAL_SECONDS;
+    const offset = CIRCUMFERENCE * (1 - fraction);
+    ring.style.strokeDashoffset = offset;
+    ring.style.stroke = colorForProgress(fraction);
+  }
+
+  function playChime(){
+    try{
+      audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+      const now = audioCtx.currentTime;
+      [523.25, 659.25, 783.99].forEach(function(freq, i){
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0, now + i * 0.28);
+        gain.gain.linearRampToValueAtTime(0.14, now + i * 0.28 + 0.08);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.28 + 1.4);
+        osc.connect(gain).connect(audioCtx.destination);
+        osc.start(now + i * 0.28);
+        osc.stop(now + i * 0.28 + 1.5);
+      });
+    }catch(e){ /* audio unavailable */ }
+  }
+
+  function tick(){
+    remaining = Math.max(0, remaining - 1);
+    render();
+    save('timerRemaining', remaining);
+    if(remaining <= 0){
+      stopTimer();
+      message.textContent = 'Your listening time has ended.';
+      playChime();
+    }
+  }
+
+  function startTimer(){
+    if(running || remaining <= 0) return;
+    running = true;
+    message.textContent = '';
+    intervalId = setInterval(tick, 1000);
+  }
+  function stopTimer(){
+    running = false;
+    clearInterval(intervalId);
+  }
+  function resetTimer(){
+    stopTimer();
+    remaining = TOTAL_SECONDS;
+    save('timerRemaining', remaining);
+    message.textContent = '';
+    render();
+  }
+
+  beginBtn.addEventListener('click', function(){
+    startTimer();
+    document.getElementById('mainWriting').scrollIntoView({behavior:'smooth', block:'center'});
+  });
+  pauseBtn.addEventListener('click', stopTimer);
+  resetBtn.addEventListener('click', resetTimer);
+
+  document.getElementById('continueWritingBtn').addEventListener('click', function(){
+    document.getElementById('mainWriting').scrollIntoView({behavior:'smooth', block:'center'});
+    document.getElementById('mainWriting').focus();
+  });
+  document.getElementById('reflectBtn').addEventListener('click', function(){
+    document.getElementById('feedbackSection').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
+  render();
+
+  /* ============================================================
+     FEEDBACK GRID — build 4 rows x 3 columns = 12 boxes
+     ============================================================ */
+  const grid = document.getElementById('feedbackGrid');
+  const nameInput = document.getElementById('partnerName');
+  let currentName = load('partnerName', '');
+  nameInput.value = currentName;
+
+  // Row definitions. "type" determines the title template.
+  // row 0 (top row): col0 = name field is separate (not a box), col1 = {name}'s feedback on my prayer, col2 = optional/future use
+  // rows 1-3: col0 = my feedback on {name}'s prayer, col1 = {name}'s feedback on {name}'s prayer, col2 = {name}'s feedback on {name}'s prayer
+  const boxDefs = [
+    // Row 1
+    { id: 'r1c1', type: 'their-feedback-on-mine' },
+    { id: 'r1c2', type: 'optional' },
+    // Row 2
+    { id: 'r2c1', type: 'my-feedback-on-theirs' },
+    { id: 'r2c2', type: 'their-feedback-on-theirs' },
+    { id: 'r2c3', type: 'their-feedback-on-theirs' },
+    // Row 3
+    { id: 'r3c1', type: 'my-feedback-on-theirs' },
+    { id: 'r3c2', type: 'their-feedback-on-theirs' },
+    { id: 'r3c3', type: 'their-feedback-on-theirs' },
+    // Row 4
+    { id: 'r4c1', type: 'my-feedback-on-theirs' },
+    { id: 'r4c2', type: 'their-feedback-on-theirs' },
+    { id: 'r4c3', type: 'their-feedback-on-theirs' }
+  ];
+
+  function titleFor(type, name){
+    const n = name && name.trim() ? name.trim() : 'Their';
+    const possessive = /s$/i.test(n) ? n + "'" : n + "'s";
+    switch(type){
+      case 'their-feedback-on-mine': return possessive + ' Feedback on My Prayer';
+      case 'my-feedback-on-theirs': return 'My Feedback on ' + possessive + ' Prayer';
+      case 'their-feedback-on-theirs': return possessive + ' Feedback on ' + possessive + ' Prayer';
+      case 'optional': return 'Additional Notes (Optional)';
+      default: return 'Feedback';
+    }
+  }
+
+  const boxRefs = [];
+
+  boxDefs.forEach(function(def){
+    const box = document.createElement('div');
+    box.className = 'card fbox';
+
+    const h3 = document.createElement('h3');
+    h3.textContent = titleFor(def.type, currentName);
+    box.appendChild(h3);
+
+    const ta = document.createElement('textarea');
+    ta.spellcheck = true;
+    ta.setAttribute('aria-label', h3.textContent);
+    box.appendChild(ta);
+
+    const statsRow = document.createElement('div');
+    statsRow.className = 'stats-row';
+    const wordsSpan = document.createElement('span');
+    const charsSpan = document.createElement('span');
+    const readSpan = document.createElement('span');
+    const wordsStrong = document.createElement('strong'); wordsStrong.textContent = '0';
+    const charsStrong = document.createElement('strong'); charsStrong.textContent = '0';
+    const readStrong = document.createElement('strong'); readStrong.textContent = '0 min';
+    wordsSpan.append(wordsStrong, ' Words');
+    charsSpan.append(charsStrong, ' Characters');
+    readSpan.append(readStrong, ' Reading time');
+    statsRow.append(wordsSpan, charsSpan, readSpan);
+    box.appendChild(statsRow);
+
+    grid.appendChild(box);
+
+    wireTextarea(ta, 'feedback_' + def.id, { words: wordsStrong, chars: charsStrong, read: readStrong });
+
+    boxRefs.push({ def: def, h3: h3, textarea: ta });
+  });
+
+  function refreshTitles(){
+    boxRefs.forEach(function(ref){
+      const title = titleFor(ref.def.type, currentName);
+      ref.h3.textContent = title;
+      ref.textarea.setAttribute('aria-label', title);
+    });
+  }
+
+  nameInput.addEventListener('input', function(){
+    currentName = nameInput.value;
+    save('partnerName', currentName);
+    refreshTitles();
+  });
+
+  /* ============================================================
+     TOOLS: Copy All / Print / Download TXT / Download HTML / Clear All
+     ============================================================ */
+  function buildFullText(){
+    const lines = [];
+    lines.push('2-WAY PRAYER');
+    lines.push('Date: ' + (dateInput.value || ''));
+    lines.push('');
+    lines.push('MY PRAYER & WRITING');
+    lines.push('-------------------');
+    lines.push(document.getElementById('mainWriting').value || '(empty)');
+    lines.push('');
+    lines.push('PRAYER FEEDBACK WORKSPACE — ' + (currentName || 'Name not entered'));
+    lines.push('----------------------------------------------');
+    boxRefs.forEach(function(ref){
+      lines.push('');
+      lines.push(ref.h3.textContent);
+      lines.push(ref.textarea.value || '(empty)');
+    });
+    return lines.join('\n');
+  }
+
+  document.getElementById('copyAllBtn').addEventListener('click', function(){
+    const text = buildFullText();
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){
+        flashButton(document.getElementById('copyAllBtn'), 'Copied!');
+      }).catch(function(){ fallbackCopy(text); });
+    } else {
+      fallbackCopy(text);
+    }
+  });
+
+  function fallbackCopy(text){
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try{ document.execCommand('copy'); }catch(e){}
+    document.body.removeChild(ta);
+    flashButton(document.getElementById('copyAllBtn'), 'Copied!');
+  }
+
+  function flashButton(btn, msg){
+    const original = btn.textContent;
+    btn.textContent = msg;
+    setTimeout(function(){ btn.textContent = original; }, 1500);
+  }
+
+  document.getElementById('printBtn').addEventListener('click', function(){ window.print(); });
+
+  function downloadFile(filename, content, mime){
+    const blob = new Blob([content], { type: mime });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+  }
+
+  document.getElementById('downloadTxtBtn').addEventListener('click', function(){
+    downloadFile('2-way-prayer-' + (dateInput.value || 'entry') + '.txt', buildFullText(), 'text/plain');
+  });
+
+  document.getElementById('downloadHtmlBtn').addEventListener('click', function(){
+    const text = buildFullText();
+    const escaped = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    const html = '<!DOCTYPE html><html><head><meta charset="UTF-8">' +
+      '<title>2-Way Prayer — ' + (dateInput.value || '') + '</title>' +
+      '<style>body{font-family:Georgia,serif;max-width:720px;margin:40px auto;padding:0 20px;line-height:1.7;color:#1f2b3a;white-space:pre-wrap;}</style>' +
+      '</head><body>' + escaped + '</body></html>';
+    downloadFile('2-way-prayer-' + (dateInput.value || 'entry') + '.html', html, 'text/html');
+  });
+
+  document.getElementById('clearAllBtn').addEventListener('click', function(){
+    const ok = window.confirm('This will permanently clear your prayer, writing, and all feedback boxes on this device. Continue?');
+    if(!ok) return;
+    document.getElementById('mainWriting').value = '';
+    document.getElementById('mainWriting').dispatchEvent(new Event('input'));
+    boxRefs.forEach(function(ref){
+      ref.textarea.value = '';
+      ref.textarea.dispatchEvent(new Event('input'));
+    });
+    nameInput.value = '';
+    currentName = '';
+    save('partnerName', '');
+    refreshTitles();
+    resetTimer();
+  });
+
+  /* ============================================================
+     FOCUS MODE
+     ============================================================ */
+  const focusBtn = document.getElementById('focusBtn');
+  const exitFocusBtn = document.getElementById('exitFocusBtn');
+  function setFocus(on){
+    document.body.classList.toggle('focus-mode', on);
+  }
+  focusBtn.addEventListener('click', () => setFocus(true));
+  exitFocusBtn.addEventListener('click', () => setFocus(false));
+
+  /* ============================================================
+     KEYBOARD SHORTCUTS
+     ============================================================ */
+  document.addEventListener('keydown', function(e){
+    const ctrlOrCmd = e.ctrlKey || e.metaKey;
+    if(ctrlOrCmd && e.key.toLowerCase() === 's'){
+      e.preventDefault();
+      document.getElementById('downloadTxtBtn').click();
+    } else if(ctrlOrCmd && e.key.toLowerCase() === 'p'){
+      // let native print work, but ensure focus mode doesn't block it
+    } else if(e.key === 'Escape'){
+      if(document.body.classList.contains('focus-mode')) setFocus(false);
+    }
+  });
+
+})();
+</script>
+</body>
+</html>
