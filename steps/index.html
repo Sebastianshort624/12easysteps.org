@@ -366,8 +366,9 @@ main{max-width:1040px;margin:0 auto;padding:24px 18px 80px}
     <button class="phase-btn" onclick="showPhase(1,3,this)">③ Unmanageability</button>
     <button class="phase-btn" onclick="showPhase(1,4,this)">④ The Allergy</button>
     <button class="phase-btn" onclick="showPhase(1,5,this)">⑤ The Pickle</button>
-    <button class="phase-btn" onclick="showPhase(1,6,this)">⑥ Sponsor Shares</button>
-    <button class="phase-btn" onclick="showPhase(1,7,this)">⑦ Graduation</button>
+    <button class="phase-btn" onclick="showPhase(1,6,this)">⑥ Insanity</button>
+    <button class="phase-btn" onclick="showPhase(1,7,this)">⑦ Sponsor Shares</button>
+    <button class="phase-btn" onclick="showPhase(1,8,this)">⑧ Graduation</button>
   </div>
 
   <!-- PHASE 1 -->
@@ -501,11 +502,35 @@ main{max-width:1040px;margin:0 auto;padding:24px 18px 80px}
       <label class="conv-item" id="cc-s1-pk1"><input type="checkbox" onchange="convCheck(&#39;s1&#39;,&#39;pk1&#39;,this)"> The sponsee understands and accepts the permanent, progressive nature of the condition</label>
       <label class="conv-item" id="cc-s1-pk2"><input type="checkbox" onchange="convCheck(&#39;s1&#39;,&#39;pk2&#39;,this)"> The sponsee is not still entertaining the idea of controlled use in the future</label>
     </div>
-    <div class="step-footer"><button class="nbtn" onclick="showPhase(1,4,document.querySelectorAll(&#39;#phaseNav1 .phase-btn&#39;)[3])">← The Allergy</button><button class="nbtn pri" onclick="showPhase(1,6,document.querySelectorAll(&#39;#phaseNav1 .phase-btn&#39;)[5])">Next: Sponsor Shares →</button></div>
+    <div class="step-footer"><button class="nbtn" onclick="showPhase(1,4,document.querySelectorAll(&#39;#phaseNav1 .phase-btn&#39;)[3])">← The Allergy</button><button class="nbtn pri" onclick="showPhase(1,6,document.querySelectorAll(&#39;#phaseNav1 .phase-btn&#39;)[5])">Next: Insanity →</button></div>
   </div>
 
-  <!-- PHASE 6 — SPONSOR SHARES -->
+  <!-- PHASE 6 — INSANITY -->
   <div class="phase-content" id="s1p6" style="display:none">
+    <div class="teach-card tc-lav">
+      <h3>Insanity — The Bridge to Step Two</h3>
+      <p>Step Two says a Power greater than ourselves "could restore us to sanity." That word only makes sense if something was insane to begin with — and that's the last piece of Step One. Before moving on, the sponsee needs to see clearly that the way they were living and thinking was itself a form of insanity.</p>
+      <p>As it's often put in the rooms: <em>"That which I want to do, I can't do — and what I don't want to do, that's what I end up doing."</em> We were our own boss, yet we did not obey the rules we ourselves had set for our own life. That's insane.</p>
+      <p>Notice, too, that almost every relapse happened stone cold sober. It was not <span class="allergen-span">our substance or compulsive behavior</span> itself that set off the obsession — it was a decision made while completely sober, before anything was ever touched.</p>
+    </div>
+    <div class="evidence-section">
+      <h3>Sponsee Evidence — Insanity</h3>
+      <div class="speaker-tag tag-sponsee">Sponsee writes</div>
+      <div class="prompt">What kind of thoughts preceded your last few relapses? How long did you entertain these ideas before acting on them? Looking back, was it a gradual progression — building over that day, or that week?</div>
+      <textarea class="ev-area" id="s1ev-insanity" rows="5" placeholder="Walk through the thinking that led up to your last few relapses..." oninput="saveEv('s1ev-insanity')"></textarea>
+      <div class="ev-hint">The first part of Step Two means accepting that there is nothing we can do on our own to save ourselves from acting insane. Look for the sponsee to trace the decision, made sober, as the real starting point — not the moment they used.</div>
+    </div>
+    <div class="conviction-box">
+      <h4>Sponsor — Assess This Evidence</h4>
+      <label class="conv-item" id="cc-s1-in1"><input type="checkbox" onchange="convCheck('s1','in1',this)"> The sponsee can trace the thinking, not just the moment, that led to relapse</label>
+      <label class="conv-item" id="cc-s1-in2"><input type="checkbox" onchange="convCheck('s1','in2',this)"> The sponsee recognizes the decision was made stone cold sober — before the behavior itself</label>
+      <label class="conv-item" id="cc-s1-in3"><input type="checkbox" onchange="convCheck('s1','in3',this)"> I am satisfied the sponsee understands why this way of living is called insanity</label>
+    </div>
+    <div class="step-footer"><button class="nbtn" onclick="showPhase(1,5,document.querySelectorAll('#phaseNav1 .phase-btn')[4])">← The Pickle</button><button class="nbtn pri" onclick="showPhase(1,7,document.querySelectorAll('#phaseNav1 .phase-btn')[6])">Next: Sponsor Shares →</button></div>
+  </div>
+
+  <!-- PHASE 7 — SPONSOR SHARES -->
+  <div class="phase-content" id="s1p7" style="display:none">
     <div class="teach-card tc-blue">
       <h3>The Sponsor's Experience — Sharing Step One</h3>
       <p>The sponsor now shares their own experience with Step One. This is not a lecture or a critique of the sponsee's evidence — it is the sharing of one person's journey with another. It demonstrates that the sponsor has genuinely lived through this step and found it to be true.</p>
@@ -517,11 +542,11 @@ main{max-width:1040px;margin:0 auto;padding:24px 18px 80px}
       <div class="prompt">Share your own experience with Step One. How did you come to be fully convinced of your powerlessness and unmanageability? What evidence did you have? What did it take for you to truly accept the permanent nature of your condition?</div>
       <textarea class="ev-area" id="s1ev-sponsor" rows="6" placeholder="Sponsor: share your own Step One experience here..." oninput="saveEv(&#39;s1ev-sponsor&#39;)"></textarea>
     </div>
-    <div class="step-footer"><button class="nbtn" onclick="showPhase(1,5,document.querySelectorAll(&#39;#phaseNav1 .phase-btn&#39;)[4])">← The Pickle</button><button class="nbtn pri" onclick="showPhase(1,7,document.querySelectorAll(&#39;#phaseNav1 .phase-btn&#39;)[6])">Next: Graduation →</button></div>
+    <div class="step-footer"><button class="nbtn" onclick="showPhase(1,6,document.querySelectorAll(&#39;#phaseNav1 .phase-btn&#39;)[5])">← Insanity</button><button class="nbtn pri" onclick="showPhase(1,8,document.querySelectorAll(&#39;#phaseNav1 .phase-btn&#39;)[7])">Next: Graduation →</button></div>
   </div>
 
-  <!-- PHASE 7 — GRADUATION -->
-  <div class="phase-content" id="s1p7" style="display:none">
+  <!-- PHASE 8 — GRADUATION -->
+  <div class="phase-content" id="s1p8" style="display:none">
     <div class="grad-box" id="gradBox1">
       <h3>Step One — Completion</h3>
       <p>The sponsor now reviews all evidence collected and confirms their conviction before graduating the sponsee to Step Two. Each box below must be checked sincerely — not as a formality.</p>
@@ -531,11 +556,12 @@ main{max-width:1040px;margin:0 auto;padding:24px 18px 80px}
         <label class="grad-item" id="gi-s1-3"><input type="checkbox" onchange="gradCheck(1,2,this)"> The sponsee understands and accepts the allergy concept — body AND mind</label>
         <label class="grad-item" id="gi-s1-4"><input type="checkbox" onchange="gradCheck(1,3,this)"> The sponsee has accepted the permanent nature of this condition (the pickle principle)</label>
         <label class="grad-item" id="gi-s1-5"><input type="checkbox" onchange="gradCheck(1,4,this)"> I, as sponsor, have shared my own experience with Step One</label>
-        <label class="grad-item" id="gi-s1-6"><input type="checkbox" onchange="gradCheck(1,5,this)"> <strong>I am fully and genuinely convinced that <span id="s1-sponsee-name">the sponsee</span> is convinced of Step One</strong></label>
+        <label class="grad-item" id="gi-s1-6"><input type="checkbox" onchange="gradCheck(1,5,this)"> The sponsee understands why this way of living was insanity, and that only a Power greater than themselves can restore sanity</label>
+        <label class="grad-item" id="gi-s1-7"><input type="checkbox" onchange="gradCheck(1,6,this)"> <strong>I am fully and genuinely convinced that <span id="s1-sponsee-name">the sponsee</span> is convinced of Step One</strong></label>
       </div>
       <button class="grad-btn" id="gradBtn1" disabled="" onclick="graduateStep(1)">✦ Graduate Step One — Proceed to Step Two ✦</button>
     </div>
-    <div class="step-footer"><button class="nbtn" onclick="showPhase(1,6,document.querySelectorAll(&#39;#phaseNav1 .phase-btn&#39;)[5])">← Sponsor Shares</button><button class="nbtn pri" onclick="showStep(2)">Step Two →</button></div>
+    <div class="step-footer"><button class="nbtn" onclick="showPhase(1,7,document.querySelectorAll(&#39;#phaseNav1 .phase-btn&#39;)[6])">← Sponsor Shares</button><button class="nbtn pri" onclick="showStep(2)">Step Two →</button></div>
   </div>
 </section>
 
@@ -557,6 +583,7 @@ main{max-width:1040px;margin:0 auto;padding:24px 18px 80px}
       <p>If Step One is the <em>diagnosis</em>, Step Two is the <em>prescription</em>. Joe and Charlie describe the transition from Step One to Step Two as the move from a hopeless problem to a hopeful solution. Step One left us "absolutely licked" — Step Two offers the first glimmer of a way out.</p>
       <p>"Sanity" here does not mean clinical mental health. It refers specifically to the <em>mental obsession</em> — the insane idea that we can use our substance or engage in our behavior and get a different result. Step Two asks simply: can we believe that something — anything — greater than our own thinking can restore us to clear, rational thought?</p>
       <p>Joe and Charlie emphasize that Step Two requires only <em>willingness to believe</em> — not deep faith, not certainty, not a specific religious tradition. The Big Book says "We found that God does not make too hard terms with those who seek Him." The only requirement is an open mind and a willingness to try.</p>
+      <p>Step One's diagnosis was powerlessness — a lack of power to manage the problem on our own. Step Two answers that lack of power directly. It does not ask for more willpower; it only asks for a willingness to believe that power is available from somewhere outside ourselves.</p>
     </div>
     <div class="teach-card tc-lav">
       <h3>The Second Step Proposition — Page 53</h3>
@@ -576,11 +603,17 @@ main{max-width:1040px;margin:0 auto;padding:24px 18px 80px}
       <div class="speaker-tag tag-sponsee">Sponsee writes</div>
       <div class="prompt">Have you come to believe — or are you at least willing to believe — that a Power greater than your own thinking and willpower exists and can restore you to sanity? What experiences, observations, or moments of willingness bring you to this belief?</div>
       <textarea class="ev-area" id="s2ev-belief" rows="5" placeholder="Describe your path toward Step Two — your willingness to believe..." oninput="saveEv(&#39;s2ev-belief&#39;)"></textarea>
+      <div class="prompt" style="margin-top:16px">According to Step Two, what does being "restored to sanity" mean? If it means that we were insane, what evidence do you have of that insanity in your own life?</div>
+      <textarea class="ev-area" id="s2ev-sanity" rows="5" placeholder="Describe what 'restored to sanity' means to you, and your own evidence of insanity..." oninput="saveEv(&#39;s2ev-sanity&#39;)"></textarea>
+      <div class="prompt" style="margin-top:16px">What would a manageable life look like for you? Lack of power was our dilemma — what would a life directed by a Higher Power look like instead?</div>
+      <textarea class="ev-area" id="s2ev-manageable" rows="5" placeholder="Describe what a manageable, Higher-Power-directed life would look like for you..." oninput="saveEv(&#39;s2ev-manageable&#39;)"></textarea>
     </div>
     <div class="conviction-box" style="background:var(--plav);border-color:rgba(96,64,176,.25)">
       <h4 style="color:var(--c3)">Sponsor — Assess This Evidence</h4>
       <label class="conv-item" id="cc-s2-b1"><input type="checkbox" onchange="convCheck(&#39;s2&#39;,&#39;b1&#39;,this)"> The sponsee has genuine willingness to believe — not just compliance</label>
       <label class="conv-item" id="cc-s2-b2"><input type="checkbox" onchange="convCheck(&#39;s2&#39;,&#39;b2&#39;,this)"> The sponsee understands that Step Two does not require perfect faith — only an open mind</label>
+      <label class="conv-item" id="cc-s2-b3"><input type="checkbox" onchange="convCheck(&#39;s2&#39;,&#39;b3&#39;,this)"> The sponsee has offered real evidence of insanity — not just a definition of the word</label>
+      <label class="conv-item" id="cc-s2-b4"><input type="checkbox" onchange="convCheck(&#39;s2&#39;,&#39;b4&#39;,this)"> The sponsee has a real picture of what a manageable, Higher-Power-directed life would look like</label>
     </div>
     <div class="step-footer"><button class="nbtn" onclick="showPhase(2,1,document.querySelectorAll(&#39;#phaseNav2 .phase-btn&#39;)[0])">← The Prescription</button><button class="nbtn pri" onclick="showPhase(2,3,document.querySelectorAll(&#39;#phaseNav2 .phase-btn&#39;)[2])">Next: Sponsor Shares →</button></div>
   </div>
@@ -601,7 +634,8 @@ main{max-width:1040px;margin:0 auto;padding:24px 18px 80px}
         <label class="grad-item" id="gi-s2-1"><input type="checkbox" onchange="gradCheck(2,0,this)"> The sponsee has genuine willingness to believe in a Power greater than themselves</label>
         <label class="grad-item" id="gi-s2-2"><input type="checkbox" onchange="gradCheck(2,1,this)"> The sponsee understands "sanity" as it relates to the mental obsession</label>
         <label class="grad-item" id="gi-s2-3"><input type="checkbox" onchange="gradCheck(2,2,this)"> I have shared my own experience with Step Two</label>
-        <label class="grad-item" id="gi-s2-4"><input type="checkbox" onchange="gradCheck(2,3,this)"> <strong>I am fully and genuinely convinced that <span class="sponsee-name-span">the sponsee</span> is convinced of Step Two</strong></label>
+        <label class="grad-item" id="gi-s2-4"><input type="checkbox" onchange="gradCheck(2,3,this)"> The sponsee understands that being "restored to sanity" implies insanity, and can describe what a manageable, Higher-Power-directed life would look like</label>
+        <label class="grad-item" id="gi-s2-5"><input type="checkbox" onchange="gradCheck(2,4,this)"> <strong>I am fully and genuinely convinced that <span class="sponsee-name-span">the sponsee</span> is convinced of Step Two</strong></label>
       </div>
       <button class="grad-btn" id="gradBtn2" disabled="" onclick="graduateStep(2)" style="background:var(--c3)">✦ Graduate Step Two — Proceed to Step Three ✦</button>
     </div>
@@ -617,9 +651,10 @@ main{max-width:1040px;margin:0 auto;padding:24px 18px 80px}
   </div>
   <div class="phase-nav" id="phaseNav3">
     <button class="phase-btn" onclick="showPhase(3,1,this)">① The Decision</button>
-    <button class="phase-btn" onclick="showPhase(3,2,this)">② Sponsee Evidence</button>
-    <button class="phase-btn" onclick="showPhase(3,3,this)">③ The 3rd Step Prayer</button>
-    <button class="phase-btn active" onclick="showPhase(3,4,this)">④ Graduation</button>
+    <button class="phase-btn" onclick="showPhase(3,2,this)">② Willingness</button>
+    <button class="phase-btn" onclick="showPhase(3,3,this)">③ Sponsee Evidence</button>
+    <button class="phase-btn" onclick="showPhase(3,4,this)">④ The 3rd Step Prayer</button>
+    <button class="phase-btn active" onclick="showPhase(3,5,this)">⑤ Graduation</button>
   </div>
   <div class="phase-content" id="s3p1" style="display: none;">
     <div class="teach-card tc-lav">
@@ -628,26 +663,79 @@ main{max-width:1040px;margin:0 auto;padding:24px 18px 80px}
       <p>The Big Book compares it to a businessman who has been running a company into the ground. At some point, the partners intervene and say: "Let's hand this over to the care of a Greater Manager." The businessman doesn't disappear — they continue to work — but they no longer run the company on self-propulsion.</p>
       <p>The phrase "as we understood God" is critical. Step Three does not impose any specific religious tradition. The only requirement is honesty about the God of one's own understanding — which often begins simply as "Not me."</p>
     </div>
-    <div class="step-footer"><button class="nbtn" onclick="showStep(2)">← Step Two</button><button class="nbtn pri" onclick="showPhase(3,2,document.querySelectorAll(&#39;#phaseNav3 .phase-btn&#39;)[1])">Next: Evidence →</button></div>
+    <div class="step-footer"><button class="nbtn" onclick="showStep(2)">← Step Two</button><button class="nbtn pri" onclick="showPhase(3,2,document.querySelectorAll(&#39;#phaseNav3 .phase-btn&#39;)[1])">Next: Willingness →</button></div>
   </div>
+
+  <!-- PHASE 2 — WILLINGNESS -->
   <div class="phase-content" id="s3p2" style="display: none;">
+    <div class="teach-card tc-lav">
+      <h3>Willingness — The Heart of Step Three</h3>
+      <p>Step Three is often summed up in a single word: willingness. The sponsee is not being asked for certainty, or for a fully-formed faith — only for a willingness to try running life on a different basis than self-will.</p>
+      <p>That willingness gets tested constantly, not just once. Every situation we face today can be met from one of two places — self-will or God's will — and the work of Step Three is simply choosing, again and again, to hand the wheel over.</p>
+    </div>
+    <div class="fg2">
+      <div>
+        <div class="sec-label" style="margin-top:0">Liability Column <span>self-will run riot</span></div>
+        <div style="display:flex;align-items:center;gap:10px;background:var(--ppink);border:1px solid rgba(184,56,112,.15);border-radius:7px;padding:9px 12px;margin-bottom:6px"><div style="font-size:16px">⚡</div><div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--hdr);font-size:13.5px">Resentment</div></div>
+        <div style="display:flex;align-items:center;gap:10px;background:var(--ppink);border:1px solid rgba(184,56,112,.15);border-radius:7px;padding:9px 12px;margin-bottom:6px"><div style="font-size:16px">🎭</div><div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--hdr);font-size:13.5px">Dishonesty</div></div>
+        <div style="display:flex;align-items:center;gap:10px;background:var(--ppink);border:1px solid rgba(184,56,112,.15);border-radius:7px;padding:9px 12px;margin-bottom:6px"><div style="font-size:16px">🔒</div><div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--hdr);font-size:13.5px">Self-Centered Fear</div></div>
+        <div style="display:flex;align-items:center;gap:10px;background:var(--ppink);border:1px solid rgba(184,56,112,.15);border-radius:7px;padding:9px 12px;margin-bottom:6px"><div style="font-size:16px">👁</div><div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--hdr);font-size:13.5px">Envy / Jealousy</div></div>
+        <div style="display:flex;align-items:center;gap:10px;background:var(--ppink);border:1px solid rgba(184,56,112,.15);border-radius:7px;padding:9px 12px;margin-bottom:6px"><div style="font-size:16px">🏆</div><div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--hdr);font-size:13.5px">Pride / False Pride</div></div>
+        <div style="display:flex;align-items:center;gap:10px;background:var(--ppink);border:1px solid rgba(184,56,112,.15);border-radius:7px;padding:9px 12px;margin-bottom:6px"><div style="font-size:16px">🔥</div><div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--hdr);font-size:13.5px">Lust</div></div>
+        <div style="display:flex;align-items:center;gap:10px;background:var(--ppink);border:1px solid rgba(184,56,112,.15);border-radius:7px;padding:9px 12px;margin-bottom:6px"><div style="font-size:16px">🌀</div><div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--hdr);font-size:13.5px">Selfishness</div></div>
+        <div style="display:flex;align-items:center;gap:10px;background:var(--ppink);border:1px solid rgba(184,56,112,.15);border-radius:7px;padding:9px 12px;margin-bottom:6px"><div style="font-size:16px">🧱</div><div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--hdr);font-size:13.5px">Closed-Mindedness</div></div>
+        <div style="display:flex;align-items:center;gap:10px;background:var(--ppink);border:1px solid rgba(184,56,112,.15);border-radius:7px;padding:9px 12px;margin-bottom:6px"><div style="font-size:16px">⏳</div><div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--hdr);font-size:13.5px">Lack of Discipline</div></div>
+        <div style="display:flex;align-items:center;gap:10px;background:var(--ppink);border:1px solid rgba(184,56,112,.15);border-radius:7px;padding:9px 12px;margin-bottom:6px"><div style="font-size:16px">🕸</div><div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--hdr);font-size:13.5px">Manipulation</div></div>
+      </div>
+      <div>
+        <div class="sec-label" style="margin-top:0">Asset Column <span>God-directed</span></div>
+        <div style="display:flex;align-items:center;gap:10px;background:var(--pgreen);border:1px solid rgba(58,104,80,.18);border-radius:7px;padding:9px 12px;margin-bottom:6px"><div style="width:7px;height:7px;background:var(--c4);border-radius:50%;flex-shrink:0"></div><div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--c4);font-size:13.5px">Forgiveness</div></div>
+        <div style="display:flex;align-items:center;gap:10px;background:var(--pgreen);border:1px solid rgba(58,104,80,.18);border-radius:7px;padding:9px 12px;margin-bottom:6px"><div style="width:7px;height:7px;background:var(--c4);border-radius:50%;flex-shrink:0"></div><div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--c4);font-size:13.5px">Honesty</div></div>
+        <div style="display:flex;align-items:center;gap:10px;background:var(--pgreen);border:1px solid rgba(58,104,80,.18);border-radius:7px;padding:9px 12px;margin-bottom:6px"><div style="width:7px;height:7px;background:var(--c4);border-radius:50%;flex-shrink:0"></div><div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--c4);font-size:13.5px">Humility</div></div>
+        <div style="display:flex;align-items:center;gap:10px;background:var(--pgreen);border:1px solid rgba(58,104,80,.18);border-radius:7px;padding:9px 12px;margin-bottom:6px"><div style="width:7px;height:7px;background:var(--c4);border-radius:50%;flex-shrink:0"></div><div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--c4);font-size:13.5px">Trust / Faith</div></div>
+        <div style="display:flex;align-items:center;gap:10px;background:var(--pgreen);border:1px solid rgba(58,104,80,.18);border-radius:7px;padding:9px 12px;margin-bottom:6px"><div style="width:7px;height:7px;background:var(--c4);border-radius:50%;flex-shrink:0"></div><div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--c4);font-size:13.5px">Service</div></div>
+        <div style="display:flex;align-items:center;gap:10px;background:var(--pgreen);border:1px solid rgba(58,104,80,.18);border-radius:7px;padding:9px 12px;margin-bottom:6px"><div style="width:7px;height:7px;background:var(--c4);border-radius:50%;flex-shrink:0"></div><div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--c4);font-size:13.5px">Courage</div></div>
+        <div style="display:flex;align-items:center;gap:10px;background:var(--pgreen);border:1px solid rgba(58,104,80,.18);border-radius:7px;padding:9px 12px;margin-bottom:6px"><div style="width:7px;height:7px;background:var(--c4);border-radius:50%;flex-shrink:0"></div><div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--c4);font-size:13.5px">self-Discipline</div></div>
+        <div style="display:flex;align-items:center;gap:10px;background:var(--pgreen);border:1px solid rgba(58,104,80,.18);border-radius:7px;padding:9px 12px;margin-bottom:6px"><div style="width:7px;height:7px;background:var(--c4);border-radius:50%;flex-shrink:0"></div><div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--c4);font-size:13.5px">Love / Compassion</div></div>
+      </div>
+    </div>
+    <p style="font-size:13.5px;color:var(--inkl);margin:4px 0 16px">As we go through today, we will face challenging situations using items from one or both of these two columns. Being God-directed leads us to the asset column. Being self-will run riot leads us to the liability column.</p>
+    <div class="teach-card tc-blue">
+      <h3>God-Directed Is Often Others-Directed</h3>
+      <p>In practice, being God-directed and being others-directed are often the same thing. Asking "What would God have me do here?" and asking "What does this other person actually need from me right now?" tend to point the same way — outward, away from self.</p>
+    </div>
+    <div class="teach-card tc-mint">
+      <h3>Evidence of Joy</h3>
+      <p>Helping another person, thinking about someone else's problems instead of our own, and simply taking our eyes off our own pain for a while — these things produce a real, noticeable joy. It isn't a coincidence. It's evidence that we were built to live outward, not inward.</p>
+    </div>
+    <div class="teach-card tc-pink">
+      <h3>The Mayflower Hotel</h3>
+      <p>When Alcoholics Anonymous was first taking shape, Bill W. found himself alone in the lobby of the Mayflower Hotel in Akron, sober but badly tempted to drink. What kept him sober that afternoon wasn't willpower, and it wasn't anything he had tried before — it was the decision to go find another alcoholic to talk to instead. That single choice to turn outward, toward someone else who needed help, is what led to the founding of AA. Being others-directed wasn't a nice idea; in that moment, it was the only thing that worked.</p>
+      <p>Bill had already tried psychotherapy, self-appraisal, and self-examination for years. Each one kept his attention pointed at himself, and each one, on its own, kept compounding the problem rather than solving it.</p>
+    </div>
+    <div class="sq">"Selfishness—self-centeredness! That, we think, is the root of our troubles."<cite>— Alcoholics Anonymous, p. 62</cite></div>
+    <div class="step-footer"><button class="nbtn" onclick="showPhase(3,1,document.querySelectorAll(&#39;#phaseNav3 .phase-btn&#39;)[0])">← The Decision</button><button class="nbtn pri" onclick="showPhase(3,3,document.querySelectorAll(&#39;#phaseNav3 .phase-btn&#39;)[2])">Next: Evidence →</button></div>
+  </div>
+
+  <!-- PHASE 3 — SPONSEE EVIDENCE -->
+  <div class="phase-content" id="s3p3" style="display: none;">
     <div class="evidence-section">
       <h3>Sponsee Evidence — Making the Decision</h3>
       <div class="speaker-tag tag-sponsee">Sponsee writes</div>
       <div class="prompt">Describe what it means to you to "turn your will and your life over to the care of God as you understand God." What are you willing to turn over? What is difficult about this decision? Are you willing to make this decision today?</div>
       <textarea class="ev-area" id="s3ev-decision" rows="5" placeholder="Describe your understanding of Step Three and your willingness to make this decision..." oninput="saveEv(&#39;s3ev-decision&#39;)"></textarea>
     </div>
-    <div class="step-footer"><button class="nbtn" onclick="showPhase(3,1,document.querySelectorAll(&#39;#phaseNav3 .phase-btn&#39;)[0])">← The Decision</button><button class="nbtn pri" onclick="showPhase(3,3,document.querySelectorAll(&#39;#phaseNav3 .phase-btn&#39;)[2])">Next: The Prayer →</button></div>
+    <div class="step-footer"><button class="nbtn" onclick="showPhase(3,2,document.querySelectorAll(&#39;#phaseNav3 .phase-btn&#39;)[1])">← Willingness</button><button class="nbtn pri" onclick="showPhase(3,4,document.querySelectorAll(&#39;#phaseNav3 .phase-btn&#39;)[3])">Next: The Prayer →</button></div>
   </div>
-  <div class="phase-content" id="s3p3" style="display: none;">
+  <div class="phase-content" id="s3p4" style="display: none;">
     <div class="prayer-box">
       <div class="prayer-text">"God, I offer myself to Thee — to build with me and to do with me as Thou wilt. Relieve me of the bondage of self, that I may better do Thy will. Take away my difficulties, that victory over them may bear witness to those I would help of Thy Power, Thy Love, and Thy Way of life. May I do Thy will always."</div>
       <div class="prayer-src">The Third Step Prayer — Big Book, p. 63</div>
     </div>
     <div class="sq">The Big Book instructs: "We thought well before taking this step, making sure we were ready; that we could at last abandon ourselves utterly to God." Joe and Charlie note that this prayer is meant to be said with a sponsor or trusted person — it is not a solo act. The decision is witnessed, not merely private.<cite>— Alcoholics Anonymous, p. 63</cite></div>
-    <div class="step-footer"><button class="nbtn" onclick="showPhase(3,2,document.querySelectorAll(&#39;#phaseNav3 .phase-btn&#39;)[1])">← Evidence</button><button class="nbtn pri" onclick="showPhase(3,4,document.querySelectorAll(&#39;#phaseNav3 .phase-btn&#39;)[3])">Next: Graduation →</button></div>
+    <div class="step-footer"><button class="nbtn" onclick="showPhase(3,3,document.querySelectorAll(&#39;#phaseNav3 .phase-btn&#39;)[2])">← Evidence</button><button class="nbtn pri" onclick="showPhase(3,5,document.querySelectorAll(&#39;#phaseNav3 .phase-btn&#39;)[4])">Next: Graduation →</button></div>
   </div>
-  <div class="phase-content" id="s3p4" style="display: block;">
+  <div class="phase-content" id="s3p5" style="display: block;">
     <div class="grad-box" style="background:var(--plav);border-color:rgba(96,64,176,.3)">
       <h3 style="color:var(--c3)">Step Three — Completion</h3>
       <div class="grad-checklist">
@@ -657,7 +745,7 @@ main{max-width:1040px;margin:0 auto;padding:24px 18px 80px}
       </div>
       <button class="grad-btn" id="gradBtn3" onclick="graduateStep(3)" style="background:var(--c3)">✦ Graduate Step Three — Proceed to Step Four ✦</button>
     </div>
-    <div class="step-footer"><button class="nbtn" onclick="showPhase(3,3,document.querySelectorAll(&#39;#phaseNav3 .phase-btn&#39;)[2])">← The Prayer</button><button class="nbtn pri" onclick="showStep(4)">Step Four →</button></div>
+    <div class="step-footer"><button class="nbtn" onclick="showPhase(3,4,document.querySelectorAll(&#39;#phaseNav3 .phase-btn&#39;)[3])">← The Prayer</button><button class="nbtn pri" onclick="showStep(4)">Step Four →</button></div>
   </div>
 </section>
 
@@ -665,6 +753,16 @@ main{max-width:1040px;margin:0 auto;padding:24px 18px 80px}
 <section class="step-panel" id="panel-4">
   <div class="step-hdr"><div class="step-badge" style="background:var(--c4);">4</div><div><h1>Made a Searching &amp; Fearless Moral Inventory</h1><div class="step-sub">of Ourselves</div></div></div>
   <div class="sq">"We search out the flaws in our make-up which caused our failure. Being convinced that self, manifested in various ways, was what had defeated us, we considered its common manifestations."<cite>— Alcoholics Anonymous, p. 64</cite></div>
+  <div class="teach-card tc-lav">
+    <h3>Step Four — From Daily Practice to a Full Accounting</h3>
+    <p>In Step Three we started sorting each day's choices into two columns — the liability column, where self-will run riot, and the asset column, where we let God direct us instead. Step Four takes that same sorting and turns it inward, permanently. Instead of one day's situations, we are recording and examining the bigger challenges of our whole life — the patterns underneath the incidents, not just the incidents themselves.</p>
+    <p>The purpose is simple, even if the work isn't: we are going to remove the things that have been blocking us from the "sunlight of the Spirit" (Alcoholics Anonymous, p. 66). That means cleaning house, and cleaning our own side of the street, so we can finally get an honest, clear-eyed look at the pain and trauma we've carried, the resentments we've held toward others, and the people we ourselves have harmed.</p>
+  </div>
+  <div class="sq">"Resentment is the 'number one' offender. It destroys more alcoholics than anything else."<cite>— Alcoholics Anonymous, p. 64</cite></div>
+  <div class="teach-card tc-pink">
+    <h3>Why Resentment Comes First</h3>
+    <p>The inventory below starts with resentment because the Big Book puts it first, and for good reason — of everything sitting in the liability column, it is the one most likely to quietly destroy an alcoholic. Each resentment recorded here is one item pulled out of that column and set down on paper, where it can finally be examined instead of carried.</p>
+  </div>
   <div class="priv-panel" id="privPanel"><div style="font-family:&#39;Playfair Display&#39;,serif;font-size:15px;font-weight:700;color:var(--hdr);margin-bottom:3px">Quick Name Editor — Privacy Mode</div><div style="font-size:13px;color:var(--inkl);margin-bottom:12px">Change any name to an alias, initial, or role. Updates everywhere instantly.</div><div class="priv-grid" id="privGrid"><div class="priv-item"><span class="priv-num">#1</span><span style="color:var(--c1);font-size:12px">→</span><input class="priv-inp" id="pi-0" value="Name 1" placeholder="Alias"></div><div class="priv-item"><span class="priv-num">#2</span><span style="color:var(--c1);font-size:12px">→</span><input class="priv-inp" id="pi-1" value="Name 2" placeholder="Alias"></div><div class="priv-item"><span class="priv-num">#3</span><span style="color:var(--c1);font-size:12px">→</span><input class="priv-inp" id="pi-2" value="Person 3" placeholder="Alias"></div><div class="priv-item"><span class="priv-num">#4</span><span style="color:var(--c1);font-size:12px">→</span><input class="priv-inp" id="pi-3" value="Person 4" placeholder="Alias"></div><div class="priv-item"><span class="priv-num">#5</span><span style="color:var(--c1);font-size:12px">→</span><input class="priv-inp" id="pi-4" value="Person 5" placeholder="Alias"></div><div class="priv-item"><span class="priv-num">#6</span><span style="color:var(--c1);font-size:12px">→</span><input class="priv-inp" id="pi-5" value="Name 2" placeholder="Alias"></div><div class="priv-item"><span class="priv-num">#7</span><span style="color:var(--c1);font-size:12px">→</span><input class="priv-inp" id="pi-6" value="Person 7" placeholder="Alias"></div><div class="priv-item"><span class="priv-num">#8</span><span style="color:var(--c1);font-size:12px">→</span><input class="priv-inp" id="pi-7" value="Person 8" placeholder="Alias"></div><div class="priv-item"><span class="priv-num">#9</span><span style="color:var(--c1);font-size:12px">→</span><input class="priv-inp" id="pi-8" value="Person 9" placeholder="Alias"></div><div class="priv-item"><span class="priv-num">#10</span><span style="color:var(--c1);font-size:12px">→</span><input class="priv-inp" id="pi-9" value="Person 4 " placeholder="Alias"></div><div class="priv-item"><span class="priv-num">#11</span><span style="color:var(--c1);font-size:12px">→</span><input class="priv-inp" id="pi-10" value="Person 9 " placeholder="Alias"></div><div class="priv-item"><span class="priv-num">#12</span><span style="color:var(--c1);font-size:12px">→</span><input class="priv-inp" id="pi-11" value="Person 10" placeholder="Alias"></div></div><div style="margin-top:10px;display:flex;gap:7px;"><button class="tbtn" onclick="applyPrivacy()">Apply All</button><button class="tbtn" onclick="togglePrivacy()">Close</button></div></div>
   <div class="cat-tabs" id="catTabs"><button class="cat-tab active" onclick="switchCat(&#39;Resentment&#39;,this)">Resentment<span class="cbadge">9</span></button><button class="cat-tab " onclick="switchCat(&#39;Fear&#39;,this)">Fear<span class="cbadge">0</span></button><button class="cat-tab " onclick="switchCat(&#39;Self-Centered&#39;,this)">Self-Centered<span class="cbadge">2</span></button><button class="cat-tab " onclick="switchCat(&#39;Dishonesty&#39;,this)">Dishonesty<span class="cbadge">1</span></button><button class="cat-tab " onclick="switchCat(&#39;Envy&#39;,this)">Envy<span class="cbadge">0</span></button><button class="cat-tab " onclick="switchCat(&#39;All&#39;,this)">All<span class="cbadge">12</span></button></div>
   <div class="toolbar"><button class="tbtn" onclick="addPerson()">+ Add Person</button><button class="tbtn" onclick="togglePrivacy()">✎ Edit Names</button><span style="font-size:12px;color:var(--inkl);font-style:italic;margin-left:auto">Click any name in a card to rename it</span></div>
@@ -990,7 +1088,7 @@ function updateSponseeSpans(){const n=st.sponseeName||'the sponsee';document.que
 function saveEv(id){st.evidence[id]=document.getElementById(id).value;saveSt();}
 function convCheck(step,key,el){if(!st.convChecks[step])st.convChecks[step]={};st.convChecks[step][key]=el.checked;el.closest('.conv-item').className='conv-item'+(el.checked?' checked':'');saveSt();}
 function gradCheck(step,idx,el){if(!st.gradChecks[step])st.gradChecks[step]={};st.gradChecks[step][idx]=el.checked;el.closest('.grad-item').className='grad-item'+(el.checked?' chk':'');const btn=document.getElementById('gradBtn'+step);if(btn)checkGradBtn(step);saveSt();}
-function checkGradBtn(step){const gc=st.gradChecks[step]||{};const btn=document.getElementById('gradBtn'+step);if(!btn)return;const count={1:6,2:4,3:3,4:3,5:2,6:2,7:2,8:3,9:3}[step]||2;let all=true;for(let i=0;i<count;i++)if(!gc[i])all=false;btn.disabled=!all;}
+function checkGradBtn(step){const gc=st.gradChecks[step]||{};const btn=document.getElementById('gradBtn'+step);if(!btn)return;const count={1:7,2:5,3:3,4:3,5:2,6:2,7:2,8:3,9:3}[step]||2;let all=true;for(let i=0;i<count;i++)if(!gc[i])all=false;btn.disabled=!all;}
 
 function showPhase(step,phase,btn){
   const all=document.querySelectorAll('#panel-'+step+' .phase-content');
